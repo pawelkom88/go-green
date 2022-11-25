@@ -1,9 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
   --heading-font: "Odibee Sans";
   --main-font: "Nunito";
+  --primary-clr: "#008037";
+  --secondary-clr: "#fbc646";
+  --teriary-clr: "#7ed957";
 }
 
 body {
+  min-height: 100vh;
   font-family: var(--main-font), sans-serif;
 }
 
