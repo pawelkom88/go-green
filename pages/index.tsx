@@ -1,4 +1,3 @@
-// import Image from "next/image";
 import Sidebar from "@components/ui/sidebar/Sidebar";
 import Main from "@components/main/Main";
 import Map from "@components/map/Map";
