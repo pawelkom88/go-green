@@ -11,10 +11,20 @@
 }
 
 body {
-  min-height: 100vh;
+  /* min-height: 100vh; */
   font-family: var(--main-font), sans-serif;
 }
 
 h1 {
   font-family: var(--heading-font), sans-serif;
+}
+
+@layer components {
+  .sidebar {
+    @apply absolute h-full shadow bg-gray-100 hidden lg:block z-50;
+  }
+
+  .flex-center {
+    @apply flex justify-center items-center;
+  }
 }
