@@ -2,10 +2,13 @@
 module.exports = {
   theme: {
     purge: ["./**/*.{html,js,jsx}"],
-    // safelist: [],
-
+    safelist: ["primary-clr", "secondary-clr", "teriary-clr"],
     extend: {
-      // colors: {},
+      colors: {
+        "primary-clr": "var(--primary-clr)",
+        "secondary-clr": "var(--secondary-clr)",
+        "teriary-clr": "var(--teriary-clr)",
+      },
     },
   },
   content: ["./pages/**/*.{js,ts,jsx,tsx}", "./components/**/*.{js,ts,jsx,tsx}"],
