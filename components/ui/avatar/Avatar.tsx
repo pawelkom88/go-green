@@ -6,7 +6,7 @@ type UserNameProps = {
 
 export default function Avatar({ name }: UserNameProps) {
   return (
-    <div className="flex items-center">
+    <div className="flex-center">
       <Image
         width={25}
         height={25}
