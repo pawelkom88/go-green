@@ -1,8 +1,7 @@
 import UserMenu from "@components/user-menu/UserMenu";
 import SearchIcon from "@components/ui/icons/SearchIcon";
-import { MobileMenuProps } from "@types/types";
 
-export default function Nav({ isShown, onToggle }: MobileMenuProps) {
+export default function Nav() {
   console.log("render Nav");
   return (
     <nav className="h-max flex items-center lg:items-stretch justify-end lg:justify-between bg-grey-100 shadow relative py-2 z-10">
