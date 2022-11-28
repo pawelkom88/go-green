@@ -1,7 +1,7 @@
 import { useState } from "react";
-import Filter from "@components/filters/Filters";
-import HamburgerIcon from "../icons/HamburgerIcon";
-import CloseBtn from "@components/ui/icons/CloseBtn";
+import Filters from "@components/filters/Filters";
+import FilterIcon from "../icons/FilterIcon";
+import CloseBtn from "@components/ui/icons/CloseBtnIcon";
 import Logo from "@components/ui/logo/Logo";
 
 export default function Sidebar() {
@@ -24,17 +24,15 @@ export default function Sidebar() {
                 <Logo />
               </li>
               <li>
-                <Filter />
+                <Filters />
               </li>
             </>
           ) : (
-            <li className="h-full flex flex-col justify-center items-center">
-              <span
-                onClick={() => {
-                  setIsOpen(!isOpen);
-                }}>
-                <HamburgerIcon />
-              </span>
+            <li
+              onClick={() => {
+                setIsOpen(!isOpen);
+              }}>
+              <FilterIcon />
             </li>
           )}
         </ul>
