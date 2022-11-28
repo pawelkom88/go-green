@@ -5,23 +5,25 @@
 :root {
   --heading-font: "Odibee Sans";
   --main-font: "Nunito";
-  --primary-clr: "#008037";
-  --secondary-clr: "#fbc646";
-  --teriary-clr: "#7ed957";
+  --primary-clr: #164a41;
+  --secondary-clr: #f1b24a;
+  --teriary-clr: #9dc88d;
+  --text-clr: #fff;
 }
 
 body {
   /* min-height: 100vh; */
   font-family: var(--main-font), sans-serif;
+  color: var(--text-clr);
 }
 
 h1 {
-  font-family: var(--heading-font), sans-serif;
+  font-family: var(--main-font), sans-serif;
 }
 
 @layer components {
   .sidebar {
-    @apply absolute h-full shadow bg-gray-100 hidden lg:block z-50;
+    @apply absolute h-full shadow bg-gray-100 hidden lg:block z-50 bg-primary-clr border-r-4 border-teriary-clr;
   }
 
   .flex-center {
