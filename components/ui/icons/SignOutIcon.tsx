@@ -2,9 +2,9 @@ export default function SignOutIcon() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      className="icon icon-tabler icon-tabler-logout"
-      width={20}
-      height={20}
+      width={25}
+      height={25}
+      className="ml-1"
       viewBox="0 0 24 24"
       strokeWidth="1.5"
       stroke="currentColor"

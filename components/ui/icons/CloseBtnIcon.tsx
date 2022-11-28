@@ -2,7 +2,7 @@ export default function CloseBtn() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      className="icon icon-tabler icon-tabler-x cursor-pointer"
+      className="cursor-pointer"
       width={30}
       height={30}
       viewBox="0 0 24 24"
