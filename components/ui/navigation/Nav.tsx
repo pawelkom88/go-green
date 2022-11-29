@@ -1,11 +1,16 @@
 import { useState } from "react";
+import useGeolocation from "@hooks/useGeolocation";
 import UserMenu from "@components/user-menu/UserMenu";
 import Filters from "@components/filters/Filters";
 import FilterIcon from "@components/ui/icons/FilterIcon";
 import Location from "@components/ui/icons/LocationIcon";
 import SearchIcon from "@components/ui/icons/SearchIcon";
 
-export default function Nav() {
+type UserLocationProps = {
+  onLocateUser: (val: object) => void;
+};
+
+export default function Nav({ onLocateUser }: UserLocationProps) {
   const [isFilterMenuOpen, setIsFilterMenuOpen] = useState<boolean>(false);
 
   function toggleFiltersMenu() {
@@ -30,7 +35,7 @@ export default function Nav() {
                 type="text"
                 placeholder="Postcode"
               />
-              <div className="w-15 h-full ml-2 px-2">
+              <div onClick={onLocateUser} className="w-15 h-full ml-2 px-2">
                 <Location />
               </div>
               <div onClick={toggleFiltersMenu} className="lg:hidden w-15 h-full px-2">
@@ -43,7 +48,7 @@ export default function Nav() {
       </nav>
 
       {isFilterMenuOpen ? (
-        <div className="absolute w-full h-full bg-primary-clr -mt-12">
+        <div className="absolute w-full h-full bg-primary-clr z-40">
           <Filters />
         </div>
       ) : (
