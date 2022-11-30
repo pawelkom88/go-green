@@ -1,18 +1,15 @@
 import { GoogleMap, useLoadScript, MarkerF } from "@react-google-maps/api";
 
 type UserLocationProps = {
-  lat: number;
-  lng: number;
+  userLocation: {
+    lat: number;
+    lng: number;
+  };
 };
 
 const containerStyle = {
   maxWidth: "100%",
   minHeight: "100%",
-};
-
-const location = {
-  lat: -3.745,
-  lng: -38.523,
 };
 
 export default function Map({ userLocation }: UserLocationProps) {
