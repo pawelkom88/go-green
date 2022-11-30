@@ -7,7 +7,7 @@ type ButtonType = {
   onClick: () => void;
 };
 
-export default function Button({ children, onClick, className, type }: ButtonType) {
+export default function Button({ children, onClick, className, type = "button" }: ButtonType) {
   return (
     <button onClick={onClick} type={type} className={className}>
       {children}
