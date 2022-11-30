@@ -1,5 +1,4 @@
 import { useState } from "react";
-import useGeolocation from "@hooks/useGeolocation";
 import UserMenu from "@components/user-menu/UserMenu";
 import Filters from "@components/filters/Filters";
 import FilterIcon from "@components/ui/icons/FilterIcon";

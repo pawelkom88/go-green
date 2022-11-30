@@ -1,11 +1,12 @@
-import { useState } from "react";
 import useGeolocation from "@hooks/useGeolocation";
 import Sidebar from "@components/ui/sidebar/Sidebar";
 import Nav from "@components/ui/navigation/Nav";
 import Map from "@components/map/Map";
 
 export default function Home() {
-  const { currentLocation, getCurrentPosition } = useGeolocation();
+  const { currentLocation, getCurrentPosition, status, requestTime } = useGeolocation();
+
+  //requestTime?.toLocaleString();
 
   return (
     <>
