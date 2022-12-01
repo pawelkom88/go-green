@@ -1,8 +1,14 @@
-export default function CloseBtn() {
+type CloseBtnProps = {
+  className: string;
+  onToggleSidebar?: () => void;
+};
+
+export default function CloseBtn({ className, onToggleSidebar }: CloseBtnProps) {
   return (
     <svg
+      onClick={onToggleSidebar}
       xmlns="http://www.w3.org/2000/svg"
-      className="cursor-pointer"
+      className={`${className} cursor-pointer`}
       width={30}
       height={30}
       viewBox="0 0 24 24"
