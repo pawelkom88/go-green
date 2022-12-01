@@ -7,35 +7,29 @@ import Logo from "@components/ui/logo/Logo";
 export default function Sidebar() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
+  function toggleSidebar() {
+    setIsOpen(!isOpen);
+  }
+
   return (
     <>
       <aside className={isOpen ? "w-80 sidebar" : "w-20 sidebar"}>
-        <ul className="relative h-full flex-center flex-col py-6">
+        <div className="relative h-full flex-center flex-col py-6">
           {isOpen ? (
             <>
-              <li
-                className="absolute top-4 right-4 cursor-pointer z-40"
-                onClick={() => {
-                  setIsOpen(!isOpen);
-                }}>
-                <CloseBtn />
-              </li>
-              <li className="absolute top-2 left-0 right-0 m-auto">
+              <CloseBtn
+                className={"absolute top-4 right-4 cursor-pointer z-40"}
+                onToggleSidebar={toggleSidebar}
+              />
+              <span className="absolute top-2 left-0 right-0 m-auto">
                 <Logo />
-              </li>
-              <li>
-                <Filters />
-              </li>
+              </span>
+              <Filters />
             </>
           ) : (
-            <li
-              onClick={() => {
-                setIsOpen(!isOpen);
-              }}>
-              <FilterIcon />
-            </li>
+            <FilterIcon onToggleSidebar={toggleSidebar} />
           )}
-        </ul>
+        </div>
       </aside>
     </>
   );
