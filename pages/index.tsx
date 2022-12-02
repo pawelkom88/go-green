@@ -2,11 +2,10 @@ import useGeolocation from "@hooks/useGeolocation";
 import Sidebar from "@components/ui/sidebar/Sidebar";
 import Nav from "@components/ui/navigation/Nav";
 import Map from "@components/map/Map";
+import Modal from "@components/ui/modal/Modal";
 
 export default function Home() {
-  const { currentLocation, getCurrentPosition, status, requestTime } = useGeolocation();
-
-  //requestTime?.toLocaleString();
+  const { currentLocation, getCurrentPosition, status } = useGeolocation();
 
   return (
     <>
@@ -19,6 +18,8 @@ export default function Home() {
           </main>
         </div>
       </div>
+
+      {status.length !== 0 && <Modal onError={status} />}
     </>
   );
 }
