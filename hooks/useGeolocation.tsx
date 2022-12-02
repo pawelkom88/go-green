@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { GeolocationType, PositionType, GeolocationState } from "../types/types";
+import { GeolocationType, PositionType, GeolocationState } from "types/types";
 
 const options = {
   enableHighAccuracy: true,
@@ -9,7 +9,6 @@ const options = {
 
 export default function useGeolocation() {
   const [status, setStatus] = useState<string>("");
-  const [requestTime, setRequestTime] = useState<Date>();
   const [currentLocation, setCurrentLocation] = useState<GeolocationState>({
     lat: 51.509865,
     lng: -0.118092,
@@ -37,20 +36,16 @@ export default function useGeolocation() {
       default:
         message = "Geolocation failed due to unknown error.";
     }
-
     setStatus(message);
   }
 
   function getCoordinates(position: PositionType) {
     const crd = position.coords;
-    const timestamp = position.timestamp;
 
     setCurrentLocation({
       lat: crd.latitude,
       lng: crd.longitude,
     });
-
-    setRequestTime(new Date(timestamp));
   }
 
   function getCurrentPosition() {
@@ -62,5 +57,5 @@ export default function useGeolocation() {
     }
   }
 
-  return { currentLocation, getCurrentPosition, status, requestTime };
+  return { currentLocation, getCurrentPosition, status };
 }
