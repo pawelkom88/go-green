@@ -8,7 +8,7 @@ export default function CloseBtn({ className, onClose }: CloseBtnProps) {
     <svg
       onClick={onClose}
       xmlns="http://www.w3.org/2000/svg"
-      className={`${className} cursor-pointer`}
+      className={`${className} cursor-pointer z-50`}
       width={30}
       height={30}
       viewBox="0 0 24 24"

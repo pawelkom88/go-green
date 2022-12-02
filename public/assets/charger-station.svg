@@ -1,0 +1,11 @@
+<svg width="52" height="52" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 64 64">
+<rect width="42" height="7" x="3" y="54" fill="#9DC88D" stroke="#000" stroke-miterlimit="10" stroke-width="3" rx="2.79"/>
+<rect width="22" height="36" x="13" y="7" fill="#F1B24A" stroke="#000" stroke-miterlimit="10" stroke-width="3" rx="7.64"/>
+<path fill="#9DC88D" stroke="#000" stroke-miterlimit="10" stroke-width="2" d="M20.79,3h6.42A11.79,11.79,0,0,1,39,14.79V54a0,0,0,0,1,0,0H9a0,0,0,0,1,0,0V14.79A11.79,11.79,0,0,1,20.79,3Z"/>
+<rect width="4.4" height="3" x="22" y="35" fill="#fff" stroke="#fff" stroke-miterlimit="10" stroke-width="2"/>
+<polygon fill="#fff" stroke="#fff" stroke-miterlimit="10" stroke-width="2" points="27.4 12 21 12 22 31 26.4 31 27.4 12"/>
+<path fill="#F1B24A" stroke="#F1B24A" stroke-miterlimit="10" stroke-width="3" d="M57.76,24H56.24A3.24,3.24,0,0,1,53,20.76V19.09A1.09,1.09,0,0,1,54.09,18h5.82A1.09,1.09,0,0,1,61,19.09v1.67A3.24,3.24,0,0,1,57.76,24Z"/>
+<line x1="59" x2="59" y1="14" y2="17.5" fill="none" stroke="#000" stroke-linecap="round" stroke-miterlimit="10" stroke-width="3"/>
+<line x1="55" x2="55" y1="14" y2="17.5" fill="none" stroke="#000" stroke-linecap="round" stroke-miterlimit="10" stroke-width="3"/>
+<path fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="2" d="M39,11h1.3A4.75,4.75,0,0,1,45,15.75v26.5A4.75,4.75,0,0,0,49.75,47h2.5A4.75,4.75,0,0,0,57,42.25V24"/>
+</svg>

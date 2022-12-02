@@ -1,3 +1,4 @@
+import React from "react";
 import { GoogleMap, useLoadScript, MarkerF } from "@react-google-maps/api";
 import Modal from "@components/ui/modal/Modal";
 
@@ -13,6 +14,11 @@ const containerStyle = {
   minHeight: "100%",
 };
 
+const fakePoition = {
+  lat: 51.519977,
+  lng: -0.128115,
+};
+
 export default function Map({ userLocation }: UserLocationProps) {
   const { isLoaded, loadError } = useLoadScript({
     id: "google-map-script",
@@ -23,7 +29,8 @@ export default function Map({ userLocation }: UserLocationProps) {
     <div className="w-full h-[calc(100vh-64px)] bg-white">
       {isLoaded ? (
         <GoogleMap mapContainerStyle={containerStyle} zoom={14} center={userLocation}>
-          <MarkerF position={userLocation} />
+          <MarkerF icon={"/assets/electric-car.svg"} position={userLocation} />
+          <MarkerF icon={"/assets/charger-station.svg"} position={fakePoition} />
         </GoogleMap>
       ) : (
         "Loading"

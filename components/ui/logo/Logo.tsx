@@ -4,7 +4,7 @@ export default function Logo() {
   console.log("Logo renders");
 
   return (
-    <div className="min-h-max w-full flex-center">
+    <div className="relative min-h-max w-full flex-center z-40">
       <Image src={"/assets/logo.png"} width={180} height={180} alt="App logo" />
     </div>
   );
