@@ -21,7 +21,7 @@ export default function UserMenu() {
   console.log("UserMenu renders");
   return (
     <div className="w-1/4 hidden lg:flex mr-8">
-      <div className="w-full flex items-center pl-8 justify-end">
+      <div className="w-full flex items-center justify-end">
         {isLoggedIn ? (
           <div
             aria-label="Open user menu"
