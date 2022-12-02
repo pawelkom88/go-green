@@ -1,4 +1,5 @@
 import { GoogleMap, useLoadScript, MarkerF } from "@react-google-maps/api";
+import Modal from "@components/ui/modal/Modal";
 
 type UserLocationProps = {
   userLocation: {
@@ -27,7 +28,7 @@ export default function Map({ userLocation }: UserLocationProps) {
       ) : (
         "Loading"
       )}
-      {loadError && "error"}
+      {loadError && <Modal onError="Map cannot be displayed" />}
     </div>
   );
 }

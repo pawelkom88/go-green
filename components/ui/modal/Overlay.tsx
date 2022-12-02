@@ -1,6 +1,15 @@
 import React from "react";
-import { ChildrenType } from "types/types";
 
-export default function Overlay({ children }: ChildrenType) {
-  return <div className="absolute inset-0 w-full h-full bg-gray-800 opacity-50 flex-center z-50">{children}</div>;
+type OverlayType = {
+  children: React.ReactNode;
+  onClose: () => void;
+};
+
+export default function Overlay({ children, onClose }: OverlayType) {
+
+  return (
+    <div onClick={onClose} className="fixed inset-0 bg-gray-600 bg-opacity-75 flex-center z-50">
+      {children}
+    </div>
+  );
 }
