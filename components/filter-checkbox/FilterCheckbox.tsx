@@ -1,10 +1,7 @@
 import React from "react";
+import { ChildrenType } from "types/types";
 
-type FilterCheckboxType = {
-  children: React.ReactNode;
-};
-
-export default function FilterCheckbox({ children }: FilterCheckboxType) {
+export default function FilterCheckbox({ children }: ChildrenType) {
   return (
     <div className="form-control">
       <label htmlFor="filter" className="flex-center label cursor-pointer">

@@ -19,7 +19,7 @@ export default function Sidebar() {
             <>
               <CloseBtn
                 className={"absolute top-4 right-4 cursor-pointer z-40"}
-                onToggleSidebar={toggleSidebar}
+                onClose={toggleSidebar}
               />
               <span className="absolute top-2 left-0 right-0 m-auto">
                 <Logo />
