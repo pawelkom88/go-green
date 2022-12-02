@@ -21,7 +21,7 @@ export default function Modal({ onError }: ModalTypes) {
   return (
     <>
       {!modalClose && (
-        <Overlay modalClose={modalClose}>
+        <Overlay onClose={closeModal}>
           <dialog
             className="min-h-[20vh] overflow-hidden rounded-lg bg-white shadow-xl sm:my-8 sm:w-full sm:max-w-lg text-center text-lg md:text-xl"
             open>
