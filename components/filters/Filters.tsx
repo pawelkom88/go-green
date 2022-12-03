@@ -2,13 +2,9 @@ import FilterCheckbox from "@components/filter-checkbox/FilterCheckbox";
 import Button from "@components/ui/button/Button";
 import FilterIcon from "@components/ui/icons/FilterIcon";
 
-type FiltersProps = {
-  onFilterMenuOpen?: boolean;
-};
-
 const commonStyles = "w-full h-12 text-black font-bold uppercase my-4 border-2 border-primary-clr";
 
-export default function Filters({ onFilterMenuOpen = true }: FiltersProps) {
+export default function Filters() {
   console.log("Filters renders");
 
   function someHandler() {
@@ -16,8 +12,7 @@ export default function Filters({ onFilterMenuOpen = true }: FiltersProps) {
   }
 
   return (
-    <>
-      {onFilterMenuOpen && (
+
         <div className={`absolute w-full h-full bg-primary-clr z-30`}>
           <form className="absolute top-60 left-0 w-full flex-center flex-col">
             <div className="flex-center">
@@ -42,7 +37,5 @@ export default function Filters({ onFilterMenuOpen = true }: FiltersProps) {
             </div>
           </form>
         </div>
-      )}
-    </>
   );
 }

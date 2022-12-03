@@ -23,7 +23,7 @@ export default function Nav({ onLocateUser }: UserLocationProps) {
           <UserMenu />
         </div>
       </nav>
-      <Filters onFilterMenuOpen={isFilterMenuOpen}/>
+      {isFilterMenuOpen && <Filters />}
     </>
   );
 }
