@@ -20,7 +20,7 @@ export default function useGeolocation() {
     switch (error.code) {
       case 1:
         {
-          message = "You've decided not to share your position";
+          message = "You've decided not to share your position. Location service is turned off.";
         }
         break;
       case 2:

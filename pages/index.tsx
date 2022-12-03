@@ -1,3 +1,4 @@
+import MobileMenu from "@components/mobile-menu/MobileMenu";
 import useGeolocation from "@hooks/useGeolocation";
 import Sidebar from "@components/ui/sidebar/Sidebar";
 import Nav from "@components/ui/navigation/Nav";
@@ -15,6 +16,7 @@ export default function Home() {
           <main className="w-full">
             <Nav onLocateUser={getCurrentPosition} />
             <Map userLocation={currentLocation} />
+            <MobileMenu />
           </main>
         </div>
       </div>
