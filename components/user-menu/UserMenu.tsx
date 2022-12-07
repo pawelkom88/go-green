@@ -18,7 +18,6 @@ export default function UserMenu() {
     setIsLoggedIn(true);
   }
 
-  console.log("UserMenu renders");
   return (
     <div className="w-1/4 hidden lg:flex mr-8">
       <div className="w-full flex items-center justify-end">

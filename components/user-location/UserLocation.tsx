@@ -7,7 +7,6 @@ export type UserLocationProps = {
 };
 
 export default function UserLocation({ onLocateUser, onToggleFiltersMenu }: UserLocationProps) {
-  console.log("USER LOCATION renders");
 
   return (
     <div className="w-full h-full flex justify-evenly lg:justify-center items-center flex-wrap px-4 lg:ml-12">

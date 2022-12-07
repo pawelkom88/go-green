@@ -5,7 +5,6 @@ import FilterIcon from "@components/ui/icons/FilterIcon";
 const commonStyles = "w-full h-12 text-black font-bold uppercase my-4 border-2 border-primary-clr";
 
 export default function Filters() {
-  console.log("Filters renders");
 
   function someHandler() {
     console.log("handler");

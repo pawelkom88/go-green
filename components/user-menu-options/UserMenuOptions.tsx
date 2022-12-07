@@ -2,7 +2,7 @@ import ProfileIcon from "@components/ui/icons/ProfileIcon";
 import SignOutIcon from "@components/ui/icons/SignOutIcon";
 
 export default function UserMenuOptions({}) {
-  console.log("UserMenuOptions renders");
+  
   return (
     <ul className="p-4 w-full border-r bg-primary-clr absolute rounded left-0 shadow mt-12 sm:mt-16 ">
       <li className="flex w-full justify-between hover:text-secondary-clr cursor-pointer items-center">

@@ -8,7 +8,6 @@ type UserNameProps = {
 };
 
 export default function Avatar({ name, src, onToggle }: UserNameProps) {
-  console.log("Avatar renders");
 
   return (
     <div onClick={onToggle} className="flex-center">
