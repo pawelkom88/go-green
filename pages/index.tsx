@@ -1,13 +1,15 @@
-import MobileMenu from "@components/mobile-menu/MobileMenu";
+// hooks
 import useGeolocation from "@hooks/useGeolocation";
+
+// components
+import MobileMenu from "@components/mobile-menu/MobileMenu";
 import Sidebar from "@components/ui/sidebar/Sidebar";
 import Nav from "@components/ui/navigation/Nav";
-import Map from "@components/map/Map";
+import MapData from "@components/map-data/MapData";
 import Modal from "@components/ui/modal/Modal";
 
 export default function Home() {
   const { currentLocation, getCurrentPosition, status } = useGeolocation();
-
   return (
     <>
       <div className="w-full bg-primary-clr">
@@ -15,7 +17,7 @@ export default function Home() {
           <Sidebar />
           <main className="w-full">
             <Nav onLocateUser={getCurrentPosition} />
-            <Map userLocation={currentLocation} />
+            <MapData userLocation={currentLocation} />
             <MobileMenu />
           </main>
         </div>
