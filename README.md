@@ -1,4 +1,6 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<p align="center">
+<img src="https://github.com/pawelkom88/go-green/blob/main/public/assets/logo.png" alt="Outletity logo" width="350" height="350"/>
+</p>
 
 ## Getting Started
 
