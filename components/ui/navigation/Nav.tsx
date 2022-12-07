@@ -13,7 +13,6 @@ export default function Nav({ onLocateUser }: UserLocationProps) {
   function toggleFiltersMenu() {
     setIsFilterMenuOpen(!isFilterMenuOpen);
   }
-  console.log("NAV renders");
 
   return (
     <>
