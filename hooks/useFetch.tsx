@@ -34,7 +34,7 @@ export default function useFetch(query: BoundingBox) {
         }
 
         setLoading(true);
-      } catch (error) {
+      } catch (error:any) {
         const message = `An error has occured: ${error.message}`;
         setError(message);
         setLoading(false);
