@@ -3,6 +3,19 @@ export type ChildrenType = {
   children: React.ReactNode;
 };
 
+export type Coords = {
+  lat: number;
+  lng: number;
+};
+
+export type userLocation = Coords | undefined;
+
+export type BoundingBox = undefined | Array<number>;
+
+export type UserLocationProps = {
+  userLocation: Coords | undefined;
+};
+
 // USE GEOLOCATION HOOK TYPES
 export interface GeolocationType {
   code: number;
@@ -19,8 +32,3 @@ export interface PositionType {
   };
   timestamp: number;
 }
-
-export type GeolocationState = {
-  lat: number;
-  lng: number;
-};
