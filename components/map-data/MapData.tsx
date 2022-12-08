@@ -3,15 +3,80 @@ import useFetch from "@hooks/useFetch";
 import { UserLocationProps } from "types/types";
 import useBoundingBox from "@hooks/useBoundingBox";
 import Map from "@components/map/Map";
+import { data } from "@helpers/helpers";
+
+// type dataType = {
+//   id: number;
+//   address: {
+//     title: string;
+//     lat: number;
+//     lng: number;
+//     postCode: string;
+//     info: string;
+//   };
+//   connection: {
+//     connectionType: {
+
+//     },
+//     connectionInfo: {
+
+//     },
+//   },
+//   statusType: {
+//     ConnectionType: :{
+
+//     }
+//   cost: :{
+
+//   },
+//   paymentOptions: {
+
+//   },
+// };
 
 export default function MapData({ userLocation }: UserLocationProps) {
-  const { boundingBoxPolygon } = useBoundingBox(userLocation, 2);
-  const { data } = useFetch(boundingBoxPolygon);
+  const radius = 5;
+  const { boundingBoxPolygon } = useBoundingBox(userLocation, radius);
+  // const { data } = useFetch(boundingBoxPolygon);
 
   // data transformation
-  console.log(data);
+  const transformedData = data.map(globalData => {
+    const {
+      AddressInfo,
+      Connections,
+      OperatorInfo,
+      StatusType,
+      UsageCost,
+      UsageType,
+      GeneralComments,
+    } = globalData;
 
-  // const chargingPoints = data?.map(location => location.AddressInfo);
+    const chargingPointsInfo = {
+      id: AddressInfo.ID,
+      address: {
+        title: AddressInfo.Title,
+        lat: AddressInfo.Latitude,
+        lng: AddressInfo.Longitude,
+        postCode: AddressInfo.Postcode,
+        info: GeneralComments,
+      },
+      connection: {
+        connectionType: Connections,
+      },
+      info: {
+        eMail: OperatorInfo?.ContactEmail,
+        phone: OperatorInfo?.PhonePrimaryContact,
+        website: OperatorInfo?.WebsiteURL,
+      },
+      statusType: {
+        ConnectionType: StatusType.IsOperational,
+      },
+      cost: UsageCost,
+      paymentOptions: UsageType,
+    };
 
-  return <Map userLocation={userLocation} />;
+    return chargingPointsInfo;
+  });
+
+  return <Map userLocation={userLocation} data={transformedData} radius={radius} />;
 }
