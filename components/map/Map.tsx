@@ -1,33 +1,22 @@
 import React, { useState, useEffect } from "react";
-import { GoogleMap, useLoadScript, MarkerF, InfoWindow, Circle } from "@react-google-maps/api";
+import { GoogleMap, useLoadScript, MarkerF, InfoWindow } from "@react-google-maps/api";
 import Modal from "@components/ui/modal/Modal";
 import { containerStyle, londonCoords } from "@helpers/helpers";
-import { UserLocationProps } from "types/types";
+import { Coords, DataType } from "types/types";
 
-type propertiesType = {
-  id: number;
-  address: {
-    lat: number;
-    lng: number;
-  };
+type PropsType = {
+  userLocation: undefined | Coords;
+  data: Array<DataType>;
+  radius: number;
 };
 
-const options = {
-  strokeColor: "#FF0000",
-  strokeOpacity: 0.8,
-  strokeWeight: 2,
-  fillColor: "#FF0000",
-  fillOpacity: 0.35,
-  clickable: false,
-  draggable: false,
-  editable: false,
-  visible: true,
-  radius: 3000,
-  zIndex: 1,
-};
+type LatLngLiteral = google.maps.LatLngLiteral;
+type DirectionsResult = google.maps.DirectionsResult;
+type MapOptions = google.maps.MapOptions;
 
-export default function Map({ userLocation, data, radius }: UserLocationProps) {
-  const [selectedPoint, setSelectedPoint] = useState(null);
+export default function Map({ userLocation, data, radius }: PropsType) {
+  const [selectedPoint, setSelectedPoint] = useState<null | DataType>(null);
+  console.log(selectedPoint);
   const { isLoaded, loadError } = useLoadScript({
     id: "google-map-script",
     googleMapsApiKey: process.env.NEXT_PUBLIC_API_KEY as string,
@@ -54,15 +43,14 @@ export default function Map({ userLocation, data, radius }: UserLocationProps) {
     md:h-[calc(100vh-60px-48px)] 
     lg:h-[calc(100vh-60px)] bg-white">
       {isLoaded ? (
-        <GoogleMap mapContainerStyle={containerStyle} zoom={14} center={center}>
-          <Circle center={center} options={options} />
+        <GoogleMap mapContainerStyle={containerStyle} zoom={14} center={center as LatLngLiteral}>
           {/* 
                 user position - default to London coords 
-          */}
-          <MarkerF icon={"/assets/electric-car.svg"} position={center} />
+              */}
+          <MarkerF icon={"/assets/electric-car.svg"} position={center as LatLngLiteral} />
           {/* 
                 charging points position - displayed after user action 
-          */}
+              */}
 
           {data?.map(chargingPoint => {
             return (

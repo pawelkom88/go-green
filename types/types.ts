@@ -1,3 +1,37 @@
+// API DATA TYPES
+
+type infoDataType = null | undefined | string;
+
+export type DataType = {
+  id: number;
+  address: {
+    title: string;
+    lat: number;
+    lng: number;
+    postCode: string;
+    info: null | string;
+  };
+  connection: {
+    connectionType: null | string;
+    currentType: string;
+    level: boolean;
+  };
+  info: {
+    eMail: infoDataType;
+    phone: infoDataType;
+    website: infoDataType;
+  };
+  statusType: {
+    ConnectionType: null | boolean;
+  };
+  cost: null | string;
+  paymentOptions: {
+    IsAccessKeyRequired: boolean;
+    IsMembershipRequired: boolean;
+    IsPayAtLocation: boolean;
+  };
+};
+
 // UNIVERSAL TYPES
 export type ChildrenType = {
   children: React.ReactNode;

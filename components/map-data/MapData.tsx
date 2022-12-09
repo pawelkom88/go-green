@@ -5,38 +5,9 @@ import useBoundingBox from "@hooks/useBoundingBox";
 import Map from "@components/map/Map";
 import { data } from "@helpers/helpers";
 
-// type dataType = {
-//   id: number;
-//   address: {
-//     title: string;
-//     lat: number;
-//     lng: number;
-//     postCode: string;
-//     info: string;
-//   };
-//   connection: {
-//     connectionType: {
-
-//     },
-//     connectionInfo: {
-
-//     },
-//   },
-//   statusType: {
-//     ConnectionType: :{
-
-//     }
-//   cost: :{
-
-//   },
-//   paymentOptions: {
-
-//   },
-// };
-
 export default function MapData({ userLocation }: UserLocationProps) {
   const radius = 5;
-  const { boundingBoxPolygon } = useBoundingBox(userLocation, radius);
+  // const { boundingBoxPolygon } = useBoundingBox(userLocation, radius);
   // const { data } = useFetch(boundingBoxPolygon);
 
   // data transformation
@@ -61,7 +32,9 @@ export default function MapData({ userLocation }: UserLocationProps) {
         info: GeneralComments,
       },
       connection: {
-        connectionType: Connections,
+        connectionType: Connections[0].ConnectionType.FormalName,
+        currentType: Connections[0].CurrentType.Description,
+        level: Connections[0].Level.IsFastChargeCapable,
       },
       info: {
         eMail: OperatorInfo?.ContactEmail,
