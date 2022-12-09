@@ -8,6 +8,7 @@
       "@layout/*": ["layout/*"],
       "@styles/*": ["styles/*"],
       "@types/*": ["types/*"],
+      "@features/*": ["features/*"],
     },
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
