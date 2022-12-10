@@ -1,8 +1,10 @@
+import ChargingPointDetails from "@features/google-map/ChargingPointDetails";
 import React, { useState } from "react";
 import ChargingPointInfo from "@features/google-map/ChargingPointInfo";
 import Marker from "@features/google-map/Marker";
 import Modal from "@components/ui/modal/Modal";
 import { GoogleMap, useLoadScript, MarkerF, DirectionsRenderer } from "@react-google-maps/api";
+
 import { containerStyle, londonCoords } from "@helpers/helpers";
 import { Coords, DataType } from "types/types";
 
@@ -49,6 +51,8 @@ export default function Map({ userLocation, data, radius }: MapPropsType) {
           {selectedPoint && (
             <ChargingPointInfo selectedPoint={selectedPoint} onCloseClick={setSelectedPoint} />
           )}
+
+          {selectedPoint && <ChargingPointDetails chargingPointDetails={selectedPoint} />}
 
           {direction && (
             <DirectionsRenderer
