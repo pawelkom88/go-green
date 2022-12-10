@@ -17,16 +17,17 @@ export default function Marker({
   userLocation,
 }: MarkerPropsType) {
   const [status, setStatus] = useState<string>("");
+  
   function fetchDirections(chargingPoint: Coords) {
     if (!userLocation) return;
-
+    
+    const service = new google.maps.DirectionsService();
     const request = {
       origin: chargingPoint,
       destination: userLocation as google.maps.LatLngLiteral,
       travelMode: google.maps.TravelMode.DRIVING,
     };
 
-    const service = new google.maps.DirectionsService();
 
     service.route(request, function getResults(result, status) {
       if (status === "OK" && result) {
@@ -47,10 +48,7 @@ export default function Marker({
             position={{ ...chargingPoint.address }}
             onClick={() => {
               onSetSelectedPoint(chargingPoint);
-              fetchDirections({
-                lat: chargingPoint.address.lat,
-                lng: chargingPoint.address.lng,
-              });
+              fetchDirections({ ...chargingPoint.address });
             }}
           />
         );
