@@ -1,4 +1,5 @@
 // hooks
+import {useState} from "react";
 import useGeolocation from "@hooks/useGeolocation";
 
 // components
@@ -9,6 +10,8 @@ import MapData from "@components/map-data/MapData";
 import Modal from "@components/ui/modal/Modal";
 
 export default function Home() {
+  const [radius, setRadius] = useState(5)
+
   const { currentLocation, getCurrentPosition, status } = useGeolocation();
   return (
     <>
@@ -17,7 +20,7 @@ export default function Home() {
           <Sidebar />
           <main className="w-full">
             <Nav onLocateUser={getCurrentPosition} />
-            <MapData userLocation={currentLocation} />
+            <MapData userLocation={currentLocation} radius={radius}/>
             <MobileMenu />
           </main>
         </div>
