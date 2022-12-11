@@ -30,3 +30,7 @@ h1 {
     @apply flex justify-center items-center;
   }
 }
+
+.gm-style-iw {
+  border: 1px solid var(--primary-clr);
+}
