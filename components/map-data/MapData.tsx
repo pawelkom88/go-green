@@ -1,12 +1,15 @@
-import React from "react";
 import useFetch from "@hooks/useFetch";
-import { UserLocationProps } from "types/types";
+import { Coords } from "types/types";
 import useBoundingBox from "@hooks/useBoundingBox";
 import Map from "@components/map/Map";
 import { data } from "@helpers/helpers";
 
-export default function MapData({ userLocation }: UserLocationProps) {
-  const radius = 5;
+type MapDataProps = {
+  userLocation: undefined | Coords;
+  radius: number;
+};
+
+export default function MapData({ userLocation, radius }: MapDataProps) {
   // const { boundingBoxPolygon } = useBoundingBox(userLocation, radius);
   // const { data } = useFetch(boundingBoxPolygon);
 
@@ -51,5 +54,5 @@ export default function MapData({ userLocation }: UserLocationProps) {
     return chargingPointsInfo;
   });
 
-  return <Map userLocation={userLocation} data={transformedData} radius={radius} />;
+  return <Map userLocation={userLocation} data={transformedData} />;
 }

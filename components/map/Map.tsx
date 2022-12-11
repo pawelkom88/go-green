@@ -4,23 +4,24 @@ import ChargingPointInfo from "@features/google-map/ChargingPointInfo";
 import Marker from "@features/google-map/Marker";
 import Modal from "@components/ui/modal/Modal";
 import { GoogleMap, useLoadScript, MarkerF, DirectionsRenderer } from "@react-google-maps/api";
-
 import { containerStyle, londonCoords } from "@helpers/helpers";
 import { Coords, DataType } from "types/types";
+import { dissolve } from "@turf/turf";
 
 type MapPropsType = {
   userLocation: undefined | Coords;
   data: Array<DataType>;
-  radius: number;
 };
 
 type LatLngLiteral = google.maps.LatLngLiteral;
 type DirectionsResult = google.maps.DirectionsResult;
 // type MapOptions = google.maps.MapOptions;
 
-export default function Map({ userLocation, data, radius }: MapPropsType) {
+export default function Map({ userLocation, data }: MapPropsType) {
   const [selectedPoint, setSelectedPoint] = useState<null | DataType>(null);
   const [direction, setDirections] = useState<null | DirectionsResult>(null);
+  const [showDetails, setShowDetails] = useState<boolean>(false);
+
   const { isLoaded, loadError } = useLoadScript({
     id: "google-map-script",
     googleMapsApiKey: process.env.NEXT_PUBLIC_API_KEY as string,
@@ -37,7 +38,7 @@ export default function Map({ userLocation, data, radius }: MapPropsType) {
           */}
           <MarkerF icon={"/assets/electric-car.svg"} position={center as LatLngLiteral} />
           {/* 
-            charging points position - displayed after user action and direction
+            charging points position and direction - displayed after user action 
           */}
           <Marker
             userLocation={userLocation}
@@ -49,10 +50,22 @@ export default function Map({ userLocation, data, radius }: MapPropsType) {
             charging points info 
           */}
           {selectedPoint && (
-            <ChargingPointInfo selectedPoint={selectedPoint} onCloseClick={setSelectedPoint} />
+            <ChargingPointInfo
+              selectedPoint={selectedPoint}
+              onCloseClick={setSelectedPoint}
+              onShowDetails={setShowDetails}
+            />
           )}
-
-          {selectedPoint && <ChargingPointDetails chargingPointDetails={selectedPoint} />}
+          {/* 
+            charging points details such as connection time and payment 
+          */}
+          {selectedPoint && showDetails && (
+            <ChargingPointDetails
+            direction={direction}
+              chargingPointDetails={selectedPoint}
+              onShowDetails={setShowDetails}
+            />
+          )}
 
           {direction && (
             <DirectionsRenderer

@@ -6,40 +6,44 @@ import { DataType } from "types/types";
 type ChargingPointInfoType = {
   selectedPoint: DataType;
   onCloseClick: (val: null) => void;
+  onShowDetails: (val: boolean) => void;
 };
 
-export default function ChargingPointInfo({ selectedPoint, onCloseClick }: ChargingPointInfoType) {
+export default function ChargingPointInfo({
+  selectedPoint,
+  onCloseClick,
+  onShowDetails,
+}: ChargingPointInfoType) {
   function handler() {
-    console.log("asds");
+    console.log("direction?.routes[0].legs[0]");
   }
 
   return (
-    <>
-      <InfoWindow
-        onCloseClick={() => {
-          onCloseClick(null);
-        }}
-        position={{
-          lat: selectedPoint?.address.lat,
-          lng: selectedPoint?.address.lng,
-        }}>
-        <div className="w-full mx-auto text-primary-clr text-center py-24 flex flex-col">
-          <h3 className="font-bold text-lg my-2">{selectedPoint.address.title}</h3>
-          <span>{selectedPoint.address.postCode}</span>
-          <div className="flex justify-evenly">
-            <Button
-              onClick={handler}
-              className="bg-secondary-clr my-2 py-2 px-4 text-primary-clr font-bold">
-              Details
-            </Button>
-            <Button
-              onClick={handler}
-              className="bg-primary-clr my-2 py-2 px-4 text-secondary-clr font-bold">
-              Get direction
-            </Button>
-          </div>
+    <InfoWindow
+      onCloseClick={() => {
+        onCloseClick(null);
+        () => onShowDetails(false);
+      }}
+      position={{
+        lat: selectedPoint?.address.lat,
+        lng: selectedPoint?.address.lng,
+      }}>
+      <div className="w-full mx-auto text-primary-clr text-center py-24 flex flex-col">
+        <h3 className="font-bold text-lg my-2">{selectedPoint.address.title}</h3>
+        <span>{selectedPoint.address.postCode}</span>
+        <div className="flex justify-evenly">
+          <Button
+            onClick={() => onShowDetails(true)}
+            className="bg-secondary-clr my-2 mr-2 py-2 px-4 text-primary-clr font-bold">
+            Details
+          </Button>
+          <Button
+            onClick={handler}
+            className="bg-primary-clr my-2 py-2 px-4 text-secondary-clr font-bold">
+            Get direction
+          </Button>
         </div>
-      </InfoWindow>
-    </>
+      </div>
+    </InfoWindow>
   );
 }

@@ -1,6 +1,6 @@
 // API DATA TYPES
 
-type infoDataType = null | undefined | string;
+type infoDataType = any;
 
 export type DataType = {
   id: number;
@@ -44,7 +44,7 @@ export type Coords = {
 
 export type userLocation = Coords | undefined;
 
-export type BoundingBox = undefined | Array<number>;
+export type BoundingBox = null | Array<number>;
 
 export type UserLocationProps = {
   userLocation: Coords | undefined;
