@@ -30,7 +30,7 @@ export default function Map({ userLocation, data }: MapPropsType) {
   const center = userLocation ? userLocation : londonCoords;
 
   return (
-    <div className="w-full h-[calc(100vh-84px-48px)] md:h-[cal(100vh-60px-48px)] lg:h-[calc(100vh-60px)] bg-white">
+    <div className="relative w-full h-[calc(100vh-84px-48px)] md:h-[cal(100vh-60px-48px)] lg:h-[calc(100vh-60px)] bg-white">
       {isLoaded ? (
         <GoogleMap mapContainerStyle={containerStyle} zoom={14} center={center as LatLngLiteral}>
           {/* 
@@ -51,6 +51,7 @@ export default function Map({ userLocation, data }: MapPropsType) {
           */}
           {selectedPoint && (
             <ChargingPointInfo
+              userLocation={userLocation}
               selectedPoint={selectedPoint}
               onCloseClick={setSelectedPoint}
               onShowDetails={setShowDetails}
@@ -61,7 +62,7 @@ export default function Map({ userLocation, data }: MapPropsType) {
           */}
           {selectedPoint && showDetails && (
             <ChargingPointDetails
-            direction={direction}
+              direction={direction}
               chargingPointDetails={selectedPoint}
               onShowDetails={setShowDetails}
             />
