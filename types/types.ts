@@ -44,7 +44,7 @@ export type Coords = {
 
 export type userLocation = Coords | undefined;
 
-export type BoundingBox = null | Array<number>;
+export type BoundingBox = undefined |  null | Array<number>;
 
 export type UserLocationProps = {
   userLocation: Coords | undefined;
