@@ -14,34 +14,38 @@
 
 #### Example:
 
-This project is currently in development. Users can filter tweets by username and keyword and see visual data representation. Functionality to sort by additional parameters is in progress.
+I am building this project with Next.js, TypeScript and Tailwind.
 
-[Kanban board](https://trello.com/invite/b/4rkwaukW/ATTI3a0001048a76b8af5d21f87ceab961baF7A44D17/go-green)
+This project is currently in development. [Link](https://go-greeen.netlify.app/)
 
-## Project Screen Shot(s)
+Kanban board: [link](https://trello.com/invite/b/4rkwaukW/ATTI3a0001048a76b8af5d21f87ceab961baF7A44D17/go-green)
+
+## Project Screen Shot
 
 <img src='https://raw.githubusercontent.com/pawelkom88/go-green/main/screenshot.webp' width="650" height="370" />
 
 ## Reflection
 
-  - What was the context for this project? (ie: was this a side project? was this for Turing? was this for an experiment?)
-  - What did you set out to build?
-  - Why was this project challenging and therefore a really good learning experience?
-  - What were some unexpected obstacles?
-  - What tools did you use to implement this project?
-      - This might seem obvious because you are IN this codebase, but to all other humans now is the time to talk about why you chose webpack instead of create react app, or D3, or vanilla JS instead of a framework etc. Brag about your choices and justify them here.  
+I like building projects that are unique. I am bored with all the tutorials where people build the same stuff over and over again. NO!
 
-#### Example:  
-
-Descripton
+  - I have built this project in order to:
+    - allow other people to actually use the app.
+    - improve my skills at consuming Api's data and learning basic Typescript.
+    - brush up my Tailwind knowledge
+    - work on a project architecture
+    - implement unit tests ( to be done )
+   
+  - This is one of the most challenging projects I have ever done, because:
+    - There is a lot of functionality I have never or rarely implemented, like filters, displaying data on a map.
+    - I focus on code readability and reusibility and the app is going to be pretty big, as for my experience.
+    - I am going to use describable variable names and comments, which may seem easy, but it is not.
+    - I have never done unit testing except for checking if DOM elements exist in a document.
+  
+  - The unexpected obstacle was to implement all features on small screens in order to keep UX on a high level. I still consider a few options.
 
 ## Author
 
 * **[Pawel Komorkiewicz](https://github.com/pawelkom88)**
-
-## License
-
-to be done
 
 Copyright © 2022
 
