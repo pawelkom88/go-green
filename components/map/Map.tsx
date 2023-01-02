@@ -6,7 +6,6 @@ import Modal from "@components/ui/modal/Modal";
 import { GoogleMap, useLoadScript, MarkerF, DirectionsRenderer } from "@react-google-maps/api";
 import { containerStyle, londonCoords } from "@helpers/helpers";
 import { Coords, DataType } from "types/types";
-import { dissolve } from "@turf/turf";
 
 type MapPropsType = {
   userLocation: undefined | Coords;
@@ -27,16 +26,16 @@ export default function Map({ userLocation, data }: MapPropsType) {
     googleMapsApiKey: process.env.NEXT_PUBLIC_API_KEY as string,
   });
 
-  const center = userLocation ? userLocation : londonCoords;
+  const defaultLocation = userLocation ? userLocation : londonCoords;
 
   return (
     <div className="relative w-full h-[calc(100vh-84px-48px)] md:h-[cal(100vh-60px-48px)] lg:h-[calc(100vh-60px)] bg-white">
       {isLoaded ? (
-        <GoogleMap mapContainerStyle={containerStyle} zoom={14} center={center as LatLngLiteral}>
+        <GoogleMap mapContainerStyle={containerStyle} zoom={14} center={defaultLocation as LatLngLiteral}>
           {/* 
             user position - default to London coords 
           */}
-          <MarkerF icon={"/assets/electric-car.svg"} position={center as LatLngLiteral} />
+          <MarkerF icon={"/assets/electric-car.svg"} position={defaultLocation as LatLngLiteral} />
           {/* 
             charging points position and direction - displayed after user action 
           */}
@@ -85,7 +84,7 @@ export default function Map({ userLocation, data }: MapPropsType) {
       ) : (
         "Loading"
       )}
-      {loadError && <Modal onError="Map cannot be displayed" />}
+      {loadError && <Modal info="Map cannot be displayed" />}
     </div>
   );
 }

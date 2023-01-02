@@ -53,7 +53,7 @@ export default function Marker({
           />
         );
       })}
-      {status && <Modal onError={status} />}
+      {status && <Modal info={status} />}
     </>
   );
 }

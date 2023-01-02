@@ -26,7 +26,7 @@ export default function Home() {
         </div>
       </div>
 
-      {status.length !== 0 && <Modal onError={status} />}
+      {status.length !== 0 && <Modal info={status} />}
     </>
   );
 }

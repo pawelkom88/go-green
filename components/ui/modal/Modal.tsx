@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import CloseBtn from "../icons/CloseBtnIcon";
+import CloseBtnIcon from "../icons/CloseBtnIcon";
 import Overlay from "@components/ui/modal/Overlay";
 
 type ModalTypes = {
-  onError: string;
+  info: string;
 };
 
-export default function Modal({ onError }: ModalTypes) {
+export default function Modal({ info }: ModalTypes) {
   const [modalClose, setModalClose] = useState(false);
 
   function closeModal() {
@@ -16,7 +16,7 @@ export default function Modal({ onError }: ModalTypes) {
   /*
   set modal state to default after every change in onError state
 */
-  useEffect(() => setModalClose(false), [onError]);
+  useEffect(() => setModalClose(false), [info]);
 
   return (
     <>
@@ -25,8 +25,8 @@ export default function Modal({ onError }: ModalTypes) {
           <dialog
             className="min-h-[20vh] overflow-hidden rounded-lg bg-white shadow-xl sm:my-8 sm:w-full sm:max-w-lg text-center text-lg md:text-xl"
             open>
-            <CloseBtn onClose={closeModal} className="absolute top-4 right-4" />
-            <p className="mt-14">{onError}</p>
+            <CloseBtnIcon onClose={closeModal} className="absolute top-4 right-4" />
+            <p className="mt-14">{info}</p>
           </dialog>
         </Overlay>
       )}
