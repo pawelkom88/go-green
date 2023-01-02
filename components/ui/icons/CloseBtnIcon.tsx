@@ -1,9 +1,9 @@
 type CloseBtnProps = {
-  className: string;
-  onClose?: () => void;
+  className?: string;
+  onClose?: () => void ;
 };
 
-export default function CloseBtn({ className, onClose }: CloseBtnProps) {
+export default function CloseBtnIcon({ className, onClose }: CloseBtnProps) {
   return (
     <svg
       onClick={onClose}

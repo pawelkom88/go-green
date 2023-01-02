@@ -1,4 +1,4 @@
-export default function Location() {
+export default function LocationIcon() {
   return (
     <svg
       width={35}
