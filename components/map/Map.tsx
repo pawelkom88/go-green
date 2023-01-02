@@ -29,9 +29,12 @@ export default function Map({ userLocation, data }: MapPropsType) {
   const defaultLocation = userLocation ? userLocation : londonCoords;
 
   return (
-    <div className="relative w-full h-[calc(100vh-84px-48px)] md:h-[cal(100vh-60px-48px)] lg:h-[calc(100vh-60px)] bg-white">
+    <div className="relative w-full h-[calc(100vh-84px-20px)] lg:h-[calc(100vh-60px)] bg-white">
       {isLoaded ? (
-        <GoogleMap mapContainerStyle={containerStyle} zoom={14} center={defaultLocation as LatLngLiteral}>
+        <GoogleMap
+          mapContainerStyle={containerStyle}
+          zoom={14}
+          center={defaultLocation as LatLngLiteral}>
           {/* 
             user position - default to London coords 
           */}

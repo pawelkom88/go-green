@@ -8,14 +8,13 @@ type UserNameProps = {
 };
 
 export default function Avatar({ name, src, onToggle }: UserNameProps) {
-
   return (
-    <div onClick={onToggle} className="flex-center">
+    <div onClick={onToggle} className="flex-center py-[2px]">
       {/* CHANGE to uploaded photo - remember of type */}
       {false ? (
         <Image
-          width={25}
-          height={25}
+          width={20}
+          height={20}
           alt="User avatar image"
           src={src}
           className="w-8 h-8 rounded-md"
