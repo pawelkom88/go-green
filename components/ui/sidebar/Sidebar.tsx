@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Filters from "@components/filters/Filters";
 import FilterIcon from "../icons/FilterIcon";
-import CloseBtn from "@components/ui/icons/CloseBtnIcon";
+import CloseBtnIcon from "@components/ui/icons/CloseBtnIcon";
 import Logo from "@components/ui/logo/Logo";
 
 export default function Sidebar() {
@@ -17,7 +17,7 @@ export default function Sidebar() {
         <div className="relative h-full flex-center flex-col py-6">
           {isOpen ? (
             <>
-              <CloseBtn
+              <CloseBtnIcon
                 className={"absolute top-4 right-4 cursor-pointer"}
                 onClose={toggleSidebar}
               />
