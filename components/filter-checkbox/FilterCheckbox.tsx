@@ -5,7 +5,7 @@ export default function FilterCheckbox({ children }: ChildrenType) {
   return (
     <div className="form-control">
       <label htmlFor="filter" className="flex-center label cursor-pointer">
-        <span className="label-text mr-2"> {children}</span>
+        <span className="label-text mr-2">{children}</span>
         <input
           id="filter"
           type="checkbox"
