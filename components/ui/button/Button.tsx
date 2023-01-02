@@ -4,7 +4,7 @@ type ButtonType = {
   children: React.ReactNode;
   className: string;
   type?: "submit" | "button";
-  onClick: () => void;
+  onClick?: () => void;
 };
 
 export default function Button({ children, onClick, className, type = "button" }: ButtonType) {
