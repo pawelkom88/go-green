@@ -54,7 +54,7 @@ export type UserLocationProps = {
 export interface GeolocationType {
   code: number;
   message: string;
-  onError?: {
+  info?: {
     status: string;
   };
 }
