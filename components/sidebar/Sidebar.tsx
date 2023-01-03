@@ -1,6 +1,6 @@
 import { useState } from "react";
-import Filters from "@components/filters/Filters";
-import FilterIcon from "../icons/FilterIcon";
+import Filters from "@features/filters/Filters";
+import FilterIcon from "../ui/icons/FilterIcon";
 import CloseBtnIcon from "@components/ui/icons/CloseBtnIcon";
 import Logo from "@components/ui/logo/Logo";
 

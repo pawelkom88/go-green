@@ -53,7 +53,7 @@ export default function Marker({
           />
         );
       })}
-      {status && <Modal info={status} />}
+      {status && <Modal>{status}</Modal>}
     </>
   );
 }

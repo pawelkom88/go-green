@@ -1,35 +1,21 @@
-import ChargingPointDetails from "@features/google-map/ChargingPointDetails";
-import React, { useState } from "react";
-import ChargingPointInfo from "@features/google-map/ChargingPointInfo";
-import Marker from "@features/google-map/Marker";
 import Modal from "@components/ui/modal/Modal";
-import { GoogleMap, useLoadScript, MarkerF, DirectionsRenderer } from "@react-google-maps/api";
+import { GoogleMap, useLoadScript, MarkerF } from "@react-google-maps/api";
 import { containerStyle, londonCoords } from "@helpers/helpers";
-import { Coords, DataType } from "types/types";
-
-type MapPropsType = {
-  userLocation: undefined | Coords;
-  data: Array<DataType>;
-};
+import Features from "@features/google-map/Features";
+import { MapPropsType } from "types/types";
 
 type LatLngLiteral = google.maps.LatLngLiteral;
-type DirectionsResult = google.maps.DirectionsResult;
 // type MapOptions = google.maps.MapOptions;
 
 export default function Map({ userLocation, data }: MapPropsType) {
-  const [selectedPoint, setSelectedPoint] = useState<null | DataType>(null);
-  const [direction, setDirections] = useState<null | DirectionsResult>(null);
-  const [showDetails, setShowDetails] = useState<boolean>(false);
-
   const { isLoaded, loadError } = useLoadScript({
     id: "google-map-script",
     googleMapsApiKey: process.env.NEXT_PUBLIC_API_KEY as string,
   });
 
   const defaultLocation = userLocation ? userLocation : londonCoords;
-
   return (
-    <div className="relative w-full h-[calc(100vh-84px-20px)] lg:h-[calc(100vh-60px)] bg-white">
+    <div className="relative w-full h-[calc(100vh-96px-39px)] sm:h-[calc(100vh-84px-20px)] lg:h-[calc(100vh-60px)] bg-white">
       {isLoaded ? (
         <GoogleMap
           mapContainerStyle={containerStyle}
@@ -42,52 +28,12 @@ export default function Map({ userLocation, data }: MapPropsType) {
           {/* 
             charging points position and direction - displayed after user action 
           */}
-          <Marker
-            userLocation={userLocation}
-            onSetSelectedPoint={setSelectedPoint}
-            onSetDirection={setDirections}
-            data={data}
-          />
-          {/* 
-            charging points info 
-          */}
-          {selectedPoint && (
-            <ChargingPointInfo
-              userLocation={userLocation}
-              selectedPoint={selectedPoint}
-              onCloseClick={setSelectedPoint}
-              onShowDetails={setShowDetails}
-            />
-          )}
-          {/* 
-            charging points details such as connection time and payment 
-          */}
-          {selectedPoint && showDetails && (
-            <ChargingPointDetails
-              direction={direction}
-              chargingPointDetails={selectedPoint}
-              onShowDetails={setShowDetails}
-            />
-          )}
-
-          {direction && (
-            <DirectionsRenderer
-              directions={direction}
-              options={{
-                polylineOptions: {
-                  zIndex: 50,
-                  strokeColor: "#164a41",
-                  strokeWeight: 5,
-                },
-                suppressMarkers: true,
-              }}
-            />
-          )}
+          <Features userLocation={userLocation} data={data} />
         </GoogleMap>
       ) : (
         "Loading"
       )}
-      {loadError && <Modal info="Map cannot be displayed" />}
+      {loadError && <Modal>Map cannot be displayed</Modal>}
     </div>
   );
 }

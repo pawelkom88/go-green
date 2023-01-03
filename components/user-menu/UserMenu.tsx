@@ -19,8 +19,8 @@ export default function UserMenu() {
   }
 
   return (
-    <div className="ml-auto hidden lg:flex mr-8">
-      <div className="w-full flex items-center justify-end">
+    <div className="hidden lg:flex mr-8 ml-auto">
+      <div className="w-full">
         {isLoggedIn ? (
           <div
             aria-label="Open user menu"
@@ -32,7 +32,6 @@ export default function UserMenu() {
                 <Avatar src="file" name="User name" />
               </div>
             </div>
-            {/* accessibility */}
             <div tabIndex={0} onKeyDown={toggleProfileMenu}>
               <ChevronIcon />
             </div>

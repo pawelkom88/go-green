@@ -33,6 +33,12 @@ export type DataType = {
 };
 
 // UNIVERSAL TYPES
+
+export type MapPropsType = {
+  userLocation: undefined | Coords;
+  data: Array<DataType>;
+};
+
 export type ChildrenType = {
   children: React.ReactNode;
 };
@@ -44,7 +50,7 @@ export type Coords = {
 
 export type userLocation = Coords | undefined;
 
-export type BoundingBox = undefined |  null | Array<number>;
+export type BoundingBox = undefined | null | Array<number>;
 
 export type UserLocationProps = {
   userLocation: Coords | undefined;
