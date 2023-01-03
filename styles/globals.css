@@ -23,7 +23,7 @@ h1 {
 
 @layer components {
   .sidebar {
-    @apply absolute h-full shadow bg-gray-100 hidden lg:block z-50 bg-primary-clr border-r-4 border-teriary-clr;
+    @apply absolute h-full shadow bg-gray-100 hidden z-50 bg-primary-clr border-r-4 border-teriary-clr lg:block;
   }
 
   .flex-center {
