@@ -2,7 +2,7 @@ import Button from "@components/ui/button/Button";
 import { useState } from "react";
 
 const submitBtnStyles =
-  "w-full bg-secondary-clr text-primary-clr font-bold text-sm px-2 py-2";
+  "bg-teriary-clr py-2 px-4 text-black font-bold hover:bg-white hover:text-primary-clr";
 
 export default function PostCodeValidation({}) {
   const [x, setX] = useState("");
@@ -20,7 +20,7 @@ export default function PostCodeValidation({}) {
     <form onSubmit={handleSubmit} className="flex-center">
       <input
         onChange={handleInput}
-        className="border-2 md:border-4 border-teriary-clr focus:outline-none focus:border-secondary-cls rounded text-sm text-black pl-4 md:pl-12 md:py-2 mr-2"
+        className="border-2 md:border-4 border-teriary-clr focus:outline-none focus:border-secondary-cls rounded text-sm text-black md:pl-12 py-2 mr-2"
         type="text"
         placeholder="Postcode"
         value={x}
