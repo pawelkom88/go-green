@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Avatar from "@components/ui/avatar/Avatar";
-import Login from "@components/login/Login";
+import Login from "@features/login/Login";
 
 export default function MobileMenu() {
   const [openMobileMenu, setOpenMobileMenu] = useState(false);
