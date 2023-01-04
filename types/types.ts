@@ -34,6 +34,11 @@ export type DataType = {
 
 // UNIVERSAL TYPES
 
+export type chargingPointDetails = {
+  chargingPointDetails: DataType;
+  direction: null | google.maps.DirectionsResult;
+};
+
 export type FiltersProps = {
   onRadiusChange: (val: number) => void;
 };
