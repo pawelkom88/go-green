@@ -17,9 +17,9 @@ export default function Home() {
     <>
       <div className="w-full bg-primary-clr">
         <div className="flex flex-no-wrap">
-          <Sidebar />
+          <Sidebar onRadiusChange={setRadius} />
           <main className="w-full">
-            <Nav onLocateUser={getCurrentPosition} onRadiusChange={setRadius}/>
+            <Nav onLocateUser={getCurrentPosition} onRadiusChange={setRadius} />
             <MapData userLocation={currentLocation} radius={radius} />
             <MobileMenu />
           </main>

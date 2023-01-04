@@ -32,7 +32,7 @@ export default function ChargingPointInfo({
         () => onShowDetails(false);
       }}
       position={chargingPoint}>
-      <div className="w-full mx-auto text-primary-clr text-center py-24 flex flex-col">
+      <div className="w-full mx-auto text-primary-clr text-center py-8 flex flex-col">
         <h3 className="font-bold text-lg my-2">{selectedPoint.address.title}</h3>
         <span>{selectedPoint.address.postCode}</span>
         <div className="flex justify-evenly">
