@@ -34,6 +34,10 @@ export type DataType = {
 
 // UNIVERSAL TYPES
 
+export type FiltersProps = {
+  onRadiusChange: (val: number) => void;
+};
+
 export type MapPropsType = {
   userLocation: undefined | Coords;
   data: Array<DataType>;

@@ -8,7 +8,6 @@ import LocationIcon from "@components/ui/icons/LocationIcon";
 type UserLocationProps = {
   onLocateUser: (val: object) => void;
   onRadiusChange: (val: number) => void;
-
 };
 
 export default function Nav({ onLocateUser, onRadiusChange }: UserLocationProps) {

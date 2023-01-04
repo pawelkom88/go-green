@@ -3,8 +3,9 @@ import Filters from "@features/filters/Filters";
 import FilterIcon from "../ui/icons/FilterIcon";
 import CloseBtnIcon from "@components/ui/icons/CloseBtnIcon";
 import Logo from "@components/ui/logo/Logo";
+import { FiltersProps } from "types/types";
 
-export default function Sidebar() {
+export default function Sidebar({ onRadiusChange }: FiltersProps) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   function toggleSidebar() {
@@ -24,7 +25,7 @@ export default function Sidebar() {
               <span className="absolute top-2 left-0 right-0 m-auto">
                 <Logo />
               </span>
-              <Filters />
+              <Filters onRadiusChange={onRadiusChange} />
             </>
           ) : (
             <FilterIcon onToggleSidebar={toggleSidebar} />

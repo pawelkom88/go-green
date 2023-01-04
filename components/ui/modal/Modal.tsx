@@ -20,7 +20,7 @@ export default function Modal({ children, onShowDetails }: ModalTypes) {
       {isOpen && (
         <Overlay onClose={closeModal}>
           <dialog
-            className="min-h-[20vh] overflow-hidden rounded-lg bg-white shadow-xl sm:my-8 sm:w-full sm:max-w-lg text-center text-lg md:text-xl"
+            className="min-h-[20vh] overflow-y rounded-lg bg-white shadow-xl sm:my-8 sm:w-full sm:max-w-2xl  text-lg md:text-xl"
             open>
             <CloseBtnIcon onClose={closeModal} className="absolute top-4 right-4" />
             <p className="mt-14">{children}</p>

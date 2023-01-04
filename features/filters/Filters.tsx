@@ -1,10 +1,7 @@
 import FilterCheckbox from "@components/ui/filter-checkbox/FilterCheckbox";
 import Button from "@components/ui/button/Button";
 import FilterIcon from "@components/ui/icons/FilterIcon";
-
-type FiltersProps = {
-  onRadiusChange: (val: number) => void;
-};
+import { FiltersProps } from "types/types";
 
 const commonStyles = "w-full h-12 font-bold uppercase my-4 border-2 border-primary-clr";
 
