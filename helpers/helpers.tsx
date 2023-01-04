@@ -1,3 +1,6 @@
+// FUNCTIONS
+
+// CONSTANTS
 export const containerStyle = {
   maxWidth: "100%",
   minHeight: "100%",
@@ -7,6 +10,12 @@ export const londonCoords = {
   lat: 51.519977,
   lng: -0.128115,
 };
+
+export const chargingPointTabName = [
+  { id: 1, tabName: "Details" },
+  { id: 2, tabName: "Comments" },
+  { id: 3, tabName: "Photos" },
+];
 
 export const data = [
   {
