@@ -1,5 +1,6 @@
 // API DATA TYPES
 
+// change ?
 type infoDataType = any;
 
 export type DataType = {
@@ -32,24 +33,13 @@ export type DataType = {
   };
 };
 
-// UNIVERSAL TYPES
-
 export type chargingPointDetails = {
   chargingPointDetails: DataType;
   direction: null | google.maps.DirectionsResult;
 };
 
-export type FiltersProps = {
-  onRadiusChange: (val: number) => void;
-};
-
 export type MapPropsType = {
   userLocation: undefined | Coords;
-  data: Array<DataType>;
-};
-
-export type ChildrenType = {
-  children: React.ReactNode;
 };
 
 export type Coords = {
@@ -57,7 +47,9 @@ export type Coords = {
   lng: number;
 };
 
-export type userLocation = Coords | undefined;
+export interface MapProps extends MapPropsType {
+  data: Array<DataType>;
+}
 
 export type BoundingBox = undefined | null | Array<number>;
 
@@ -79,5 +71,14 @@ export interface PositionType {
     latitude: number;
     longitude: number;
   };
-  timestamp: number;
 }
+
+// UNIVERSAL TYPES
+
+export type FiltersProps = {
+  onRadiusChange: (val: number) => void;
+};
+
+export type ChildrenType = {
+  children: React.ReactNode;
+};

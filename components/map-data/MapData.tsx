@@ -1,13 +1,12 @@
 import useFetch from "@hooks/useFetch";
-import { Coords } from "types/types";
+import { MapPropsType } from "types/types";
 import useBoundingBox from "@hooks/useBoundingBox";
 import Map from "@components/map/Map";
 import { data } from "@helpers/helpers";
 
-type MapDataProps = {
-  userLocation: undefined | Coords;
+interface MapDataProps extends MapPropsType {
   radius: number;
-};
+}
 
 export default function MapData({ userLocation, radius }: MapDataProps) {
   // const { boundingBoxPolygon } = useBoundingBox(userLocation, radius);

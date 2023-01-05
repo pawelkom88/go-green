@@ -3,13 +3,11 @@ import ChargingPointInfo from "@features/google-map/ChargingPointInfo";
 import ChargingPointDetails from "@features/google-map/ChargingPointDetails";
 import Marker from "@features/google-map/Marker";
 import { DirectionsRenderer } from "@react-google-maps/api";
-import { DataType, MapPropsType } from "types/types";
+import { DataType, MapProps } from "types/types";
 
-type DirectionsResult = google.maps.DirectionsResult;
-
-export default function Features({ userLocation, data }: MapPropsType) {
+export default function Features({ userLocation, data }: MapProps) {
   const [selectedPoint, setSelectedPoint] = useState<null | DataType>(null);
-  const [direction, setDirections] = useState<null | DirectionsResult>(null);
+  const [direction, setDirections] = useState<null | google.maps.DirectionsResult>(null);
   const [showDetails, setShowDetails] = useState<boolean>(false);
 
   return (
@@ -21,8 +19,8 @@ export default function Features({ userLocation, data }: MapPropsType) {
         data={data}
       />
       {/* 
-            charging points info 
-          */}
+        charging points info 
+      */}
       {selectedPoint && (
         <ChargingPointInfo
           userLocation={userLocation}
@@ -32,8 +30,8 @@ export default function Features({ userLocation, data }: MapPropsType) {
         />
       )}
       {/* 
-            charging points details such as connection time and payment 
-          */}
+        charging points details such as connection time and payment 
+      */}
       {selectedPoint && showDetails && (
         <ChargingPointDetails
           direction={direction}
@@ -41,7 +39,9 @@ export default function Features({ userLocation, data }: MapPropsType) {
           onShowDetails={setShowDetails}
         />
       )}
-
+      {/* 
+      charging points position and direction - displayed after user action 
+      */}
       {direction && (
         <DirectionsRenderer
           directions={direction}

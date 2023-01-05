@@ -2,12 +2,9 @@ import Modal from "@components/ui/modal/Modal";
 import { GoogleMap, useLoadScript, MarkerF } from "@react-google-maps/api";
 import { containerStyle, londonCoords } from "@helpers/helpers";
 import Features from "@features/google-map/Features";
-import { MapPropsType } from "types/types";
+import { MapProps } from "types/types";
 
-type LatLngLiteral = google.maps.LatLngLiteral;
-// type MapOptions = google.maps.MapOptions;
-
-export default function Map({ userLocation, data }: MapPropsType) {
+export default function Map({ userLocation, data }: MapProps) {
   const { isLoaded, loadError } = useLoadScript({
     id: "google-map-script",
     googleMapsApiKey: process.env.NEXT_PUBLIC_API_KEY as string,
@@ -20,14 +17,14 @@ export default function Map({ userLocation, data }: MapPropsType) {
         <GoogleMap
           mapContainerStyle={containerStyle}
           zoom={14}
-          center={defaultLocation as LatLngLiteral}>
+          center={defaultLocation as google.maps.LatLngLiteral}>
           {/* 
             user position - default to London coords 
           */}
-          <MarkerF icon={"/assets/electric-car.svg"} position={defaultLocation as LatLngLiteral} />
-          {/* 
-            charging points position and direction - displayed after user action 
-          */}
+          <MarkerF
+            icon={"/assets/electric-car.svg"}
+            position={defaultLocation as google.maps.LatLngLiteral}
+          />
           <Features userLocation={userLocation} data={data} />
         </GoogleMap>
       ) : (

@@ -1,5 +1,9 @@
 import React from "react";
 
-export default function Photos({ details }) {
+type CommentsType = {
+  details: string;
+};
+
+export default function Photos({ details }: CommentsType) {
   return <div>{details}</div>;
 }
