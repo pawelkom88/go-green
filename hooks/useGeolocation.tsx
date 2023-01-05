@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { GeolocationType, PositionType, userLocation } from "types/types";
+import { GeolocationType, PositionType, Coords } from "types/types";
 
 const options = {
   enableHighAccuracy: true,
@@ -9,7 +9,7 @@ const options = {
 
 export default function useGeolocation() {
   const [status, setStatus] = useState<string>("");
-  const [currentLocation, setCurrentLocation] = useState<userLocation>();
+  const [currentLocation, setCurrentLocation] = useState<Coords>();
 
   function handleLocationError(error: GeolocationType): void {
     let message;
