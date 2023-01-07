@@ -21,7 +21,7 @@ export default function Modal({ children, onShowDetails }: ModalTypes) {
         <Overlay onClose={closeModal}>
           <dialog
             onClick={e => e.stopPropagation()}
-            className="min-h-[20vh] overflow-y rounded-lg bg-white shadow-xl sm:my-8 sm:w-full sm:max-w-2xl text-lg md:text-xl"
+            className="min-h-[25vh] overflow-y rounded-lg bg-white shadow-xl sm:my-8 pt-8 sm:w-full sm:max-w-2xl text-lg md:text-xl"
             open>
             <CloseBtnIcon onClose={closeModal} className="absolute top-4 right-4" />
             {children}
