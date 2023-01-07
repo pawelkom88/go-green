@@ -7,10 +7,11 @@ type TabsProps = {
 
 export default function Tabs({ activeTab, onActiveTab }: TabsProps) {
   return (
-    <ul className="flex items-center space-x-2 overflow-x-auto overflow-y-hidden sm:justify-center flex-nowrap text-primary-clr mb-4 cursor-pointer text-sm md:text-lg">
+    <ul className="flex-center space-x-2 overflow-x-auto overflow-y-hidden sm:justify-center flex-nowrap text-primary-clr mb-4 cursor-pointer text-sm md:text-lg">
       {chargingPointTabName?.map(({ id, tabName }) => {
         return (
           <li
+            tabIndex={0}
             onClick={() => onActiveTab(tabName)}
             key={id}
             className={`flex items-center flex-shrink-0 px-5 py-2 border-b-4
