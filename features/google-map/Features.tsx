@@ -34,6 +34,8 @@ export default function Features({ userLocation, data }: MapProps) {
       */}
       {selectedPoint && showDetails && (
         <ChargingPointDetails
+          userLocation={userLocation}
+          selectedPoint={selectedPoint}
           direction={direction}
           chargingPointDetails={selectedPoint}
           onShowDetails={setShowDetails}
