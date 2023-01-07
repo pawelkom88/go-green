@@ -1,3 +1,4 @@
+// import { UserLocationProps } from "types/types";
 // API DATA TYPES
 
 // change ?
@@ -33,29 +34,25 @@ export type DataType = {
   };
 };
 
-export type chargingPointDetails = {
+export type ChargingPointDetailsType = {
   chargingPointDetails: DataType;
   direction: null | google.maps.DirectionsResult;
 };
 
-export type MapPropsType = {
-  userLocation: undefined | Coords;
-};
+export type UserLocationType = undefined | Coords;
 
 export type Coords = {
   lat: number;
   lng: number;
 };
 
-export interface MapProps extends MapPropsType {
+export type MapProps = {
+  userLocation: UserLocationType;
   data: Array<DataType>;
-}
+};
 
 export type BoundingBox = undefined | null | Array<number>;
 
-export type UserLocationProps = {
-  userLocation: Coords | undefined;
-};
 
 // USE GEOLOCATION HOOK TYPES
 export interface GeolocationType {
@@ -82,3 +79,5 @@ export type FiltersProps = {
 export type ChildrenType = {
   children: React.ReactNode;
 };
+
+

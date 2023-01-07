@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { MarkerF } from "@react-google-maps/api";
-import { Coords, DataType } from "types/types";
+import { Coords, DataType, UserLocationType } from "types/types";
 import Modal from "@components/ui/modal/Modal";
 
 type MarkerPropsType = {
   data: null | Array<DataType>;
-  userLocation: undefined | Coords;
+  userLocation: UserLocationType;
   onSetSelectedPoint: (val: DataType) => void;
   onSetDirection: (val: google.maps.DirectionsResult) => void;
 };
@@ -17,17 +17,16 @@ export default function Marker({
   userLocation,
 }: MarkerPropsType) {
   const [status, setStatus] = useState<string>("");
-  
+
   function fetchDirections(chargingPoint: Coords) {
     if (!userLocation) return;
-    
+
     const service = new google.maps.DirectionsService();
     const request = {
       origin: chargingPoint,
       destination: userLocation as google.maps.LatLngLiteral,
       travelMode: google.maps.TravelMode.DRIVING,
     };
-
 
     service.route(request, function getResults(result, status) {
       if (status === "OK" && result) {

@@ -1,4 +1,12 @@
+import { Coords, UserLocationType } from "types/types";
+
 // FUNCTIONS
+
+export function handleLocation(start: UserLocationType, end: Coords): undefined | string {
+  if (start == undefined) return;
+
+  return `https://www.google.com/maps/dir/?api=1&origin=${start.lat},${start.lng}&destination=${end.lat},${end.lng}&travelmode=driving`;
+}
 
 // CONSTANTS
 export const containerStyle = {
@@ -15,6 +23,25 @@ export const chargingPointTabName = [
   { id: 1, tabName: "Details" },
   { id: 2, tabName: "Comments" },
   { id: 3, tabName: "Photos" },
+];
+
+export const socketTypeImageSrc = [
+  {
+    type: "x",
+    src: "/assets/connectors/type-1.webp",
+  },
+  {
+    type: "IEC 62196-2 Type 2",
+    src: "/assets/connectors/type-2.webp",
+  },
+  {
+    type: "IEC 62196-3 Configuration FF",
+    src: "/assets/connectors/ccs.webp",
+  },
+  {
+    type: "x",
+    src: "/assets/connectors/chademo.webp",
+  },
 ];
 
 export const data = [

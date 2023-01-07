@@ -1,11 +1,12 @@
 import React from "react";
 import Button from "@components/ui/button/Button";
 import { InfoWindow } from "@react-google-maps/api";
-import { DataType, Coords } from "types/types";
+import { DataType, Coords, UserLocationType } from "types/types";
+import { handleLocation } from "@helpers/helpers";
 
 type ChargingPointInfoType = {
   selectedPoint: DataType;
-  userLocation: undefined | Coords;
+  userLocation: UserLocationType;
   onCloseClick: (val: null) => void;
   onShowDetails: (val: boolean) => void;
 };
@@ -16,14 +17,14 @@ export default function ChargingPointInfo({
   onCloseClick,
   onShowDetails,
 }: ChargingPointInfoType) {
-  const { lat, lng } = userLocation || {};
-
   const chargingPoint = {
     lat: selectedPoint?.address.lat,
     lng: selectedPoint?.address.lng,
   };
 
-  const directionLink = `https://www.google.com/maps/dir/?api=1&origin=${lat},${lng}&destination=${chargingPoint.lat},${chargingPoint.lng}&travelmode=driving`;
+  const directionLink = handleLocation(userLocation, chargingPoint);
+
+  handleLocation(userLocation, chargingPoint);
 
   return (
     <InfoWindow
