@@ -26,7 +26,11 @@ export default function Home() {
         </div>
       </div>
 
-      {status.length !== 0 && <Modal>{status}</Modal>}
+      {status.length !== 0 && (
+        <Modal>
+          <div className="text-center mt-16">{status}</div>
+        </Modal>
+      )}
     </>
   );
 }

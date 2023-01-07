@@ -3,13 +3,20 @@ import React from "react";
 type ButtonType = {
   children: React.ReactNode;
   className: string;
+  title?: string;
   type?: "submit" | "button";
-  onClick?: () => void;
+  onClick?: () => void | (() => boolean);
 };
 
-export default function Button({ children, onClick, className, type = "button" }: ButtonType) {
+export default function Button({
+  children,
+  onClick,
+  className,
+  type = "button",
+  title,
+}: ButtonType) {
   return (
-    <button onClick={onClick} type={type} className={className}>
+    <button title={title} onClick={onClick} type={type} className={className}>
       {children}
     </button>
   );

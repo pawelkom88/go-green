@@ -8,7 +8,7 @@ export default function TickIcon({ strokeClr }: TickIconProps) {
       xmlns="http://www.w3.org/2000/svg"
       width={30}
       height={30}
-      className="w-5 h5 ml-2"
+      className="w-15 ml-2 mt-0"
       viewBox="0 0 24 24"
       strokeWidth="3"
       stroke={strokeClr}
