@@ -23,6 +23,7 @@ export default function MapData({ userLocation, radius }: MapDataProps) {
       UsageCost,
       UsageType,
       GeneralComments,
+      NumberOfPoints,
     } = globalData;
 
     const chargingPointsInfo = {
@@ -49,6 +50,7 @@ export default function MapData({ userLocation, radius }: MapDataProps) {
       },
       cost: UsageCost,
       paymentOptions: UsageType,
+      NumberOfPoints,
     };
 
     return chargingPointsInfo;
