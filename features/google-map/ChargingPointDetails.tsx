@@ -1,3 +1,4 @@
+import Toast from "@components/ui/toast/Toast";
 import { useState } from "react";
 import useCopyToClipboard from "@hooks/useCopyToClipboard";
 import LocationDetails from "@components/location-details/LocationDetails";
@@ -38,21 +39,9 @@ export default function ChargingPointDetails({
   }
 
   const shareLink = handleLocation(userLocation, destination);
-  console.log(isOpen);
+
   return (
     <>
-      {isOpen && (
-        <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex shadow-md gap-6 rounded-lg overflow-hidden divide-x w-full md:max-w-lg text-whiter bg-primary-clr divide-secondary-clr z-[60]">
-          <div className="flex flex-1 flex-col p-4 border-l-8 border-secondary-clr text-md text-white">
-            Link to Google maps has been copied to clipboard!
-          </div>
-          <button
-            onClick={() => setIsOpen(false)}
-            className="px-4 flex items-center text-xs uppercase tracking-wide text-secondary-clr">
-            close
-          </button>
-        </div>
-      )}
       <Modal onShowDetails={onShowDetails}>
         <Tabs onActiveTab={setActiveTab} activeTab={activeTab} />
         {activeTab === details.tabName && (
@@ -66,6 +55,7 @@ export default function ChargingPointDetails({
         {activeTab === comments.tabName && <Comments details={comments.tabName} />}
         {activeTab === photos.tabName && <Photos details={photos.tabName} />}
       </Modal>
+      {isOpen && <Toast onClose={setIsOpen} />}
     </>
   );
 }
