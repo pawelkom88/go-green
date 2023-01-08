@@ -32,6 +32,7 @@ export type DataType = {
     IsMembershipRequired: boolean;
     IsPayAtLocation: boolean;
   };
+  NumberOfPoints: null | number;
 };
 
 export type ChargingPointDetailsType = {
@@ -52,7 +53,6 @@ export type MapProps = {
 };
 
 export type BoundingBox = undefined | null | Array<number>;
-
 
 // USE GEOLOCATION HOOK TYPES
 export interface GeolocationType {
@@ -79,5 +79,3 @@ export type FiltersProps = {
 export type ChildrenType = {
   children: React.ReactNode;
 };
-
-
