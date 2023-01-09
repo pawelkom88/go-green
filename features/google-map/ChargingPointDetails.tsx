@@ -2,8 +2,8 @@ import Toast from "@components/ui/toast/Toast";
 import { useState } from "react";
 import useCopyToClipboard from "@hooks/useCopyToClipboard";
 import LocationDetails from "@components/location-details/LocationDetails";
-import Comments from "@components/location-details/comments/Comments";
-import Photos from "@components/location-details/photos/Photos";
+import Comments from "@features/comments/Comments";
+import Photos from "@features/photos/Photos";
 import Modal from "@components/ui/modal/Modal";
 import Tabs from "@components/ui/tabs/Tabs";
 import { UserLocationType, DataType } from "types/types";
@@ -52,7 +52,7 @@ export default function ChargingPointDetails({
             chargingPointDetails={chargingPointDetails}
           />
         )}
-        {activeTab === comments.tabName && <Comments details={comments.tabName} />}
+        {activeTab === comments.tabName && <Comments />}
         {activeTab === photos.tabName && <Photos details={photos.tabName} />}
       </Modal>
       {isOpen && <Toast onClose={setIsOpen} />}
