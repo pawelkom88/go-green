@@ -9,6 +9,7 @@
       "@styles/*": ["styles/*"],
       "@types/*": ["types/*"],
       "@features/*": ["features/*"],
+      "@lib/*": ["lib/*"],
     },
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
