@@ -14,27 +14,10 @@ export default function UserComments() {
         })}
       </section>
       {error && (
-        <Modal>
-          <p>asd</p>
+        <Modal size='flex-center h-[245px]'>
+          <p>Could not fetch data</p>
         </Modal>
       )}
     </>
   );
 }
-
-// <div className="rating-stars">
-// {[...new Array(rating)].map((_, index) => {
-//   return (
-//     <spam
-//     key={index}
-//       data-value={index + 1}
-//       onMouseOver={e => setNumberOfStars(e.target.dataset.value)}
-
-//       onClick={() => setNumberOfStars(index + 1)}>
-
-//     {index + 1 <= numberOfStars ? <Star /> : <EmptyStar />}
-
-//     </span>
-//   );
-// })}
-// </div>
