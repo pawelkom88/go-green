@@ -1,13 +1,12 @@
-import useClickOutside from "@hooks/useClickOutside";
 import { useState } from "react";
+import useClickOutside from "@hooks/useClickOutside";
+import CommentRating from "./comment-rating/CommentRating";
 import CommentSettings from "@features/comments/comment-settings/CommentSettings";
 import CommentBody from "@features/comments/comment-body/CommentBody";
 import CommentForm from "@features/comments/comment-form/CommentForm";
 import CloseBtnIcon from "@components/ui/icons/CloseBtnIcon";
 import DropdownMenu from "@features/comments/comment-dropdown-menu/DropdownMenu";
 import { CommentDetails } from "types/types";
-import Star from "@components/ui/icons/Star";
-import EmptyStar from "@components/ui/icons/EmptyStar";
 
 type CommentProps = {
   details: CommentDetails;
@@ -17,7 +16,8 @@ type CommentProps = {
 const isLoggedIn = false;
 
 export default function Comment({ details, numberOfComments }: CommentProps) {
-  const [numberOfStars, setNumberOfStars] = useState(0);
+  // const [numberOfStars, setNumberOfStars] = useState(0);
+
   const [editComment, setEditComment] = useState(false);
   const [openSettings, setOpenSettings] = useState(false);
 
@@ -36,6 +36,7 @@ export default function Comment({ details, numberOfComments }: CommentProps) {
         </div>
         {isLoggedIn && <CommentForm task="post" />}
         <CommentBody domNode={domNode} details={details}>
+          <CommentRating numberOfStars={details.rating} />
           <CommentSettings onOpen={openSettings} onClose={setOpenSettings}>
             {openSettings && <DropdownMenu onEdit={setEditComment} onClose={setOpenSettings} />}
           </CommentSettings>
