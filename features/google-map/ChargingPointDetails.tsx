@@ -27,27 +27,27 @@ export default function ChargingPointDetails({
 }: ChargingPointDetailsProps) {
   const [activeTab, setActiveTab] = useState("Details");
   const [value, copyToClipboard] = useCopyToClipboard();
-  const [isOpen, setIsOpen] = useState(false);
+  const [openToast, setOpenToast] = useState(false);
 
   const destination = {
     lat: selectedPoint?.address.lat,
     lng: selectedPoint?.address.lng,
   };
 
+  const shareLink = handleLocation(userLocation, destination);
+
   function handleClipboard() {
     copyToClipboard(shareLink);
   }
 
-  const shareLink = handleLocation(userLocation, destination);
-
   return (
     <>
-      <Modal onShowDetails={onShowDetails}>
+      <Modal size="w-full h-full md:h-[90vh]" onShowDetails={onShowDetails}>
         <Tabs onActiveTab={setActiveTab} activeTab={activeTab} />
         {activeTab === details.tabName && (
           <LocationDetails
             onCopy={handleClipboard}
-            onClose={setIsOpen}
+            onClose={setOpenToast}
             direction={direction}
             chargingPointDetails={chargingPointDetails}
           />
@@ -55,7 +55,7 @@ export default function ChargingPointDetails({
         {activeTab === comments.tabName && <Comments />}
         {activeTab === photos.tabName && <Photos details={photos.tabName} />}
       </Modal>
-      {isOpen && <Toast onClose={setIsOpen} />}
+      {openToast && <Toast onClose={setOpenToast} />}
     </>
   );
 }
