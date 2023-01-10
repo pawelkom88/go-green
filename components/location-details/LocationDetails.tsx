@@ -8,7 +8,7 @@ import { ChargingPointDetailsType } from "types/types";
 
 interface LocationDetailsProps extends ChargingPointDetailsType {
   onClose: (val: boolean) => void;
-  onCopy: (val: string) => void;
+  onCopy: () => void;
 }
 
 export default function LocationDetails({
@@ -27,15 +27,15 @@ export default function LocationDetails({
     setIsFavourite(!isFavourite);
   }
   return (
-    <div className="flex flex-col rounded-lg shadow-mdtext-primary-clr p-2">
+    <div className="flex flex-col rounded-lg text-primary-clr p-2">
       <h2 className="mb-1 text-xl font-semibold text-center p-2">{address.title}</h2>
       <div className="flex-center space-x-4">
         <Button
           className="p-2"
           title="Copy to clipboard"
           onClick={() => {
-            onCopy;
             onClose(true);
+            onCopy();
           }}>
           <ShareIcon />
         </Button>

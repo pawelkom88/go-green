@@ -30,7 +30,7 @@ export default function Map({ userLocation, data }: MapProps) {
       ) : (
         "Loading"
       )}
-      {loadError && <Modal>Map cannot be displayed</Modal>}
+      {loadError && <Modal size='flex-center h-[245px]'>Map cannot be displayed</Modal>}
     </div>
   );
 }
