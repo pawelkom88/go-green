@@ -26,7 +26,6 @@ export default function CommentBody({ children, domNode, details }: CommentBodyP
               Feb. 8, 2022
             </time>
           </p>
-          <p className="font-bold text-black">{details.rating}</p>
         </div>
         {children}
       </footer>
