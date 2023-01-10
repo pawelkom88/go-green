@@ -4,6 +4,22 @@
 // change ?
 type infoDataType = any;
 
+export type CollectionObject = {
+  id?: string;
+  title: string;
+  name: string;
+  content: string;
+  rating: number;
+  avatar: string;
+};
+
+export type CommentDetails = {
+  name: string;
+  content: string;
+  avatar: string;
+  rating: number;
+};
+
 export type DataType = {
   id: number;
   address: {

@@ -2,7 +2,7 @@ import Toast from "@components/ui/toast/Toast";
 import { useState } from "react";
 import useCopyToClipboard from "@hooks/useCopyToClipboard";
 import LocationDetails from "@components/location-details/LocationDetails";
-import Comments from "@features/comments/Comments";
+import Comments from "@features/comments/UserComments";
 import Photos from "@features/photos/Photos";
 import Modal from "@components/ui/modal/Modal";
 import Tabs from "@components/ui/tabs/Tabs";

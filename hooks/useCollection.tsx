@@ -2,15 +2,7 @@ import { useState, useEffect } from "react";
 import { db } from "@lib/config";
 import { collection, onSnapshot } from "firebase/firestore";
 import { FirebaseError } from "@firebase/util";
-
-type CollectionObject = {
-  id: string;
-  title: string;
-  name: string;
-  content: string;
-  rating: number;
-  avatar: string;
-}
+import { CollectionObject } from "types/types";
 
 export default function useCollection(col: string) {
   const [data, setData] = useState<null | Array<CollectionObject>>(null);
