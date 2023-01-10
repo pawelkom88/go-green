@@ -5,17 +5,27 @@ type DropdownMenuProps = {
 
 export default function DropdownMenu({ onEdit, onClose }: DropdownMenuProps) {
   // Edit and remove handlers
+
+  function handleEdit() {
+    console.log("edit");
+  }
+  function handleRemove() {
+    console.log("remove");
+  }
+
   return (
     <div className="absolute top-12 -right-8 z-10 w-36 bg-slate-50 rounded divide-y shadow ">
       <ul className="text-sm text-dark-text-clr" aria-labelledby="dropdownMenuIconHorizontalButton">
         <li
           onClick={() => {
-            onEdit(true), () => onClose(false);
+            onEdit(true), onClose(false);
           }}
           className="block py-2 px-4 hover:bg-primary-clr  dark:hover:text-secondary-clr cursor-pointer">
           Edit
         </li>
-        <li className="block py-2 px-4 hover:bg-primary-clr  dark:hover:text-secondary-clr cursor-pointer">
+        <li
+          onClick={handleRemove}
+          className="block py-2 px-4 hover:bg-primary-clr  dark:hover:text-secondary-clr cursor-pointer">
           Remove
         </li>
       </ul>
