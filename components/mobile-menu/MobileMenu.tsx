@@ -1,20 +1,25 @@
 import { useState } from "react";
-import Avatar from "@components/ui/avatar/Avatar";
+import UserIcon from "@components/ui/icons/UserIcon";
+import Modal from "@components/ui/modal/Modal";
 import Login from "@features/login/Login";
 
-export default function MobileMenu() {
-  const [openMobileMenu, setOpenMobileMenu] = useState(false);
+const isLoggedIn = false;
 
-  function toggleMobileMenu() {
-    setOpenMobileMenu(!openMobileMenu);
-  }
+export default function MobileMenu() {
+  const [openLoginMenu, setOpenLoginMenu] = useState(false);
 
   return (
     <>
-      <footer className="lg:hidden fixed bottom-0 w-full min-h-[2rem] flex-center bg-primary-clr z-10">
-        <Avatar onToggle={toggleMobileMenu} src="file" />
+      <footer
+        onClick={() => setOpenLoginMenu(true)}
+        className="lg:hidden fixed bottom-4 left-2 min-h-[2rem] flex-center z-10">
+        <UserIcon size={50} fill="#164a41" />
       </footer>
-      <Login className={openMobileMenu ? "-translate-y-full" : "translate-y-full"} />
+      {openLoginMenu && (
+        <Modal callback={setOpenLoginMenu} size="w-full h-full md:h-1/2 flex-center">
+          {isLoggedIn ? <p>asd</p> : <Login />}
+        </Modal>
+      )}
     </>
   );
 }
