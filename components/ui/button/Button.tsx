@@ -2,7 +2,7 @@ import React from "react";
 
 type ButtonType = {
   children: React.ReactNode;
-  className: string;
+  className?: string;
   title?: string;
   type?: "submit" | "button";
   onClick?: () => void | (() => boolean);
