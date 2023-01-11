@@ -2,6 +2,7 @@ import { useState } from "react";
 import Filters from "@features/filters/Filters";
 import FilterIcon from "../ui/icons/FilterIcon";
 import CloseBtnIcon from "@components/ui/icons/CloseBtnIcon";
+import Button from "@components/ui/button/Button";
 import Logo from "@components/ui/logo/Logo";
 import { FiltersProps } from "types/types";
 
@@ -28,7 +29,9 @@ export default function Sidebar({ onRadiusChange }: FiltersProps) {
               <Filters onRadiusChange={onRadiusChange} />
             </>
           ) : (
-            <FilterIcon onToggleSidebar={toggleSidebar} />
+            <Button onClick={toggleSidebar}>
+              <FilterIcon />
+            </Button>
           )}
         </div>
       </aside>

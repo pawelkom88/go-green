@@ -1,11 +1,6 @@
-type FilterIconType = {
-  onToggleSidebar?: () => void;
-};
-
-export default function FilterIcon({ onToggleSidebar }: FilterIconType) {
+export default function FilterIcon() {
   return (
     <svg
-      onClick={onToggleSidebar}
       width={35}
       height={35}
       className="cursor-pointer"

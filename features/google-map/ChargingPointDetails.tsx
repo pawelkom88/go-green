@@ -42,7 +42,7 @@ export default function ChargingPointDetails({
 
   return (
     <>
-      <Modal size="w-full h-full md:h-[90vh]" onShowDetails={onShowDetails}>
+      <Modal size="w-full h-full md:h-[90vh]" callback={onShowDetails}>
         <Tabs onActiveTab={setActiveTab} activeTab={activeTab} />
         {activeTab === details.tabName && (
           <LocationDetails

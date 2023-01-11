@@ -6,15 +6,15 @@ import FocusLock from "react-focus-lock";
 
 type ModalTypes = {
   children?: React.ReactNode;
-  onShowDetails?: (val: boolean) => void;
+  callback?: (val: boolean) => void;
   size: string;
 };
 
-export default function Modal({ children, onShowDetails, size }: ModalTypes) {
+export default function Modal({ children, callback, size }: ModalTypes) {
   const [isOpen, setIsopen] = useState(true);
 
   function closeModal() {
-    onShowDetails?.(false);
+    callback?.(false);
     setIsopen(false);
   }
 
