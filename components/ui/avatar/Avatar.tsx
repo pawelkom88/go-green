@@ -20,9 +20,8 @@ export default function Avatar({ name, src, onToggle }: UserNameProps) {
           className="w-8 h-8 rounded-md"
         />
       ) : (
-        <UserIcon />
+        <UserIcon size={35} fill='#f1b24a'/>
       )}
-
       <p className="text-text-clr text-base leading-4 ml-2">{name ? name : ""}</p>
     </div>
   );

@@ -3,6 +3,7 @@ import PostCodeValidation from "@features/post-code-validation/PostCodeValidatio
 import UserMenu from "@components/user-menu/UserMenu";
 import Filters from "@features/filters/Filters";
 import FilterIcon from "@components/ui/icons/FilterIcon";
+import Button from "@components/ui/button/Button";
 import LocationIcon from "@components/ui/icons/LocationIcon";
 
 type UserLocationProps = {
@@ -24,11 +25,11 @@ export default function Nav({ onLocateUser, onRadiusChange }: UserLocationProps)
           <div onClick={onLocateUser} className="h-full ml-2 px-2">
             <LocationIcon />
           </div>
-          <div
+          <Button
             onClick={() => setIsFilterMenuOpen(!isFilterMenuOpen)}
             className="lg:hidden h-full px-2">
             <FilterIcon />
-          </div>
+          </Button>
           <UserMenu />
         </div>
       </nav>
