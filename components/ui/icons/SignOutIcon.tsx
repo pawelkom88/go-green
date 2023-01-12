@@ -1,11 +1,11 @@
 import { IconProps } from "types/types";
 
-export default function SignOutIcon({ size, fill }: IconProps) {
+export default function SignOutIcon({ size, fill, className }: IconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width={size}
-      className="ml-1"
+      className={className}
       viewBox="0 0 24 24"
       strokeWidth="1.5"
       stroke="currentColor"

@@ -32,6 +32,7 @@ export default function Login() {
   return (
     <div className="w-full max-w-md p-8 space-y-3 rounded-xl  text-dark-text-clr">
       <h1 className="text-2xl font-bold text-center">Login</h1>
+      {/* extract to Form */}
       <form onSubmit={handleSubmit} className="relative space-y-6">
         <div className="space-y-1 text-sm">
           <Input
@@ -67,9 +68,15 @@ export default function Login() {
               <ShowPasswordIcon className="absolute top-[1.6rem] right-[.9rem] z-50" size={28} />
             )}
           </Button>
-          <Button onClick={() => setPassword("")}>
-            <ClearInputFieldIcon className="absolute top-[1.7rem] right-[2.6rem] z-50" size={25} />
-          </Button>
+          {password.length > 0 && (
+            <Button onClick={() => setPassword("")}>
+              <ClearInputFieldIcon
+                className="absolute top-[1.7rem] right-[2.6rem] z-50"
+                size={25}
+              />
+            </Button>
+          )}
+
           <div className="flex justify-end text-sm underline dark:text-gray-400 mt-2">
             <Link href="/">Forgot Password?</Link>
           </div>
