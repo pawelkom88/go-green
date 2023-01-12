@@ -1,10 +1,10 @@
 import { IconProps } from "types/types";
 
-export default function ProfileIcon({size,fill}:IconProps) {
+export default function ProfileIcon({ className, size, fill }: IconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      className="icon icon-tabler icon-tabler-user"
+      className={className}
       width={size}
       viewBox="0 0 24 24"
       strokeWidth="1.5"
