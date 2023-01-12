@@ -1,10 +1,12 @@
-export default function ShareIcon({}) {
+import { IconProps } from "types/types";
+
+export default function ShareIcon({size,fill}:IconProps) {
   return (
     <svg
       role="img"
       aria-labelledby="share"
-      fill="#f1b24a"
-      width={33}
+      fill={fill}
+      width={size}
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 512 512">
       <title id="share">Share location</title>

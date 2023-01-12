@@ -1,18 +1,19 @@
-type TickIconProps = {
-  strokeClr: string;
-};
+import { IconProps } from "types/types";
 
-export default function TickIcon({ strokeClr }: TickIconProps) {
+interface TickIconProps extends IconProps {
+  strokeClr: string;
+}
+
+export default function TickIcon({ size, fill, strokeClr }: TickIconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width={30}
-      height={30}
+      width={size}
       className="w-15 ml-2 mt-0"
       viewBox="0 0 24 24"
       strokeWidth="3"
       stroke={strokeClr}
-      fill="none"
+      fill={fill}
       strokeLinecap="round"
       strokeLinejoin="round">
       <path stroke="none" d="M0 0h24v24H0z" />

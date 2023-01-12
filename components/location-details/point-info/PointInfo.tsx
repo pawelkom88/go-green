@@ -10,7 +10,7 @@ type PointInfoProps = {
 };
 
 function getIcon(condition: boolean) {
-  return condition ? <TickIcon strokeClr="#f1b24a" /> : <NoIcon />;
+  return condition ? <TickIcon size={30} fill="none" strokeClr="#f1b24a" /> : <NoIcon />;
 }
 
 const noInfo = "Not available";
