@@ -12,7 +12,7 @@ type UserLocationProps = {
 };
 
 export default function Nav({ onLocateUser, onRadiusChange }: UserLocationProps) {
-  const [isFilterMenuOpen, setIsFilterMenuOpen] = useState<boolean>(false);
+  const [toggleFilterMenu, setToggleFilterMenu] = useState<boolean>(false);
 
   return (
     <>
@@ -23,17 +23,17 @@ export default function Nav({ onLocateUser, onRadiusChange }: UserLocationProps)
           </h1>
           <PostCodeValidation />
           <div onClick={onLocateUser} className="h-full ml-2 px-2">
-            <LocationIcon />
+            <LocationIcon size={25} fill="#f1b24a" />
           </div>
           <Button
-            onClick={() => setIsFilterMenuOpen(!isFilterMenuOpen)}
+            onClick={() => setToggleFilterMenu(!toggleFilterMenu)}
             className="lg:hidden h-full px-2">
-            <FilterIcon />
+            <FilterIcon size={25} fill="#f1b24a" />
           </Button>
           <UserMenu />
         </div>
       </nav>
-      {isFilterMenuOpen && <Filters onRadiusChange={onRadiusChange}/>}
+      {toggleFilterMenu && <Filters onRadiusChange={onRadiusChange} />}
     </>
   );
 }

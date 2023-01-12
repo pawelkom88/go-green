@@ -7,22 +7,21 @@ import Logo from "@components/ui/logo/Logo";
 import { FiltersProps } from "types/types";
 
 export default function Sidebar({ onRadiusChange }: FiltersProps) {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [isCollapsed, setIsCollapsed] = useState<boolean>(false);
 
   function toggleSidebar() {
-    setIsOpen(!isOpen);
+    setIsCollapsed(!isCollapsed);
   }
 
   return (
     <>
-      <aside className={isOpen ? "w-80 sidebar" : "w-20 sidebar"}>
+      <aside className={isCollapsed ? "w-80 sidebar" : "w-20 sidebar"}>
         <div className="relative h-full flex-center flex-col py-6">
-          {isOpen ? (
+          {isCollapsed ? (
             <>
-              <CloseBtnIcon
-                className={"absolute top-4 right-4 cursor-pointer"}
-                onClose={toggleSidebar}
-              />
+              <Button onClick={toggleSidebar}>
+                <CloseBtnIcon size={30} className={"absolute top-4 right-4 cursor-pointer"} />
+              </Button>
               <span className="absolute top-2 left-0 right-0 m-auto">
                 <Logo />
               </span>
@@ -30,7 +29,7 @@ export default function Sidebar({ onRadiusChange }: FiltersProps) {
             </>
           ) : (
             <Button onClick={toggleSidebar}>
-              <FilterIcon />
+              <FilterIcon size={35} fill="#f1b24a" />
             </Button>
           )}
         </div>
