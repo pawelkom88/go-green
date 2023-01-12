@@ -15,7 +15,7 @@ export default function Filters({ onRadiusChange }: FiltersProps) {
       <form className="lg:h-full w-full flex-center flex-col">
         <div className="flex-center">
           <h2 className="text-2xl font-bold my-2 mr-2 uppercase">Filters</h2>
-          <FilterIcon />
+          <FilterIcon size={35} fill="#f1b24a"/>
         </div>
         <FilterCheckbox>1</FilterCheckbox>
         <br />

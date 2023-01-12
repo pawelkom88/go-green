@@ -22,22 +22,20 @@ export default function UserMenu() {
     <div className="hidden lg:flex mr-8 ml-auto">
       <div className="w-full">
         {isLoggedIn ? (
-          <div
-            aria-label="Open user menu"
-            className="flex items-center relative cursor-pointer"
-            onClick={toggleProfileMenu}>
+          <div className="flex items-center relative cursor-pointer">
             <div className="rounded-full">
               {showProfileMenu ? <UserMenuOptions /> : ""}
               <div className="mx-3">
                 <Avatar src="file" name="User name" />
               </div>
             </div>
-            <div tabIndex={0} onKeyDown={toggleProfileMenu}>
-              <ChevronIcon />
-            </div>
+            <Button onClick={toggleProfileMenu}>
+              <ChevronIcon size={20} fill="#f1b24a" />
+            </Button>
           </div>
         ) : (
           <Button
+          // open modal
             onClick={login}
             className="bg-secondary-clr py-2 px-4 text-primary-clr font-bold hover:bg-white">
             Login

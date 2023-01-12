@@ -17,14 +17,14 @@ export default function LocationDetails({
   direction,
   chargingPointDetails,
 }: LocationDetailsProps) {
-  const [isFavourite, setIsFavourite] = useState(false);
+  const [addToFavourites, setAddToFavourites] = useState(false);
 
   const { distance, duration } = direction?.routes[0].legs[0] ?? {};
 
   const { address } = chargingPointDetails ?? {};
 
   function handleFavourites() {
-    setIsFavourite(!isFavourite);
+    setAddToFavourites(!addToFavourites);
   }
   return (
     <div className="flex flex-col rounded-lg text-primary-clr p-2">
@@ -37,13 +37,17 @@ export default function LocationDetails({
             onClose(true);
             onCopy();
           }}>
-          <ShareIcon />
+          <ShareIcon size={33} fill="#f1b24a" />
         </Button>
         <Button
           onClick={handleFavourites}
-          title={isFavourite ? "Remove from favourites" : "Add to favourites "}
+          title={addToFavourites ? "Remove from favourites" : "Add to favourites "}
           className="p-2">
-          {isFavourite ? <AddToFavouritesIcon /> : <AddedToFavouritesIcon />}
+          {addToFavourites ? (
+            <AddToFavouritesIcon size={35} fill="#9dc88d" />
+          ) : (
+            <AddedToFavouritesIcon size={35} fill="#9dc88d" />
+          )}
         </Button>
       </div>
       <div className="flex-center flex-col mb-4 text-sm">

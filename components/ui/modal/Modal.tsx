@@ -2,6 +2,7 @@ import React, { useState } from "react";
 // import hadleKeyPress from "helpers/helpers";
 import CloseBtnIcon from "../icons/CloseBtnIcon";
 import Overlay from "@components/ui/modal/Overlay";
+import Button from "@components/ui/button/Button";
 import FocusLock from "react-focus-lock";
 
 type ModalTypes = {
@@ -27,7 +28,9 @@ export default function Modal({ children, callback, size }: ModalTypes) {
               onClick={e => e.stopPropagation()}
               className={`${size} overflow-y-auto lg:rounded-lg bg-white shadow-xl sm:my-8 pt-8 md:max-w-3xl text-lg md:text-xl`}
               open>
-              <CloseBtnIcon onClose={closeModal} className="absolute top-4 right-4" />
+              <Button onClick={closeModal}>
+                <CloseBtnIcon size={25} className="absolute top-4 right-4" />
+              </Button>
               {children}
             </dialog>
           </Overlay>

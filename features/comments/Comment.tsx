@@ -6,6 +6,7 @@ import CommentBody from "@features/comments/comment-body/CommentBody";
 import CommentForm from "@features/comments/comment-form/CommentForm";
 import CloseBtnIcon from "@components/ui/icons/CloseBtnIcon";
 import DropdownMenu from "@features/comments/comment-dropdown-menu/DropdownMenu";
+import Button from "@components/ui/button/Button";
 import { CommentDetails } from "types/types";
 
 type CommentProps = {
@@ -43,10 +44,9 @@ export default function Comment({ details, numberOfComments }: CommentProps) {
         </CommentBody>
         {editComment && (
           <div className="relative mt-16 py-8">
-            <CloseBtnIcon
-              className="absolute top-0 right-0"
-              onClose={() => setEditComment(false)}
-            />
+            <Button onClick={() => setEditComment(false)}>
+              <CloseBtnIcon size={25} className="absolute top-0 right-0" />
+            </Button>
             <CommentForm task="edit" />
           </div>
         )}

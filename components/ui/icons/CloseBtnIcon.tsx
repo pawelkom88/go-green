@@ -1,19 +1,19 @@
-type CloseBtnProps = {
-  className?: string;
-  onClose?: () => void;
-};
+import { IconProps } from "types/types";
 
-export default function CloseBtnIcon({ className, onClose }: CloseBtnProps) {
+interface CloseBtnProps extends IconProps {
+  onClick?: () => void;
+}
+
+export default function CloseBtnIcon({ size, className, onClick }: CloseBtnProps) {
   return (
     <svg
       aria-labelledby="close"
       role="img"
       tabIndex={0}
-      onClick={onClose}
+      onClick={onClick}
       xmlns="http://www.w3.org/2000/svg"
       className={`${className} cursor-pointer z-50`}
-      width={30}
-      height={30}
+      width={size}
       viewBox="0 0 24 24"
       strokeWidth="1.5"
       stroke="currentColor"
