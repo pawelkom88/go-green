@@ -3,6 +3,7 @@ import Button from "@components/ui/button/Button";
 import ProfileIcon from "@components/ui/icons/ProfileIcon";
 import SignOutIcon from "@components/ui/icons/SignOutIcon";
 import Modal from "@components/ui/modal/Modal";
+import UserProfile from "@features/user-profile/UserProfile";
 
 export default function UserMenuOptions() {
   const [openUserProfile, setOpenUserProfile] = useState(false);
@@ -29,7 +30,7 @@ export default function UserMenuOptions() {
       </ul>
       {openUserProfile && (
         <Modal size="w-full h-3/4" callback={() => setOpenUserProfile(false)}>
-          <p>asd</p>
+          <UserProfile />
         </Modal>
       )}
     </>
