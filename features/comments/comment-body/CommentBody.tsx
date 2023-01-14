@@ -23,7 +23,7 @@ export default function CommentBody({ children, domNode, details }: CommentBodyP
           <p className="mr-3 text-sm text-dark-text-clr font-bold">{details.name}</p>
           <p className="text-sm text-gray-600">
             <time dateTime="2022-02-08" title="February 8th, 2022">
-              Feb. 8, 2022
+              add timestamp from firebase
             </time>
           </p>
         </div>
