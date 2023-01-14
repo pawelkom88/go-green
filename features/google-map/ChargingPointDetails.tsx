@@ -3,7 +3,7 @@ import Toast from "@components/ui/toast/Toast";
 import useCopyToClipboard from "@hooks/useCopyToClipboard";
 import LocationDetails from "@components/location-details/LocationDetails";
 import Comments from "@features/comments/UserComments";
-import Photos from "@features/charging-point-photos/CharginPointPhotos";
+import Photos from "@features/charging-point-photos/ChargingPointPhotos";
 import Modal from "@components/ui/modal/Modal";
 import Tabs from "@components/ui/tabs/Tabs";
 import { UserLocationType, DataType } from "types/types";

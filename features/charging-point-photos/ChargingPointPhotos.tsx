@@ -13,7 +13,7 @@ type uploadType = {
   webkitRelativePath: string;
 };
 
-export default function CharginPointPhotos() {
+export default function ChargingPointPhotos() {
   const [file, setFile] = useState<null | uploadType>(null);
   const [sizeError, setSizeError] = useState(false);
 
@@ -37,7 +37,7 @@ export default function CharginPointPhotos() {
       </div>
 
       {sizeError && (
-        <Modal size="flex-center h-[300]" callback={() => setSizeError(null)}>
+        <Modal size="flex-center h-[300]" callback={() => setSizeError(false)}>
           The file you are trying to upload is too large.
         </Modal>
       )}
