@@ -11,8 +11,8 @@ import Modal from "@components/ui/modal/Modal";
 
 export default function Home() {
   const [radius, setRadius] = useState(5);
-
   const { currentLocation, getCurrentPosition, status } = useGeolocation();
+
   return (
     <>
       <div className="w-full bg-primary-clr">
@@ -27,8 +27,8 @@ export default function Home() {
       </div>
 
       {status.length !== 0 && (
-        <Modal>
-          <div className="text-center mt-16">{status}</div>
+        <Modal size="flex-center h-[300px]">
+          <p className="text-center mt-16">{status}</p>
         </Modal>
       )}
     </>
