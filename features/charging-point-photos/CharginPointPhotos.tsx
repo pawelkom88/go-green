@@ -1,28 +1,46 @@
-import Input from "components/ui/input-field/Input";
+import { useState } from "react";
+import DragAndDrop from "@components/ui/drag&drop/DragAndDrop";
+import { FileUploader } from "react-drag-drop-files";
+import Modal from "@components/ui/modal/Modal";
 
-// type CommentsType = {
-//   details: string;
-// };
+const fileTypes = ["JPG", "PNG"];
+
+type uploadType = {
+  lastModified: number;
+  name: string;
+  size: number;
+  type: string;
+  webkitRelativePath: string;
+};
 
 export default function CharginPointPhotos() {
-  function handleUpload() {
-    console.log("input");
+  const [file, setFile] = useState<null | uploadType>(null);
+  const [sizeError, setSizeError] = useState(false);
+
+  function handleUpload(file: uploadType) {
+    setFile(file);
   }
   // message if it was successfully uploaded or not
+
   return (
-    <div className="w-full flex-center flex-col">
-      <Input
-        onChange={handleUpload}
-        id="file input"
-        name="file input"
-        className="block mx-auto w-1/2 text-sm text-gray-900 cursor-pointer bg-gray-50 dark:placeholder-gray-400"
-        labelClassName="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-        srOnly={false}
-        type="file"
-        required={false}>
-        Upload file
-      </Input>
-      <div className="mt-8">Uploaded Photos</div>
-    </div>
+    <>
+      <div className="w-full flex-center flex-col">
+        <FileUploader
+          handleChange={handleUpload}
+          onSizeError={() => setSizeError(true)}
+          name="file"
+          types={fileTypes}
+          maxSize={1}>
+          <DragAndDrop />
+        </FileUploader>
+        <div className="mt-8">{file && file?.name}</div>
+      </div>
+
+      {sizeError && (
+        <Modal size="flex-center h-[300]" callback={() => setSizeError(null)}>
+          The file you are trying to upload is too large.
+        </Modal>
+      )}
+    </>
   );
 }
