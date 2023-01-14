@@ -1,15 +1,19 @@
 import { ChildrenType } from "types/types";
 
 interface InputProps extends ChildrenType {
-  onChange: (e: Event) => void;
+  onChange: any;
+  // onChange: (e: Event) => void;
   srOnly: boolean;
   name: string;
   type: string;
   id: string;
   className: string;
-  placeholder: string;
-  value: string;
+  labelClassName?: string;
+  placeholder?: string;
+  value?: string;
   required: boolean | undefined;
+  min?: string;
+  max?: string;
 }
 
 export default function Input({
@@ -21,12 +25,15 @@ export default function Input({
   type,
   id,
   className,
+  labelClassName,
   placeholder,
   required,
+  min,
+  max,
 }: InputProps) {
   return (
     <>
-      <label className={srOnly ? "sr-only" : ""} htmlFor={name}>
+      <label className={`${srOnly ? "sr-only" : ""} ${labelClassName}`} htmlFor={name}>
         {children}
       </label>
       <input
@@ -38,6 +45,8 @@ export default function Input({
         className={className}
         value={value}
         required={required}
+        min={min}
+        max={max}
       />
     </>
   );
