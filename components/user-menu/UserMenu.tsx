@@ -24,10 +24,10 @@ export default function UserMenu() {
     <>
       <div className="hidden lg:flex mr-8 ml-auto">
         <div className="w-full">
-          {isLoggedIn ? (
+          {!isLoggedIn ? (
             <div className="flex items-center relative cursor-pointer">
               <div className="rounded-full">
-                {showProfileMenu ? <UserMenuOptions /> : ""}
+                {showProfileMenu && <UserMenuOptions />}
                 <div className="mx-3">
                   <Avatar src="file" name="User name" />
                 </div>
