@@ -1,9 +1,9 @@
-import Toast from "@components/ui/toast/Toast";
 import { useState } from "react";
+import Toast from "@components/ui/toast/Toast";
 import useCopyToClipboard from "@hooks/useCopyToClipboard";
 import LocationDetails from "@components/location-details/LocationDetails";
 import Comments from "@features/comments/UserComments";
-import Photos from "@features/photos/Photos";
+import Photos from "@features/charging-point-photos/CharginPointPhotos";
 import Modal from "@components/ui/modal/Modal";
 import Tabs from "@components/ui/tabs/Tabs";
 import { UserLocationType, DataType } from "types/types";
@@ -26,8 +26,7 @@ export default function ChargingPointDetails({
   onShowDetails,
 }: ChargingPointDetailsProps) {
   const [activeTab, setActiveTab] = useState("Details");
-  const [value, copyToClipboard] = useCopyToClipboard();
-  const [openToast, setOpenToast] = useState(false);
+  const [error, value, copyToClipboard] = useCopyToClipboard();
 
   const destination = {
     lat: selectedPoint?.address.lat,
@@ -47,7 +46,6 @@ export default function ChargingPointDetails({
         {activeTab === details.tabName && (
           <LocationDetails
             onCopy={handleClipboard}
-            onClose={setOpenToast}
             direction={direction}
             chargingPointDetails={chargingPointDetails}
           />
@@ -55,7 +53,8 @@ export default function ChargingPointDetails({
         {activeTab === comments.tabName && <Comments />}
         {activeTab === photos.tabName && <Photos details={photos.tabName} />}
       </Modal>
-      {openToast && <Toast onClose={setOpenToast} />}
+      {error && <Modal size="h-[300px] flex-center">{error}</Modal>}
+      {value && <Toast>Link to Google Maps has been copied to clipboard !</Toast>}
     </>
   );
 }

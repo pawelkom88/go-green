@@ -9,7 +9,7 @@ export default function CommentRating({ numberOfStars }: CommentRatingPorps) {
   return (
     <div className="flex">
       {[...new Array(numberOfStars)]?.map((_, index) => {
-        return <Star key={index} />;
+        return <Star size={25} fill="gold" key={index} />;
       })}
     </div>
     // <div className="flex">

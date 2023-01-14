@@ -1,21 +1,21 @@
 import FilterCheckbox from "@components/ui/filter-checkbox/FilterCheckbox";
 import Button from "@components/ui/button/Button";
 import FilterIcon from "@components/ui/icons/FilterIcon";
-import { FiltersProps } from "types/types";
+import { ChildrenType } from "types/types";
 
 const commonStyles = "w-full h-12 font-bold uppercase my-4 border-2 border-primary-clr";
 
-export default function Filters({ onRadiusChange }: FiltersProps) {
+export default function Filters({ children }: ChildrenType) {
   function someHandler() {
     console.log("handler");
   }
 
   return (
-    <div className="absolute w-full h-2/3 bg-primary-clr z-40 flex-center border-b-4 border-b-teriary-clr lg:border-0">
+    <div className="absolute w-full h-1/3 bg-primary-clr z-40 flex-center border-b-4 border-b-teriary-clr lg:border-0">
       <form className="lg:h-full w-full flex-center flex-col">
         <div className="flex-center">
           <h2 className="text-2xl font-bold my-2 mr-2 uppercase">Filters</h2>
-          <FilterIcon size={35} fill="#f1b24a"/>
+          <FilterIcon size={35} fill="#f1b24a" />
         </div>
         <FilterCheckbox>1</FilterCheckbox>
         <br />
@@ -23,6 +23,7 @@ export default function Filters({ onRadiusChange }: FiltersProps) {
         <br />
         <FilterCheckbox>3</FilterCheckbox>
         <br />
+        {children}
         <div className="w-3/4 flex-center px-1">
           <Button
             onClick={someHandler}

@@ -1,14 +1,16 @@
 import { useState } from "react";
 
 type CopiedValue = string | null;
+type ErrorType = string | null;
 type CopyFn = (text: string | undefined) => Promise<boolean>;
 
-export default function useCopyToClipboard(): [CopiedValue, CopyFn] {
+export default function useCopyToClipboard(): [ErrorType, CopiedValue, CopyFn] {
   const [copiedText, setCopiedText] = useState<CopiedValue>(null);
+  const [error, setError] = useState<ErrorType>(null);
 
   const copyToClipboard: CopyFn = async text => {
     if (!navigator?.clipboard) {
-      console.warn("Clipboard not supported");
+      setError("Clipboard not supported");
 
       return false;
     }
@@ -20,7 +22,7 @@ export default function useCopyToClipboard(): [CopiedValue, CopyFn] {
 
       return true;
     } catch (error) {
-      console.warn("Copy failed", error);
+      setError("Copy failed");
 
       setCopiedText(null);
 
@@ -28,5 +30,5 @@ export default function useCopyToClipboard(): [CopiedValue, CopyFn] {
     }
   };
 
-  return [copiedText, copyToClipboard];
+  return [error, copiedText, copyToClipboard];
 }
