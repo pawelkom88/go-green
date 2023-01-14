@@ -35,13 +35,15 @@ export default function Comment({ details, numberOfComments }: CommentProps) {
             Discussion ({numberOfComments})
           </h2>
         </div>
-        {isLoggedIn && <CommentForm task="post" />}
+
         <CommentBody domNode={domNode} details={details}>
           <CommentRating numberOfStars={details.rating} />
           <CommentSettings onOpen={openSettings} onClose={setOpenSettings}>
             {openSettings && <DropdownMenu onEdit={setEditComment} onClose={setOpenSettings} />}
           </CommentSettings>
         </CommentBody>
+        {isLoggedIn && <CommentForm task="post" />}
+
         {editComment && (
           <div className="relative mt-16 py-8">
             <Button onClick={() => setEditComment(false)}>
