@@ -4,6 +4,7 @@ import FilterIcon from "../ui/icons/FilterIcon";
 import CloseBtnIcon from "@components/ui/icons/CloseBtnIcon";
 import Button from "@components/ui/button/Button";
 import Logo from "@components/ui/logo/Logo";
+import Slider from "@components/ui/slider/Slider";
 import { FiltersProps } from "types/types";
 
 export default function Sidebar({ onRadiusChange }: FiltersProps) {
@@ -25,7 +26,9 @@ export default function Sidebar({ onRadiusChange }: FiltersProps) {
               <span className="absolute top-2 left-0 right-0 m-auto">
                 <Logo />
               </span>
-              <Filters onRadiusChange={onRadiusChange} />
+              <Filters>
+                <Slider onRadiusChange={onRadiusChange} />
+              </Filters>
             </>
           ) : (
             <Button onClick={toggleSidebar}>
