@@ -12,18 +12,6 @@ export default function CommentRating({ numberOfStars }: CommentRatingPorps) {
         return <Star size={25} fill="gold" key={index} />;
       })}
     </div>
-    // <div className="flex">
-    //   {[...new Array(5)]?.map((_, index) => {
-    //     return (
-    //       <span
-    //         key={index}
-    //         data-value={index + 1}
-    //         onMouseOver={e => setNumberOfStars(e.target.dataset.value)}
-    //         onClick={() => setNumberOfStars(index + 1)}>
-    //         {index + 1 <= numberOfStars ? <Star /> : <EmptyStar />}
-    //       </span>
-    //     );
-    //   })}
-    // </div>
+   
   );
 }
