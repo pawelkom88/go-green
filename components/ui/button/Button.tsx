@@ -5,6 +5,7 @@ type ButtonType = {
   className?: string;
   title?: string;
   type?: "submit" | "button";
+  disabled?: boolean;
   onClick?: () => void | (() => boolean);
 };
 
@@ -14,9 +15,10 @@ export default function Button({
   className,
   type = "button",
   title,
+  disabled,
 }: ButtonType) {
   return (
-    <button title={title} onClick={onClick} type={type} className={className}>
+    <button title={title} onClick={onClick} type={type} className={className} disabled={disabled}>
       {children}
     </button>
   );
