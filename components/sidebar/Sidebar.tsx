@@ -16,7 +16,7 @@ export default function Sidebar({ onRadiusChange }: FiltersProps) {
 
   return (
     <>
-      <aside className={isCollapsed ? "w-80 sidebar" : "w-20 sidebar"}>
+      <aside className={isCollapsed ? "w-[35vw] sidebar" : "w-20 sidebar"}>
         <div className="relative h-full flex-center flex-col py-6">
           {isCollapsed ? (
             <>
