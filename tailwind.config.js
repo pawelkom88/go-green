@@ -9,6 +9,28 @@ module.exports = {
         "secondary-clr": "var(--secondary-clr)",
         "teriary-clr": "var(--teriary-clr)",
       },
+      keyframes: {
+        fadeIn: {
+          "0%": {
+            opacity: 0,
+          },
+          "100%": {
+            opacity: 1,
+          },
+        },
+        fadeOut: {
+          "0%": {
+            opacity: 1,
+          },
+          "100%": {
+            opacity: 0,
+          },
+        },
+      },
+      animation: {
+        start: "fadeIn 0.3s ease-in-out",
+        end: "fadeOut 0.3s ease-in-out forwards",
+      },
     },
   },
   content: [
