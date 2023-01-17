@@ -1,65 +1,67 @@
 import { useState } from "react";
-import { AddCommentForm } from "@features/comments/add-comment/AddCommentForm";
-import useClickOutside from "@hooks/useClickOutside";
-import CommentSettings from "@features/comments/comment-settings/CommentSettings";
+import useCollection from "@hooks/useCollection";
+import CommentAction from "@features/comments/comment-action/CommentAction";
 import CommentBody from "@features/comments/comment-body/CommentBody";
-import CommentForm from "@features/comments/comment-form/CommentForm";
-import CloseBtnIcon from "@components/ui/icons/CloseBtnIcon";
-import DropdownMenu from "@features/comments/comment-dropdown-menu/DropdownMenu";
 import Button from "@components/ui/button/Button";
-import { CommentDetails } from "types/types";
-
-type CommentProps = {
-  details: CommentDetails;
-  numberOfComments: number;
-};
+import Modal from "@components/ui/modal/Modal";
 
 const isLoggedIn = false;
 
 const commentBtnStyles =
   "bg-primary-clr py-2 px-4 text-white font-bold hover:bg-secondary-clr hover:text-primary-clr text-sm";
 
-export default function Comment({ details, numberOfComments }: CommentProps) {
-  const [addComment, setAddComment] = useState(false);
-  const [editComment, setEditComment] = useState(false);
-  const [openSettings, setOpenSettings] = useState(false);
+const disabledBtnStyles = "bg-gray-200 py-2 px-4 text-black font-bold text-sm";
 
-  // close menu after clicking outside it
-  let domNode = useClickOutside(() => {
-    setOpenSettings(false);
-  });
+type CommentProps = {
+  selectedPointId: number;
+};
+
+export default function Comment({ selectedPointId }: CommentProps) {
+  const { data: comments, error } = useCollection("comments");
+  const [addComment, setAddComment] = useState(false);
+
+  const filteredComments = comments?.filter(({ id }) =>
+    id?.substring(0, 6).includes(selectedPointId.toString())
+  );
+
+  const addBtnStyles = isLoggedIn ? commentBtnStyles : disabledBtnStyles;
 
   return (
     <>
       <div className="bg-white  py-8 lg:py-16">
         <div className="max-w-2xl mx-auto lg:px-2">
           <div className="flex justify-between items-center mb-6">
-            <Button onClick={() => setAddComment(true)} className={`${commentBtnStyles}`}>
+            <h2 className="text-lg lg:text-2xl font-bold text-dark-text-clr">
+              Discussion ({filteredComments?.length})
+            </h2>
+            <Button
+              onClick={() => setAddComment(true)}
+              className={`${addBtnStyles}`}
+              disabled={!isLoggedIn}>
               Add comment
             </Button>
-            <h2 className="text-lg lg:text-2xl font-bold text-dark-text-clr">
-              Discussion ({numberOfComments})
-            </h2>
           </div>
-
-          <CommentBody domNode={domNode} details={details}>
-            <CommentSettings onOpen={openSettings} onClose={setOpenSettings}>
-              {openSettings && <DropdownMenu onEdit={setEditComment} onClose={setOpenSettings} />}
-            </CommentSettings>
-          </CommentBody>
-          {isLoggedIn && <CommentForm task="post" />}
-
-          {editComment && (
-            <div className="relative mt-16 py-8">
-              <Button onClick={() => setEditComment(false)}>
-                <CloseBtnIcon size={25} className="absolute top-0 right-0" />
-              </Button>
-              <CommentForm task="edit" />
-            </div>
+          {!filteredComments?.length && (
+            <p className="text-center mt-4">Be the first who add a comment.</p>
           )}
+
+          {filteredComments?.map(comment => (
+            <CommentBody key={comment.id} details={comment} />
+          ))}
         </div>
       </div>
-      {addComment && <AddCommentForm onAddComment={setAddComment} />}
+      {addComment && (
+        <CommentAction
+          idRequired={false}
+          selectedPointId={selectedPointId}
+          callback={setAddComment}
+        />
+      )}
+      {error && (
+        <Modal size="flex-center h-[245px]">
+          <p>Could not fetch data</p>
+        </Modal>
+      )}
     </>
   );
 }
