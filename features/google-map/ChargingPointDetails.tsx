@@ -2,8 +2,8 @@ import { useState } from "react";
 import Toast from "@components/ui/toast/Toast";
 import useCopyToClipboard from "@hooks/useCopyToClipboard";
 import LocationDetails from "@components/location-details/LocationDetails";
-import Comments from "@features/comments/UserComments";
-import Photos from "@features/charging-point-photos/ChargingPointPhotos";
+import Comments from "@features/comments/Comment";
+import ChargingPointPhotos from "@features/charging-point-photos/ChargingPointPhotos";
 import Modal from "@components/ui/modal/Modal";
 import Tabs from "@components/ui/tabs/Tabs";
 import { UserLocationType, DataType } from "types/types";
@@ -50,8 +50,8 @@ export default function ChargingPointDetails({
             chargingPointDetails={chargingPointDetails}
           />
         )}
-        {activeTab === comments.tabName && <Comments />}
-        {activeTab === photos.tabName && <Photos details={photos.tabName} />}
+        {activeTab === comments.tabName && <Comments selectedPointId={selectedPoint.id}/>}
+        {activeTab === photos.tabName && <ChargingPointPhotos />}
       </Modal>
       {error && <Modal size="h-[300px] flex-center">{error}</Modal>}
       {value && <Toast>Link to Google Maps has been copied to clipboard !</Toast>}

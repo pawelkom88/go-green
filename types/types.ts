@@ -1,4 +1,4 @@
-// import { UserLocationProps } from "types/types";
+import { Timestamp } from "@firebase/firestore-types";
 // API DATA TYPES
 
 // change ?
@@ -6,18 +6,15 @@ type infoDataType = any;
 
 export type CollectionObject = {
   id?: string;
-  title: string;
-  name: string;
   content: string;
   rating: number;
-  avatar: string;
+  title: string;
+  timestamp: Timestamp;
+  userName: string;
 };
 
 export type CommentDetails = {
-  name: string;
-  content: string;
-  avatar: string;
-  rating: number;
+  details: CollectionObject;
 };
 
 export type DataType = {
@@ -100,6 +97,4 @@ export type IconProps = {
   className?: string;
   size: number;
   fill?: string;
-
 };
-

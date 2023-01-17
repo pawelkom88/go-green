@@ -1,7 +1,7 @@
-import React, { useState, useRef } from "react";
+import { useState, useRef } from "react";
 import Button from "@components/ui/button/Button";
 import Modal from "@components/ui/modal/Modal";
-import SetCommentRating from "./set-comment-rating/SetCommentRating";
+import SetCommentRating from "@features/comments/set-comment-rating/SetCommentRating";
 import Input from "@components/ui/input-field/Input";
 import { setDoc, doc, serverTimestamp } from "firebase/firestore";
 import { db } from "@lib/config";
@@ -12,11 +12,19 @@ const commentBtnStyles =
 
 const disabledBtnStyles = "bg-gray-200 py-2 px-4 text-black font-bold text-sm";
 
-type AddCommentFormProps = {
-  onAddComment: (val: boolean) => void;
+type CommentActionProps = {
+  commentId?: string;
+  idRequired: boolean;
+  callback: (val: boolean) => void;
+  selectedPointId?: number;
 };
 
-export function AddCommentForm({ onAddComment }: AddCommentFormProps) {
+export default function CommentAction({
+  callback,
+  idRequired = false,
+  commentId,
+  selectedPointId,
+}: CommentActionProps) {
   const [numberOfStars, setNumberOfStars] = useState<number>(0);
   const [title, setTitle] = useState<string>("");
 
@@ -30,22 +38,25 @@ export function AddCommentForm({ onAddComment }: AddCommentFormProps) {
     e.preventDefault();
 
     const commentData = {
-      userName: 'logged in user',
+      userName: "logged in user",
       title,
       rating: numberOfStars,
       content: commentContentRef?.current?.value,
       timestamp: serverTimestamp(),
     };
 
-    await setDoc(doc(db, "comments", uuidv4()), commentData);
-    // await setDoc(doc(db, "comments", `${title + uuidv4()}`), commentData);
+    if (idRequired) {
+      await setDoc(doc(db, "comments", commentId as string), commentData);
+    } else {
+      await setDoc(doc(db, "comments", `${selectedPointId + uuidv4()}`), commentData);
+    }
 
-    onAddComment(false);
+    callback(false);
     // add toast
   }
+
   return (
-    <Modal size="w-full min-h-[400px] flex-center" callback={() => onAddComment(false)}>
-      {/* extract to a separate component */}
+    <Modal size="w-full min-h-[400px] flex-center" callback={() => callback(false)}>
       <form onSubmit={handleSubmit} className="flex flex-col">
         <span>How do you rate this point ?</span>
         <div className="flex my-4">
@@ -89,6 +100,7 @@ export function AddCommentForm({ onAddComment }: AddCommentFormProps) {
           Add comment
         </Button>
       </form>
+      {/* <Toast></Toast> */}
     </Modal>
   );
 }

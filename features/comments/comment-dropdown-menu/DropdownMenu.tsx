@@ -14,8 +14,8 @@ export default function DropdownMenu({ onEdit, onClose }: DropdownMenuProps) {
   }
 
   return (
-    <div className="absolute top-12 -right-8 z-10 w-36 bg-slate-50 rounded divide-y shadow ">
-      <ul className="text-sm text-dark-text-clr" aria-labelledby="dropdownMenuIconHorizontalButton">
+    <div className="absolute top-14 -right-8 z-10 w-36 bg-slate-50 rounded divide-y shadow ">
+      <ul className="text-sm text-dark-text-clr border border-primary-clr rounded-lg" aria-labelledby="dropdownMenuIconHorizontalButton">
         <li
           onClick={() => {
             onEdit(true), onClose(false);
