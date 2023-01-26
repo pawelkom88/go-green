@@ -6,9 +6,6 @@ type DropdownMenuProps = {
 export default function DropdownMenu({ onEdit, onClose }: DropdownMenuProps) {
   // Edit and remove handlers
 
-  function handleEdit() {
-    console.log("edit");
-  }
   function handleRemove() {
     console.log("remove");
   }

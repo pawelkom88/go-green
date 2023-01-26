@@ -8,6 +8,10 @@ export function handleLocation(start: UserLocationType, end: Coords): undefined 
   return `https://www.google.com/maps/dir/?api=1&origin=${start.lat},${start.lng}&destination=${end.lat},${end.lng}&travelmode=driving`;
 }
 
+// export default function hadleKeyPress(key, action) {
+//   if (e.key === key) action();
+// }
+
 // CONSTANTS
 export const containerStyle = {
   maxWidth: "100%",
@@ -24,6 +28,28 @@ export const chargingPointTabName = [
   { id: 2, tabName: "Comments" },
   { id: 3, tabName: "Photos" },
 ];
+
+// BUTTON STYLES
+
+
+
+export const signInBtnStyles =
+  "block mx-auto bg-secondary-clr py-2 px-4 text-black font-bold text-sm hover:bg-primary-clr hover:text-secondary-clr";
+
+export const loginBtnStyles = "w-full bg-white py-2 px-4 text-black border border-primary-clr rounded-lg";
+
+export const submitBtnStyles =
+"bg-teriary-clr py-2 px-4 text-black font-bold hover:bg-white hover:text-primary-clr";
+
+export const commentBtnStyles =
+  "bg-primary-clr py-2 px-4 text-white font-bold hover:bg-secondary-clr hover:text-primary-clr text-sm";
+
+export const disabledBtnStyles = "bg-gray-200 py-2 px-4 text-black font-bold text-sm";
+
+export const FiltersBtnStyles =
+  "w-full h-12 font-bold uppercase my-4 border-2 border-primary-clr hover:bg-secondary-clr";
+
+// SOCKET TYPE DATA
 
 export const socketTypeImageSrc = [
   {

@@ -28,7 +28,7 @@ export default function Modal({ children, callback, size }: ModalTypes) {
               onClick={e => e.stopPropagation()}
               className={`${
                 isOpen ? "animate-start" : "animate-end"
-              } ${size} overflow-y-auto bg-white sm:my-8 pt-8 md:max-w-3xl text-lg md:text-xl`}
+              } ${size} overflow-y-auto bg-white md:max-w-3xl text-lg md:text-xl md:mt-12`}
               open>
               <Button onClick={closeModal}>
                 <CloseBtnIcon size={25} className="absolute top-4 right-4" />

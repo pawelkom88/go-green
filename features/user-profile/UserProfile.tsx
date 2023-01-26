@@ -7,6 +7,8 @@ export default function UserProfile() {
     console.log("a");
   }
 
+// Button styles to be changed
+
   return (
     <div className="w-full">
       <div className="flex flex-col items-center pb-10">
