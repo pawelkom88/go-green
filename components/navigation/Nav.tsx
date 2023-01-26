@@ -5,6 +5,7 @@ import Filters from "@features/filters/Filters";
 import FilterIcon from "@components/ui/icons/FilterIcon";
 import Button from "@components/ui/button/Button";
 import LocationIcon from "@components/ui/icons/LocationIcon";
+import Slider from "@components/ui/slider/Slider";
 
 type UserLocationProps = {
   onLocateUser: (val: object) => void;
@@ -33,7 +34,11 @@ export default function Nav({ onLocateUser, onRadiusChange }: UserLocationProps)
           <UserMenu />
         </div>
       </nav>
-      {toggleFilterMenu && <Filters onRadiusChange={onRadiusChange} />}
+      {toggleFilterMenu && (
+        <Filters>
+          <Slider onRadiusChange={onRadiusChange} />
+        </Filters>
+      )}
     </>
   );
 }

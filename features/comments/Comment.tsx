@@ -4,13 +4,9 @@ import CommentAction from "@features/comments/comment-action/CommentAction";
 import CommentBody from "@features/comments/comment-body/CommentBody";
 import Button from "@components/ui/button/Button";
 import Modal from "@components/ui/modal/Modal";
+import { commentBtnStyles, disabledBtnStyles } from "helpers/helpers";
 
 const isLoggedIn = false;
-
-const commentBtnStyles =
-  "bg-primary-clr py-2 px-4 text-white font-bold hover:bg-secondary-clr hover:text-primary-clr text-sm";
-
-const disabledBtnStyles = "bg-gray-200 py-2 px-4 text-black font-bold text-sm";
 
 type CommentProps = {
   selectedPointId: number;

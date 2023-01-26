@@ -6,18 +6,8 @@ import Input from "@components/ui/input-field/Input";
 import { setDoc, doc, serverTimestamp } from "firebase/firestore";
 import { db } from "@lib/config";
 import { v4 as uuidv4 } from "uuid";
-
-const commentBtnStyles =
-  "bg-primary-clr py-2 px-4 text-white font-bold hover:bg-secondary-clr hover:text-primary-clr text-sm";
-
-const disabledBtnStyles = "bg-gray-200 py-2 px-4 text-black font-bold text-sm";
-
-type CommentActionProps = {
-  commentId?: string;
-  idRequired: boolean;
-  callback: (val: boolean) => void;
-  selectedPointId?: number;
-};
+import { CommentActionProps } from "types/types";
+import { commentBtnStyles, disabledBtnStyles } from "@helpers/helpers";
 
 export default function CommentAction({
   callback,

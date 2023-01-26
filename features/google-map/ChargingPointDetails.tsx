@@ -6,16 +6,9 @@ import Comments from "@features/comments/Comment";
 import ChargingPointPhotos from "@features/charging-point-photos/ChargingPointPhotos";
 import Modal from "@components/ui/modal/Modal";
 import Tabs from "@components/ui/tabs/Tabs";
-import { UserLocationType, DataType } from "types/types";
+import { UserLocationType, DataType, ChargingPointDetailsProps } from "types/types";
 import { chargingPointTabName, handleLocation } from "helpers/helpers";
 
-type ChargingPointDetailsProps = {
-  chargingPointDetails: DataType;
-  userLocation: UserLocationType;
-  selectedPoint: DataType;
-  direction: null | google.maps.DirectionsResult;
-  onShowDetails?: (val: boolean) => void;
-};
 const [details, comments, photos] = chargingPointTabName;
 
 export default function ChargingPointDetails({
@@ -50,7 +43,7 @@ export default function ChargingPointDetails({
             chargingPointDetails={chargingPointDetails}
           />
         )}
-        {activeTab === comments.tabName && <Comments selectedPointId={selectedPoint.id}/>}
+        {activeTab === comments.tabName && <Comments selectedPointId={selectedPoint.id} />}
         {activeTab === photos.tabName && <ChargingPointPhotos />}
       </Modal>
       {error && <Modal size="h-[300px] flex-center">{error}</Modal>}

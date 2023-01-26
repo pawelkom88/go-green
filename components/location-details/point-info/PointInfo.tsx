@@ -9,16 +9,16 @@ type PointInfoProps = {
   details: DataType;
 };
 
-function getIcon(condition: boolean) {
-  return condition ? <TickIcon size={30} fill="none" strokeClr="#f1b24a" /> : <NoIcon />;
-}
-
 const noInfo = "Not available";
 
 export default function PointInfo({ details }: PointInfoProps) {
   const { connection, paymentOptions, info, NumberOfPoints } = details ?? {};
 
-  const AvailabilityIcon = getIcon(paymentOptions?.IsAccessKeyRequired);
+  const AvailabilityIcon = paymentOptions?.IsAccessKeyRequired ? (
+    <TickIcon size={30} fill="none" strokeClr="#f1b24a" />
+  ) : (
+    <NoIcon />
+  );
 
   return (
     <div className="flex flex-wrap justify-between">
