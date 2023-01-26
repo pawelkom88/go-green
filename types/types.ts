@@ -98,3 +98,33 @@ export type IconProps = {
   size: number;
   fill?: string;
 };
+
+export type uploadType = {
+  lastModified: number;
+  name: string;
+  size: number;
+  type: string;
+  webkitRelativePath: string;
+};
+
+export type CommentActionProps = {
+  commentId?: string;
+  idRequired: boolean;
+  callback: (val: boolean) => void;
+  selectedPointId?: number;
+};
+
+export type ChargingPointDetailsProps = {
+  chargingPointDetails: DataType;
+  userLocation: UserLocationType;
+  selectedPoint: DataType;
+  direction: null | google.maps.DirectionsResult;
+  onShowDetails?: (val: boolean) => void;
+};
+
+export type ChargingPointInfoType = {
+  selectedPoint: DataType;
+  userLocation: UserLocationType;
+  onCloseClick: (val: null) => void;
+  onShowDetails: (val: boolean) => void;
+};
