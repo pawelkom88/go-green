@@ -27,8 +27,8 @@ export default function Home() {
       </div>
 
       {status.length !== 0 && (
-        <Modal size="flex-center h-[300px]">
-          <p className="text-center mt-16">{status}</p>
+        <Modal size="flex-center h-[200px]">
+          <p className="text-center">{status}</p>
         </Modal>
       )}
     </>
