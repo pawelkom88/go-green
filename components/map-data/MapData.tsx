@@ -1,20 +1,22 @@
 import useFetch from "@hooks/useFetch";
-import { UserLocationType } from "types/types";
+import { Coords } from "types/types";
 import useBoundingBox from "@hooks/useBoundingBox";
 import Map from "@components/map/Map";
-import { data } from "@helpers/helpers";
+// import { data } from "@helpers/helpers";
+// import useDebounce from "@hooks/useDebounce";
 
 type MapDataProps = {
-  userLocation: UserLocationType;
+  userLocation: Coords;
   radius: number;
 };
 
 export default function MapData({ userLocation, radius }: MapDataProps) {
-  // const { boundingBoxPolygon } = useBoundingBox(userLocation, radius);
-  // const { data } = useFetch(boundingBoxPolygon);
-
+  const { boundingBoxPolygon } = useBoundingBox(userLocation, radius);
+  const { data } = useFetch(boundingBoxPolygon);
+  // const debouncedValue = useDebounce(data, 1500);
   // data transformation
-  const transformedData = data.map(globalData => {
+
+  const transformedData = (data as any)?.map((globalData: any) => {
     const {
       AddressInfo,
       Connections,
@@ -46,7 +48,7 @@ export default function MapData({ userLocation, radius }: MapDataProps) {
         website: OperatorInfo?.WebsiteURL,
       },
       statusType: {
-        ConnectionType: StatusType.IsOperational,
+        ConnectionType: StatusType?.IsOperational,
       },
       cost: UsageCost,
       paymentOptions: UsageType,

@@ -8,7 +8,6 @@ import Toast from "@components/ui/toast/Toast";
 import { ChargingPointDetailsType, DataType } from "types/types";
 
 interface LocationDetailsProps extends ChargingPointDetailsType {
-  // onClose: (val: boolean) => void;
   onCopy: () => void;
 }
 

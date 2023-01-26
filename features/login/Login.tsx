@@ -1,15 +1,11 @@
+import { useState } from "react";
 import Link from "next/link";
 import Button from "@components/ui/button/Button";
 import Input from "@components/ui/input-field/Input";
 import ShowPasswordIcon from "@components/ui/icons/ShowPasswordIcon";
-import { useState } from "react";
 import HidePasswordIcon from "@components/ui/icons/HidePasswordIcon";
 import ClearInputFieldIcon from "@components/ui/icons/ClearInputFieldIcon";
-
-const signInBtnStyles =
-  "block mx-auto bg-secondary-clr py-2 px-4 text-black font-bold text-sm hover:bg-primary-clr hover:text-secondary-clr";
-
-const loginBtnStyles = "w-full bg-white py-2 px-4 text-black border border-primary-clr rounded-lg";
+import { signInBtnStyles, loginBtnStyles } from "@helpers/helpers";
 
 export default function Login() {
   const [username, setUsername] = useState("");
@@ -32,6 +28,12 @@ export default function Login() {
   return (
     <div className="w-full max-w-md p-8 space-y-3 rounded-xl  text-dark-text-clr">
       <h1 className="text-2xl font-bold text-center">Login</h1>
+      {/* extract to Form */}
+      {/* extract to Form */}
+
+      {/* <LoginForm /> */}
+
+      {/* extract to Form */}
       {/* extract to Form */}
       <form onSubmit={handleSubmit} className="relative space-y-6">
         <div className="space-y-1 text-sm">

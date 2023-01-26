@@ -1,12 +1,12 @@
 import fetch from "node-fetch";
 
-export async function handler() {
+export async function handler(event) {
   let statusCode, data;
 
-  const URL = `${process.env.API_URL}?output=json&countrycode=GB&maxresults=10`;
+  let url = `${process.env.API_url}?output=json&maxresults=10&boundingbox=${event.queryStringParameters.bbox}`;
 
   try {
-    const response = await fetch(URL, {
+    const response = await fetch(url, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

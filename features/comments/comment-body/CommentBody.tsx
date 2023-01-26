@@ -27,6 +27,8 @@ export default function CommentBody({ details }: CommentDetails) {
           <div className="w-3/5 flex flex-col">
             <div className="flex items-center justify-between flex-wrap mb-2">
               <Image
+                placeholder="blur"
+                blurDataURL="/assets/charger-station-low.svg"
                 width={6}
                 height={6}
                 className="mr-2 w-6 h-6 rounded-full"

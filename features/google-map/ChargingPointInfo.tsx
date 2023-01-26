@@ -1,15 +1,8 @@
 import React from "react";
 import Button from "@components/ui/button/Button";
 import { InfoWindow } from "@react-google-maps/api";
-import { DataType, Coords, UserLocationType } from "types/types";
+import { ChargingPointInfoType } from "types/types";
 import { handleLocation } from "@helpers/helpers";
-
-type ChargingPointInfoType = {
-  selectedPoint: DataType;
-  userLocation: UserLocationType;
-  onCloseClick: (val: null) => void;
-  onShowDetails: (val: boolean) => void;
-};
 
 export default function ChargingPointInfo({
   userLocation,

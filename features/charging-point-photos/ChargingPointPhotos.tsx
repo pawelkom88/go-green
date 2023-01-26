@@ -2,16 +2,9 @@ import { useState } from "react";
 import DragAndDrop from "@components/ui/drag&drop/DragAndDrop";
 import { FileUploader } from "react-drag-drop-files";
 import Modal from "@components/ui/modal/Modal";
+import { uploadType } from "types/types";
 
 const fileTypes = ["JPG", "PNG"];
-
-type uploadType = {
-  lastModified: number;
-  name: string;
-  size: number;
-  type: string;
-  webkitRelativePath: string;
-};
 
 export default function ChargingPointPhotos() {
   const [file, setFile] = useState<null | uploadType>(null);

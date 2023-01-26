@@ -2,8 +2,7 @@ import FilterCheckbox from "@components/ui/filter-checkbox/FilterCheckbox";
 import Button from "@components/ui/button/Button";
 import FilterIcon from "@components/ui/icons/FilterIcon";
 import { ChildrenType } from "types/types";
-
-const commonStyles = "w-full h-12 font-bold uppercase my-4 border-2 border-primary-clr";
+import { FiltersBtnStyles } from "@helpers/helpers";
 
 export default function Filters({ children }: ChildrenType) {
   function someHandler() {
@@ -27,10 +26,10 @@ export default function Filters({ children }: ChildrenType) {
         <div className="w-3/4 flex-center px-1">
           <Button
             onClick={someHandler}
-            className={`${commonStyles} bg-white text-black  hover:bg-secondary-clr`}>
+            className={`${FiltersBtnStyles} bg-white text-black  hover:bg-secondary-clr`}>
             Apply
           </Button>
-          <Button onClick={someHandler} className={`${commonStyles} bg-teriary-clr`}>
+          <Button onClick={someHandler} className={`${FiltersBtnStyles} bg-teriary-clr`}>
             Clear All
           </Button>
         </div>
