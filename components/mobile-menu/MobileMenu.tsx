@@ -10,11 +10,11 @@ export default function MobileMenu() {
 
   return (
     <>
-      <footer
+      <div
         onClick={() => setOpenLoginMenu(true)}
-        className="lg:hidden fixed bottom-4 left-2 min-h-[2rem] flex-center z-10">
-        <UserIcon size={50} fill="#164a41" />
-      </footer>
+        className="w-12 h-12 bg-primary-clr rounded-full lg:hidden fixed bottom-4 left-2 flex-center z-10">
+        <UserIcon fill="#f1b24a" />
+      </div>
       {openLoginMenu && (
         <Modal callback={setOpenLoginMenu} size="w-full h-full md:h-1/2 flex-center">
           {isLoggedIn ? <p>asd</p> : <Login />}

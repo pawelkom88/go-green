@@ -24,18 +24,16 @@ export default function Home() {
       onReset={() => getCurrentPosition()}
       resetKeys={[currentLocation]}>
       <div className="w-full bg-primary-clr">
-        <div className="flex flex-no-wrap">
           <Sidebar onRadiusChange={setRadius} />
           <main className="w-full">
             <Nav onLocateUser={getCurrentPosition} onRadiusChange={setRadius} />
             <MapData userLocation={currentLocation} radius={radius} />
             <MobileMenu />
           </main>
-        </div>
       </div>
 
       {status.length !== 0 && (
-        <Modal size="flex-center h-[200px]">
+        <Modal size="flex-center h-[200px] mt-12">
           <p className="text-center">{status}</p>
         </Modal>
       )}

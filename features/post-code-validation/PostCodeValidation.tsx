@@ -26,7 +26,7 @@ export default function PostCodeValidation({}) {
         type="text"
         placeholder="Postcode"
         required={true}
-        className="border-2 md:border-4 border-teriary-clr focus:outline-none focus:border-secondary-cls rounded text-sm text-black md:pl-12 py-2 mr-2">
+        className="border-2 md:border-4 border-teriary-clr focus:outline-none focus:border-secondary-cls rounded text-sm text-black md:pl-12 py-2 mr-2 placeholder:p-4">
         Postcode
       </Input>
       <Button type="submit" className={submitBtnStyles}>

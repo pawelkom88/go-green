@@ -40,7 +40,7 @@ export default function LocationDetails({
   return (
     <>
       <div className="flex flex-col rounded-lg text-primary-clr p-2">
-        <h2 className="mb-1 text-xl font-semibold text-center p-2">{address.title}</h2>
+        <h2 className="mb-1 text-xl font-semibold text-center p-2">{address.title || "Unknown"}</h2>
         <div className="flex-center space-x-4">
           <Button
             className="p-2"

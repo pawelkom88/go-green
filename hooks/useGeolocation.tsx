@@ -9,7 +9,7 @@ const options = {
 
 export default function useGeolocation() {
   const [status, setStatus] = useState<string>("");
-  const [currentLocation, setCurrentLocation] = useState<Coords>();
+  const [currentLocation, setCurrentLocation] = useState<undefined | Coords>();
 
   function handleLocationError(error: GeolocationType): void {
     let message;
