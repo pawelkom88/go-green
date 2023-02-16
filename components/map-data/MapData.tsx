@@ -4,6 +4,8 @@ import useBoundingBox from "@hooks/useBoundingBox";
 import Map from "@components/map/Map";
 import { data } from "@helpers/helpers";
 import useDebounce from "@hooks/useDebounce";
+import Modal from "@components/ui/modal/Modal";
+import Spinner from "@components/ui/spinner/Spinner";
 
 type MapDataProps = {
   userLocation: Coords | undefined;
@@ -12,9 +14,9 @@ type MapDataProps = {
 
 export default function MapData({ userLocation, radius }: MapDataProps) {
   const { boundingBoxPolygon } = useBoundingBox(userLocation as Coords, radius);
-  const debouncedValue = useDebounce(boundingBoxPolygon, 2500);
+  const debouncedValue = useDebounce(boundingBoxPolygon, 1500);
 
-  // const { data } = useFetch(debouncedValue);
+  // const { data, loading, error } = useFetch(debouncedValue);
   // data transformation
 
   const transformedData = (data as any)?.map((globalData: any) => {
@@ -32,7 +34,7 @@ export default function MapData({ userLocation, radius }: MapDataProps) {
     const chargingPointsInfo = {
       id: AddressInfo.ID,
       address: {
-        title: AddressInfo.Title,
+        title: AddressInfo.Title || "Unknown",
         lat: AddressInfo.Latitude,
         lng: AddressInfo.Longitude,
         postCode: AddressInfo.Postcode,
@@ -59,5 +61,15 @@ export default function MapData({ userLocation, radius }: MapDataProps) {
     return chargingPointsInfo;
   });
 
-  return <Map userLocation={userLocation} data={transformedData} />;
+  return (
+    <>
+      <Map userLocation={userLocation} data={transformedData} />
+      {/* {error && (
+        <Modal size="flex-center h-[245px]">
+          An error occured while fetching data. Please try again.
+        </Modal>
+      )}
+      {loading && <Spinner />} */}
+    </>
+  );
 }
