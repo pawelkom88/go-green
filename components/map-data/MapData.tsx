@@ -2,18 +2,19 @@ import useFetch from "@hooks/useFetch";
 import { Coords } from "types/types";
 import useBoundingBox from "@hooks/useBoundingBox";
 import Map from "@components/map/Map";
-// import { data } from "@helpers/helpers";
-// import useDebounce from "@hooks/useDebounce";
+import { data } from "@helpers/helpers";
+import useDebounce from "@hooks/useDebounce";
 
 type MapDataProps = {
-  userLocation: Coords;
+  userLocation: Coords | undefined;
   radius: number;
 };
 
 export default function MapData({ userLocation, radius }: MapDataProps) {
-  const { boundingBoxPolygon } = useBoundingBox(userLocation, radius);
-  const { data } = useFetch(boundingBoxPolygon);
-  // const debouncedValue = useDebounce(data, 1500);
+  const { boundingBoxPolygon } = useBoundingBox(userLocation as Coords, radius);
+  const debouncedValue = useDebounce(boundingBoxPolygon, 2500);
+
+  // const { data } = useFetch(debouncedValue);
   // data transformation
 
   const transformedData = (data as any)?.map((globalData: any) => {
