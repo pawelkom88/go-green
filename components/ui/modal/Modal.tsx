@@ -22,21 +22,21 @@ export default function Modal({ children, callback, size }: ModalTypes) {
   return (
     <>
       {isOpen && (
-        <Overlay onClose={closeModal}>
-          <FocusLock>
+        <FocusLock>
+          <Overlay onClose={closeModal}>
             <dialog
               onClick={e => e.stopPropagation()}
               className={`${
                 isOpen ? "animate-start" : "animate-end"
-              } ${size} overflow-y-auto bg-white md:max-w-3xl text-lg md:text-xl md:mt-12`}
+              } ${size} overflow-y-auto bg-white md:max-w-3xl text-lg md:text-xl`}
               open>
-              <Button onClick={closeModal}>
-                <CloseBtnIcon size={25} className="absolute top-4 right-4" />
+              <Button className="absolute top-4 right-4" onClick={closeModal}>
+                <CloseBtnIcon size={25} />
               </Button>
               {children}
             </dialog>
-          </FocusLock>
-        </Overlay>
+          </Overlay>
+        </FocusLock>
       )}
     </>
   );

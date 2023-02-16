@@ -47,7 +47,7 @@ export const commentBtnStyles =
 export const disabledBtnStyles = "bg-gray-200 py-2 px-4 text-black font-bold text-sm";
 
 export const FiltersBtnStyles =
-  "w-full h-12 font-bold uppercase my-4 border-2 border-primary-clr hover:bg-secondary-clr";
+  "w-full h-12 font-bold uppercase py-2 border-2 border-primary-clr hover:bg-secondary-clr";
 
 // SOCKET TYPE DATA
 

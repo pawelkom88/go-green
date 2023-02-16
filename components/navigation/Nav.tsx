@@ -18,7 +18,7 @@ export default function Nav({ onLocateUser, onRadiusChange }: UserLocationProps)
   return (
     <>
       <nav className="h-max relative py-2 z-10">
-        <div className="h-full flex justify-evenly lg:justify-center items-center flex-wrap lg:pr-4 lg:ml-24">
+        <div className="h-full flex justify-evenly lg:justify-center items-center flex-wrap lg:pr-4 lg:ml-24 gap-2">
           <h1 className="text-md sm:text-md xl:text-xl text-secondary-clr tracking-wide uppercase font-bold md:mr-6 py-2">
             Find the nearest charging point
           </h1>
@@ -34,11 +34,14 @@ export default function Nav({ onLocateUser, onRadiusChange }: UserLocationProps)
           <UserMenu />
         </div>
       </nav>
-      {toggleFilterMenu && (
+      <div
+        className={`${
+          toggleFilterMenu ? "h-[50vh]" : "h-0"
+        } absolute w-full transition-all duration-300 overflow-hidden bg-primary-clr`}>
         <Filters>
           <Slider onRadiusChange={onRadiusChange} />
         </Filters>
-      )}
+      </div>
     </>
   );
 }

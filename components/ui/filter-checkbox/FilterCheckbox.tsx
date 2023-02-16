@@ -3,8 +3,8 @@ import { ChildrenType } from "types/types";
 
 export default function FilterCheckbox({ children }: ChildrenType) {
   return (
-    <div className="form-control">
-      <label htmlFor="filter" className="flex-center label cursor-pointer">
+    <div className="m-1">
+      <label htmlFor="filter" className="flex-center cursor-pointer">
         <span className="label-text mr-2">{children}</span>
         <input
           id="filter"

@@ -11,8 +11,9 @@ export default function Map({ userLocation, data }: MapProps) {
   });
 
   const defaultLocation = userLocation ? userLocation : londonCoords;
+
   return (
-    <div className="relative w-full h-[calc(100vh-96px-39px)] sm:h-[calc(100vh-84px-20px)] lg:h-[calc(100vh-60px)] bg-white">
+    <div className="relative w-full h-[calc(100vh-104px)] sm:h-[calc(100vh-60px)] bg-white">
       {isLoaded ? (
         <GoogleMap
           mapContainerStyle={containerStyle}
@@ -30,7 +31,7 @@ export default function Map({ userLocation, data }: MapProps) {
       ) : (
         "Loading"
       )}
-      {loadError && <Modal size='flex-center h-[245px]'>Map cannot be displayed</Modal>}
+      {loadError && <Modal size="flex-center h-[245px]">Map cannot be displayed</Modal>}
     </div>
   );
 }
