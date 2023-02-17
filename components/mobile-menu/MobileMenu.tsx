@@ -1,7 +1,7 @@
 import { useState } from "react";
 import UserIcon from "@components/ui/icons/UserIcon";
 import Modal from "@components/ui/modal/Modal";
-import Login from "@features/login/Login";
+import Login from "@components/login/Login";
 
 const isLoggedIn = false;
 
