@@ -22,29 +22,27 @@ export default function UserMenu() {
 
   return (
     <>
-      <div className="hidden lg:flex mr-8 ml-auto">
-        <div className="w-full">
-          {!isLoggedIn ? (
-            <div className="flex items-center relative cursor-pointer">
-              <div className="rounded-full">
-                {showProfileMenu && <UserMenuOptions />}
-                <div className="mx-3">
-                  <Avatar src="file" name="User name" />
-                </div>
+      <div className="hidden min-w-[10rem] lg:flex mr-4 ml-auto">
+        {!isLoggedIn ? (
+          <div className="w-full flex items-center justify-between relative cursor-pointer">
+            <div className="rounded-full">
+              {showProfileMenu && <UserMenuOptions />}
+              <div className="mx-3">
+                <Avatar src="file" name="User name" />
               </div>
-              <Button onClick={toggleProfileMenu}>
-                <ChevronIcon size={20} fill="#f1b24a" />
-              </Button>
             </div>
-          ) : (
-            <Button
-              // open modal
-              onClick={login}
-              className="bg-secondary-clr py-2 px-4 text-primary-clr font-bold hover:bg-white">
-              Login
+            <Button onClick={toggleProfileMenu}>
+              <ChevronIcon size={20} fill="#f1b24a" />
             </Button>
-          )}
-        </div>
+          </div>
+        ) : (
+          <Button
+            // open modal
+            onClick={login}
+            className="bg-secondary-clr py-2 px-4 text-primary-clr font-bold hover:bg-white">
+            Login
+          </Button>
+        )}
       </div>
 
       {isLoggedIn === false && (

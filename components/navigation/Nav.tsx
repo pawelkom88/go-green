@@ -1,11 +1,10 @@
 import { useState } from "react";
 import PostCodeValidation from "@features/post-code-validation/PostCodeValidation";
 import UserMenu from "@components/user-menu/UserMenu";
-import Filters from "@features/filters/Filters";
 import FilterIcon from "@components/ui/icons/FilterIcon";
 import Button from "@components/ui/button/Button";
 import LocationIcon from "@components/ui/icons/LocationIcon";
-import Slider from "@components/ui/slider/Slider";
+import NavMobile from "./NavMobile";
 
 type UserLocationProps = {
   onLocateUser: (val: object) => void;
@@ -34,14 +33,7 @@ export default function Nav({ onLocateUser, onRadiusChange }: UserLocationProps)
           <UserMenu />
         </div>
       </nav>
-      <div
-        className={`${
-          toggleFilterMenu ? "h-[50vh]" : "h-0"
-        } absolute w-full transition-all duration-300 overflow-hidden bg-primary-clr`}>
-        <Filters>
-          <Slider onRadiusChange={onRadiusChange} />
-        </Filters>
-      </div>
+      <NavMobile toggleFilterMenu={toggleFilterMenu} onRadiusChange={onRadiusChange} />
     </>
   );
 }
