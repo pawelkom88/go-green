@@ -10,7 +10,6 @@ export default function UserProfile() {
 // Button styles to be changed
 
   return (
-    <div className="w-full">
       <div className="flex flex-col items-center pb-10">
         <Image
           width={24}
@@ -71,6 +70,5 @@ export default function UserProfile() {
         </div>
         {/* END */}
       </div>
-    </div>
   );
 }
