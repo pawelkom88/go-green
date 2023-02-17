@@ -1,9 +1,16 @@
 import Image from "next/image";
 
-export default function Logo() {
+type LogoProps = {
+  className?: string;
+  src: string;
+  width: number;
+  height: number;
+};
+
+export default function Logo({ width, height, src, className }: LogoProps) {
   return (
-    <div className="relative min-h-max w-full flex-center z-50 mt-12">
-      <Image src={"/assets/logo.png"} width={180} height={180} alt="App logo" />
+    <div className={className}>
+      <Image src={src} width={width} height={height} alt="App logo" />
     </div>
   );
 }

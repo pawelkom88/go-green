@@ -1,10 +1,10 @@
-import { useState } from "react";
+import useAuthContext from "@hooks/useAuthContext";
 import PostCodeValidation from "@features/post-code-validation/PostCodeValidation";
 import UserMenu from "@components/user-menu/UserMenu";
-import FilterIcon from "@components/ui/icons/FilterIcon";
-import Button from "@components/ui/button/Button";
 import LocationIcon from "@components/ui/icons/LocationIcon";
+import Button from "@components/ui/button/Button";
 import NavMobile from "./NavMobile";
+import LoginModal from "@components/login-modal/LoginModal";
 
 type UserLocationProps = {
   onLocateUser: (val: object) => void;
@@ -12,7 +12,9 @@ type UserLocationProps = {
 };
 
 export default function Nav({ onLocateUser, onRadiusChange }: UserLocationProps) {
-  const [toggleFilterMenu, setToggleFilterMenu] = useState<boolean>(false);
+  const { user } = useAuthContext();
+
+  console.log(user);
 
   return (
     <>
@@ -25,15 +27,12 @@ export default function Nav({ onLocateUser, onRadiusChange }: UserLocationProps)
           <div onClick={onLocateUser} className="h-full ml-2 px-2">
             <LocationIcon size={25} fill="#f1b24a" />
           </div>
-          <Button
-            onClick={() => setToggleFilterMenu(!toggleFilterMenu)}
-            className="lg:hidden h-full px-2">
-            <FilterIcon size={25} fill="#f1b24a" />
-          </Button>
-          <UserMenu />
+
+          <NavMobile onRadiusChange={onRadiusChange} />
+
+          {user ? <UserMenu /> : <LoginModal />}
         </div>
       </nav>
-      <NavMobile toggleFilterMenu={toggleFilterMenu} onRadiusChange={onRadiusChange} />
     </>
   );
 }

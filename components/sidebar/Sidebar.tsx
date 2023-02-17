@@ -24,7 +24,12 @@ export default function Sidebar({ onRadiusChange }: FiltersProps) {
                 <CloseBtnIcon size={30} className={"absolute top-4 right-4 cursor-pointer"} />
               </Button>
               <span className="absolute top-2 left-0 right-0 m-auto">
-                <Logo />
+                <Logo
+                  src="/assets/logo.png"
+                  width={180}
+                  height={180}
+                  className="relative min-h-max w-full flex-center z-50 mt-6"
+                />
               </span>
               <Filters>
                 <Slider onRadiusChange={onRadiusChange} />
