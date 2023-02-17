@@ -3,7 +3,6 @@
 @tailwind utilities;
 
 :root {
-  --heading-font: "Odibee Sans";
   --main-font: "Nunito";
   --primary-clr: #164a41;
   --secondary-clr: #f1b24a;
@@ -34,4 +33,61 @@ h1 {
 
 .gm-style-iw {
   border: 1px solid var(--primary-clr);
+}
+
+svg g {
+  fill-opacity: 0;
+  animation: fill-in 2s 1s ease-in-out forwards;
+}
+
+@keyframes fill-in {
+  to {
+    fill-opacity: 1;
+  }
+}
+
+.translate,
+.appear,
+.top {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+/* mixin */
+.top {
+  animation: fadeIn 1s 2s ease-in-out backwards;
+}
+
+.top-delayed {
+  animation: fadeIn 1s 1s ease-in-out backwards;
+}
+
+.translate {
+  animation: scale 1s 1s ease-in-out backwards;
+}
+
+.appear {
+  animation: scale 1s 1.3s ease-in-out backwards;
+}
+
+@keyframes fadeIn {
+  0% {
+    fill-opacity: 0;
+  }
+
+  100% {
+    fill-opacity: 1;
+  }
+}
+
+@keyframes scale {
+  0% {
+    transform: scale(0.1);
+  }
+  70% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
