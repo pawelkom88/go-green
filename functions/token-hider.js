@@ -3,7 +3,7 @@ import fetch from "node-fetch";
 export async function handler(event) {
   let statusCode, data;
 
-  let url = `${process.env.API_url}?output=json&maxresults=10&boundingbox=${event.queryStringParameters.bbox}`;
+  let url = `${process.env.API_URL}?output=json&maxresults=10&boundingbox=${event.queryStringParameters.bbox}`;
 
   try {
     const response = await fetch(url, {

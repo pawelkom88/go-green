@@ -14,10 +14,10 @@ export default function Tabs({ activeTab, onActiveTab }: TabsProps) {
             tabIndex={0}
             onClick={() => onActiveTab(tabName)}
             key={id}
-            className={`flex items-center flex-shrink-0 px-5 py-2 border-b-4
+            className={`flex items-center flex-shrink-0 px-5 py-2 border-b-4 transition-all ease-in-out duration-500
             ${
               activeTab === tabName
-                ? "dark:border-teriary-clr text-primary-clr"
+                ? "border-teriary-clr text-primary-clr"
                 : "dark:border-gray-700 dark:text-gray-800"
             }
             `}>
