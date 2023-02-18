@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useRadius } from "@context/RadiusContext";
 import Filters from "@features/filters/Filters";
 import FilterIcon from "../ui/icons/FilterIcon";
 import CloseBtnIcon from "@components/ui/icons/CloseBtnIcon";
@@ -7,8 +8,9 @@ import Logo from "@components/ui/logo/Logo";
 import Slider from "@components/ui/slider/Slider";
 import { FiltersProps } from "types/types";
 
-export default function Sidebar({ onRadiusChange }: FiltersProps) {
+export default function Sidebar() {
   const [isCollapsed, setIsCollapsed] = useState<boolean>(false);
+  const { setRadius: onRadiusChange } = useRadius();
 
   function toggleSidebar() {
     setIsCollapsed(!isCollapsed);
