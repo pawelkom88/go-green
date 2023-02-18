@@ -8,8 +8,8 @@ export default function useLogout() {
   function logUserOut() {
     try {
       signOut(auth).then(() => dispatch({ type: actionObj.logout }));
-    } catch (error) {
-      console.log(toast.error, `Something went wrong : ${error.message}`);
+    } catch (error: any) {
+      console.log(`Something went wrong : ${error.message}`);
     }
   }
 

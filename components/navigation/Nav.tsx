@@ -1,4 +1,5 @@
 import useAuthContext from "@hooks/useAuthContext";
+import { useRadius } from "@context/RadiusContext";
 import PostCodeValidation from "@features/post-code-validation/PostCodeValidation";
 import UserMenu from "@components/user-menu/UserMenu";
 import LocationIcon from "@components/ui/icons/LocationIcon";
@@ -8,13 +9,11 @@ import LoginModal from "@components/login-modal/LoginModal";
 
 type UserLocationProps = {
   onLocateUser: (val: object) => void;
-  onRadiusChange: (val: number) => void;
 };
 
-export default function Nav({ onLocateUser, onRadiusChange }: UserLocationProps) {
+export default function Nav({ onLocateUser }: UserLocationProps) {
   const { user } = useAuthContext();
-
-  console.log(user);
+  const { setRadius: onRadiusChange } = useRadius();
 
   return (
     <>
@@ -27,9 +26,7 @@ export default function Nav({ onLocateUser, onRadiusChange }: UserLocationProps)
           <div onClick={onLocateUser} className="h-full ml-2 px-2">
             <LocationIcon size={25} fill="#f1b24a" />
           </div>
-
           <NavMobile onRadiusChange={onRadiusChange} />
-
           {user ? <UserMenu /> : <LoginModal />}
         </div>
       </nav>

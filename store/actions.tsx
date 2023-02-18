@@ -1,5 +1,5 @@
 export const actionObj = {
   login: "LOGIN",
-  logout: "LOGOT",
+  logout: "LOGOUT",
   authIsReady: "AUTH_IS_READY",
 };

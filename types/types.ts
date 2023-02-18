@@ -1,4 +1,13 @@
 import { Timestamp } from "@firebase/firestore-types";
+import { Dispatch } from "react";
+import {
+  Auth,
+  UserCredential,
+  User,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  sendPasswordResetEmail,
+} from "firebase/auth";
 // API DATA TYPES
 
 // change ?
@@ -128,3 +137,13 @@ export type ChargingPointInfoType = {
   onCloseClick: (val: null) => void;
   onShowDetails: (val: boolean) => void;
 };
+
+// FIREBASE
+export interface AuthContextModel {
+  user: User | null;
+  // auth: Auth;
+  // signIn: (email: string, password: string) => Promise<UserCredential>
+  // signUp: (email: string, password: string) => Promise<UserCredential>
+  // sendPasswordResetEmail?: (email: string) => Promise<void>
+  dispatch: Dispatch<any>;
+}

@@ -1,4 +1,5 @@
 import useFetch from "@hooks/useFetch";
+import { useRadius } from "@context/RadiusContext";
 import { Coords } from "types/types";
 import useBoundingBox from "@hooks/useBoundingBox";
 import Map from "@components/map/Map";
@@ -9,13 +10,12 @@ import Spinner from "@components/ui/spinner/Spinner";
 
 type MapDataProps = {
   userLocation: Coords | undefined;
-  radius: number;
 };
 
-export default function MapData({ userLocation, radius }: MapDataProps) {
+export default function MapData({ userLocation }: MapDataProps) {
+  const { radius } = useRadius();
   const { boundingBoxPolygon } = useBoundingBox(userLocation as Coords, radius);
   const debouncedValue = useDebounce(boundingBoxPolygon, 1500);
-
   const { data, loading, error } = useFetch(debouncedValue);
 
   // data transformation
