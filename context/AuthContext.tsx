@@ -1,17 +1,19 @@
 import { createContext, useReducer, useEffect } from "react";
 import { onAuthStateChanged } from "firebase/auth";
+import { User as FirebaseUser } from "firebase/auth";
 import { auth } from "@lib/config";
-import authReducer from "@store/authReducer";
+import { ChildrenType, AuthContextModel } from "types/types";
 import { actionObj } from "@store/actions";
+import authReducer from "@store/authReducer";
 
-export const AuthContext = createContext();
+export const AuthContext = createContext<AuthContextModel>({} as AuthContextModel);
 
-export default function AuthContextProvider({ children }) {
+export default function AuthContextProvider({ children }: ChildrenType) {
   const [state, dispatch] = useReducer(authReducer, { user: null, authIsReady: false });
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, user => {
-      dispatch({ type: actionObj.authIsReady, payload: user });
+      dispatch({ type: actionObj.authIsReady, payload: user as FirebaseUser });
     });
 
     return () => unsubscribe();
