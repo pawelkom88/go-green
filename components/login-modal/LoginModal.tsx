@@ -13,7 +13,7 @@ export default function LoginModal() {
     <>
       <Button
         onClick={() => setIsLoggedIn(true)}
-        className={`${signInBtnStyles} hover:bg-white hover:text-primary-clr mr-4 ml-auto`}>
+        className={`${signInBtnStyles} hover:bg-white hover:text-primary-clr mr-4 ml-auto hidden lg:block`}>
         LOG IN
       </Button>
       {isLoggedIn && (
