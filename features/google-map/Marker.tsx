@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { MarkerF } from "@react-google-maps/api";
-import { Coords, DataType, UserLocationType } from "types/types";
+import { DataType, UserLocationType, Coords } from "types/types";
 import Modal from "@components/ui/modal/Modal";
 
 type MarkerPropsType = {
-  data: null | Array<DataType>;
+  data: undefined | Array<DataType>;
   userLocation: UserLocationType;
   onSetSelectedPoint: (val: DataType) => void;
   onSetDirection: (val: google.maps.DirectionsResult) => void;

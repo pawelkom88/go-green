@@ -1,21 +1,22 @@
 import { useState } from "react";
+import useToggle from "@hooks/useToggle";
 import useClickOutside from "@hooks/useClickOutside";
 import Image from "next/image";
 import CommentSettings from "@features/comments/comment-settings/CommentSettings";
-import DropdownMenu from "@features/comments/comment-dropdown-menu/DropdownMenu";
+// import DropdownMenu from "@features/comments/comment-dropdown-menu/DropdownMenu";
 import CommentRating from "@features/comments/comment-rating/CommentRating";
-import CommentAction from "@features/comments/comment-action/CommentAction";
+// import CommentAction from "@features/comments/comment-action/CommentAction";
 import { CommentDetails } from "types/types";
 
 export default function CommentBody({ details }: CommentDetails) {
-  const [openSettings, setOpenSettings] = useState(false);
-  const [editComment, setEditComment] = useState(false);
+  const { userName, rating, id, title, content, timestamp } = details ?? [];
 
-  const convertedTimestamp = details?.timestamp?.toDate()?.toLocaleString();
+  const { isShown, handleOnShow } = useToggle();
+  const convertedTimestamp = timestamp?.toDate()?.toLocaleString();
 
   // close menu after clicking outside it
   let domNode = useClickOutside(() => {
-    setOpenSettings(false);
+    handleOnShow(false);
   });
 
   return (
@@ -35,8 +36,8 @@ export default function CommentBody({ details }: CommentDetails) {
                 src="/assets/charger-station.svg"
                 alt="user-avatar"
               />
-              <p className="mr-2 text-md underline text-dark-text-clr italic">{details.userName}</p>
-              <CommentRating rating={details.rating} />
+              <p className="mr-2 text-md underline text-dark-text-clr italic">{userName}</p>
+              <CommentRating rating={rating} />
               <time
                 className="text-sm text-gray-600"
                 dateTime={convertedTimestamp}
@@ -45,18 +46,21 @@ export default function CommentBody({ details }: CommentDetails) {
               </time>
             </div>
             <div className="flex">
-              <span className="mr-3 text-sm text-dark-text-clr font-bold">{details.title}</span>
+              <span className="mr-3 text-sm text-dark-text-clr font-bold">{title}</span>
             </div>
           </div>
-          <CommentSettings openSettings={openSettings} onClose={setOpenSettings}>
-            {openSettings && <DropdownMenu onEdit={setEditComment} onClose={setOpenSettings} />}
-          </CommentSettings>
+
+          <CommentSettings commentId={id} isShown={isShown} onClose={handleOnShow} />
+          {/* <CommentSettings openSettings={isShown} onClose={handleOnShow}>
+            {isShown && <DropdownMenu onEdit={setEditComment} onClose={handleOnShow} />}
+          </CommentSettings> */}
         </footer>
-        <p className="text-gray-800">{details.content}</p>
+        <p className="text-gray-800">{content}</p>
       </article>
-      {editComment && (
+
+      {/* {editComment && (
         <CommentAction commentId={details.id} callback={setEditComment} idRequired={true} />
-      )}
+      )} */}
     </>
   );
 }

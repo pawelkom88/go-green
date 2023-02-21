@@ -1,11 +1,13 @@
 import { useState } from "react";
+import { useCurrentLocation } from "@context/UserLocationContext";
 import ChargingPointInfo from "@features/google-map/ChargingPointInfo";
 import ChargingPointDetails from "@features/google-map/ChargingPointDetails";
 import Marker from "@features/google-map/Marker";
 import { DirectionsRenderer } from "@react-google-maps/api";
 import { DataType, MapProps } from "types/types";
 
-export default function Features({ userLocation, data }: MapProps) {
+export default function Features({ data }: MapProps) {
+  const { currentLocation: userLocation } = useCurrentLocation();
   const [selectedPoint, setSelectedPoint] = useState<null | DataType>(null);
   const [direction, setDirections] = useState<null | google.maps.DirectionsResult>(null);
   const [showDetails, setShowDetails] = useState<boolean>(false);

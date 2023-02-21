@@ -1,23 +1,21 @@
-import { useState } from "react";
-
+import useToggle from "@hooks/useToggle";
 import Button from "@components/ui/button/Button";
 import Modal from "@components/ui/modal/Modal";
-
 import Login from "@components/login/Login";
 import { signInBtnStyles } from "@helpers/helpers";
 
 export default function LoginModal() {
-  const [isLoggedIn, setIsLoggedIn] = useState<null | boolean>(false);
+  const { isShown, handleOnShow } = useToggle();
 
   return (
     <>
       <Button
-        onClick={() => setIsLoggedIn(true)}
+        onClick={() => handleOnShow(true)}
         className={`${signInBtnStyles} hover:bg-white hover:text-primary-clr mr-4 ml-auto hidden lg:block`}>
         LOG IN
       </Button>
-      {isLoggedIn && (
-        <Modal size="w-full h-2/3 flex-center" callback={() => setIsLoggedIn(false)}>
+      {isShown && (
+        <Modal size="w-full h-2/3 flex-center" callback={() => handleOnShow(false)}>
           <Login />
         </Modal>
       )}

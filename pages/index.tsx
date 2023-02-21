@@ -1,5 +1,4 @@
-// hooks
-import useGeolocation from "@hooks/useGeolocation";
+import { useCurrentLocation } from "@context/UserLocationContext";
 
 // components
 import MobileMenu from "@components/mobile-menu/MobileMenu";
@@ -14,7 +13,7 @@ import ErrorFallback from "@components/error-boundries/ErrorFallback";
 import RadiusContextProvider from "@context/RadiusContext";
 
 export default function Home() {
-  const { currentLocation, getCurrentPosition, status } = useGeolocation();
+  const { currentLocation, getCurrentPosition, status } = useCurrentLocation();
 
   return (
     <ErrorBoundary
@@ -25,14 +24,14 @@ export default function Home() {
         <RadiusContextProvider>
           <Sidebar />
           <main className="w-full">
-            <Nav onLocateUser={getCurrentPosition} />
-            <MapData userLocation={currentLocation} />
+            <Nav />
+            <MapData />
             <MobileMenu />
           </main>
         </RadiusContextProvider>
       </div>
 
-      {status.length !== 0 && (
+      {status?.length !== 0 && (
         <Modal size="flex-center h-[200px] mt-12">
           <p className="text-center">{status}</p>
         </Modal>

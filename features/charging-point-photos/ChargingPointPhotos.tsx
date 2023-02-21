@@ -1,14 +1,16 @@
 import { useState } from "react";
+import useToggle from "@hooks/useToggle";
 import DragAndDrop from "@components/ui/drag&drop/DragAndDrop";
-import { FileUploader } from "react-drag-drop-files";
 import Modal from "@components/ui/modal/Modal";
+import UserContainer from "@components/user-container/UserContainer";
+import { FileUploader } from "react-drag-drop-files";
 import { uploadType } from "types/types";
 
 const fileTypes = ["JPG", "PNG"];
 
 export default function ChargingPointPhotos() {
   const [file, setFile] = useState<null | uploadType>(null);
-  const [sizeError, setSizeError] = useState(false);
+  const { isShown: sizeError, handleOnShow: setSizeError } = useToggle();
 
   function handleUpload(file: uploadType) {
     setFile(file);
@@ -18,15 +20,17 @@ export default function ChargingPointPhotos() {
   return (
     <>
       <div className="w-full flex-center flex-col">
-        <FileUploader
-          handleChange={handleUpload}
-          onSizeError={() => setSizeError(true)}
-          name="file"
-          types={fileTypes}
-          maxSize={1}>
-          <DragAndDrop />
-        </FileUploader>
-        <div className="mt-8">{file && file?.name}</div>
+        <UserContainer action="Log in to upload images">
+          <FileUploader
+            handleChange={handleUpload}
+            onSizeError={() => setSizeError(true)}
+            name="file"
+            types={fileTypes}
+            maxSize={1}>
+            <DragAndDrop />
+          </FileUploader>
+          <div className="mt-8">{file && file?.name}</div>
+        </UserContainer>
       </div>
 
       {sizeError && (

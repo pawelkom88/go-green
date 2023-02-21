@@ -62,6 +62,14 @@ export type ChargingPointDetailsType = {
   direction: null | google.maps.DirectionsResult;
 };
 
+export type ChargingPointAddress = {
+  title: string;
+  lat: number;
+  lng: number;
+  postCode: string;
+  info: string;
+};
+
 export type UserLocationType = undefined | Coords;
 
 export type Coords = {
@@ -70,8 +78,7 @@ export type Coords = {
 };
 
 export type MapProps = {
-  userLocation: UserLocationType;
-  data: Array<DataType>;
+  data: Array<DataType> | undefined;
 };
 
 export type BoundingBox = undefined | null | Array<number>;

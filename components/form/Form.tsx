@@ -31,7 +31,7 @@ export default function Form({ children, action, onSubmit }: FormProps) {
   }
 
   return (
-    <form onSubmit={onSubmit} className="relative space-y-6 animate-start">
+    <form onSubmit={onSubmit} className="relative space-y-6">
       <div className="space-y-1 text-sm">
         <Input
           onChange={handleUserDetails}
@@ -59,11 +59,13 @@ export default function Form({ children, action, onSubmit }: FormProps) {
           required={true}>
           Password
         </Input>
-        <Button onClick={() => setShowPassword(!showPassword)}>
+        <Button
+          className="absolute top-[1.6rem] right-[.9rem] z-50"
+          onClick={() => setShowPassword(!showPassword)}>
           {showPassword ? (
-            <HidePasswordIcon className="absolute top-8 right-4 z-50" size={20} />
+            <HidePasswordIcon className="absolute top-[.4rem] right-[.2rem] z-50" size={20} />
           ) : (
-            <ShowPasswordIcon className="absolute top-[1.6rem] right-[.9rem] z-50" size={28} />
+            <ShowPasswordIcon size={28} />
           )}
         </Button>
         {userDetails.password.length > 0 && (
@@ -71,10 +73,10 @@ export default function Form({ children, action, onSubmit }: FormProps) {
             <ClearInputFieldIcon className="absolute top-[1.7rem] right-[2.6rem] z-50" size={25} />
           </Button>
         )}
-        <Button type="submit" className={`${signInBtnStyles} mt-4`}>
-          {action === "Login" ? "Sign in" : "Sign up"}
-        </Button>
       </div>
+      <Button type="submit" className={`${signInBtnStyles} mt-4`}>
+        {action === "Login" ? "Sign in" : "Sign up"}
+      </Button>
       {children}
     </form>
   );
