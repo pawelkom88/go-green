@@ -6,7 +6,7 @@ import Comments from "@features/comments/Comment";
 import ChargingPointPhotos from "@features/charging-point-photos/ChargingPointPhotos";
 import Modal from "@components/ui/modal/Modal";
 import Tabs from "@components/ui/tabs/Tabs";
-import { UserLocationType, DataType, ChargingPointDetailsProps } from "types/types";
+import { ChargingPointDetailsProps } from "types/types";
 import { chargingPointTabName, handleLocation } from "helpers/helpers";
 
 const [details, comments, photos] = chargingPointTabName;
