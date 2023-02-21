@@ -74,7 +74,7 @@ export default function CommentAction({
           Title
         </Input>
         <label htmlFor="comment-content" className="sr-only">
-          Write your comment
+          What&apos;s on your mind ?
         </label>
         <textarea
           ref={commentContentRef}
