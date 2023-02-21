@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useRadius } from "@context/RadiusContext";
 import Filters from "@features/filters/Filters";
 import FilterIcon from "../ui/icons/FilterIcon";
@@ -6,21 +5,22 @@ import CloseBtnIcon from "@components/ui/icons/CloseBtnIcon";
 import Button from "@components/ui/button/Button";
 import Logo from "@components/ui/logo/Logo";
 import Slider from "@components/ui/slider/Slider";
-import { FiltersProps } from "types/types";
+import useToggle from "@hooks/useToggle";
+import FocusLock from "react-focus-lock";
 
 export default function Sidebar() {
-  const [isCollapsed, setIsCollapsed] = useState<boolean>(false);
+  const { isShown, handleOnShow } = useToggle();
   const { setRadius: onRadiusChange } = useRadius();
 
   function toggleSidebar() {
-    setIsCollapsed(!isCollapsed);
+    handleOnShow(!isShown);
   }
 
   return (
-    <>
-      <aside className={isCollapsed ? "w-[35vw] sidebar" : "w-20 sidebar"}>
+    <FocusLock>
+      <aside className={isShown ? "w-[35vw] sidebar" : "w-20 sidebar"}>
         <div className="relative h-full flex-center flex-col py-6">
-          {isCollapsed ? (
+          {isShown ? (
             <>
               <Button onClick={toggleSidebar}>
                 <CloseBtnIcon size={30} className={"absolute top-4 right-4 cursor-pointer"} />
@@ -44,6 +44,6 @@ export default function Sidebar() {
           )}
         </div>
       </aside>
-    </>
+    </FocusLock>
   );
 }

@@ -1,12 +1,12 @@
-import { useState } from "react";
 import Button from "@components/ui/button/Button";
 import ProfileIcon from "@components/ui/icons/ProfileIcon";
 import SignOutIcon from "@components/ui/icons/SignOutIcon";
 import Modal from "@components/ui/modal/Modal";
 import UserProfile from "@features/user-profile/UserProfile";
+import useToggle from "@hooks/useToggle";
 
 export default function UserMenuOptions() {
-  const [openUserProfile, setOpenUserProfile] = useState(false);
+  const { isShown, handleOnShow } = useToggle();
 
   function signOut() {
     console.log("asd");
@@ -16,7 +16,7 @@ export default function UserMenuOptions() {
     <>
       <ul className="p-4 w-full border-r bg-primary-clr absolute rounded left-0 shadow mt-12 sm:mt-16">
         <li className="flex w-full justify-between hover:text-secondary-clr cursor-pointer items-center">
-          <Button onClick={() => setOpenUserProfile(true)} className="text-md flex">
+          <Button onClick={() => handleOnShow(true)} className="text-md flex">
             <ProfileIcon className="mr-[5px]" size={25} fill="none" />
             My Profile
           </Button>
@@ -28,8 +28,8 @@ export default function UserMenuOptions() {
           </Button>
         </li>
       </ul>
-      {openUserProfile && (
-        <Modal size="w-full h-3/4" callback={() => setOpenUserProfile(false)}>
+      {isShown && (
+        <Modal size="w-full h-3/4" callback={() => handleOnShow(false)}>
           <UserProfile />
         </Modal>
       )}
