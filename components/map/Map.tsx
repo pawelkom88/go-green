@@ -1,10 +1,13 @@
+import { useCurrentLocation } from "@context/UserLocationContext";
 import Modal from "@components/ui/modal/Modal";
 import { GoogleMap, useLoadScript, MarkerF } from "@react-google-maps/api";
 import { containerStyle, londonCoords } from "@helpers/helpers";
 import Features from "@features/google-map/Features";
 import { MapProps } from "types/types";
 
-export default function Map({ userLocation, data }: MapProps) {
+export default function Map({ data }: MapProps) {
+  const { currentLocation: userLocation } = useCurrentLocation();
+
   const { isLoaded, loadError } = useLoadScript({
     id: "google-map-script",
     googleMapsApiKey: process.env.NEXT_PUBLIC_API_KEY as string,
@@ -26,7 +29,7 @@ export default function Map({ userLocation, data }: MapProps) {
             icon={"/assets/electric-car.svg"}
             position={defaultLocation as google.maps.LatLngLiteral}
           />
-          <Features userLocation={userLocation} data={data} />
+          <Features data={data} />
         </GoogleMap>
       ) : (
         "Loading"

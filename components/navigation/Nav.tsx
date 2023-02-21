@@ -3,15 +3,12 @@ import { useRadius } from "@context/RadiusContext";
 import PostCodeValidation from "@features/post-code-validation/PostCodeValidation";
 import UserMenu from "@components/user-menu/UserMenu";
 import LocationIcon from "@components/ui/icons/LocationIcon";
-import Button from "@components/ui/button/Button";
 import NavMobile from "./NavMobile";
 import LoginModal from "@components/login-modal/LoginModal";
+import { useCurrentLocation } from "@context/UserLocationContext";
 
-type UserLocationProps = {
-  onLocateUser: (val: object) => void;
-};
-
-export default function Nav({ onLocateUser }: UserLocationProps) {
+export default function Nav() {
+  const { getCurrentPosition: onLocateUser } = useCurrentLocation();
   const { user } = useAuthContext();
   const { setRadius: onRadiusChange } = useRadius();
 
