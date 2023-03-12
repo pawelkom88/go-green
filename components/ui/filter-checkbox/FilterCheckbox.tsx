@@ -1,7 +1,7 @@
 import React from "react";
-import { ChildrenType } from "types/types";
+import { Props } from "types/types";
 
-export default function FilterCheckbox({ children }: ChildrenType) {
+export default function FilterCheckbox({ children }: Props) {
   return (
     <div className="m-1">
       <label htmlFor="filter" className="flex-center cursor-pointer">

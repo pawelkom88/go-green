@@ -8,6 +8,7 @@ type SetCommentRatingProps = {
 };
 
 export default function SetCommentRating({ numberOfStars, onSet, index }: SetCommentRatingProps) {
+  
   function handleRating(e: React.MouseEvent<HTMLElement>) {
     const target = e.target as HTMLElement;
     onSet(Number(target.dataset.value));

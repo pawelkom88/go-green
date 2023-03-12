@@ -1,6 +1,6 @@
-import { ChildrenType } from "types/types";
+import { Props } from "types/types";
 
-interface InfoRowProps extends ChildrenType {
+interface InfoRowProps extends Props {
   title: string;
 }
 

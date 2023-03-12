@@ -40,7 +40,7 @@ export type DataType = {
     currentType: string;
     level: boolean;
   };
-  info: {
+  contactInfo: {
     eMail: infoDataType;
     phone: infoDataType;
     website: infoDataType;
@@ -54,10 +54,10 @@ export type DataType = {
     IsMembershipRequired: boolean;
     IsPayAtLocation: boolean;
   };
-  NumberOfPoints: null | number;
+  NumberOfChargingPoints: null | number;
 };
 
-export type ChargingPointDetailsType = {
+export type ChargingPointDetails = {
   chargingPointDetails: DataType;
   direction: null | google.maps.DirectionsResult;
 };
@@ -78,7 +78,7 @@ export type Coords = {
 };
 
 export type MapProps = {
-  data: Array<DataType> | undefined;
+  data: DataType[] | undefined;
 };
 
 export type BoundingBox = undefined | null | Array<number>;
@@ -105,7 +105,7 @@ export type FiltersProps = {
   onRadiusChange: (val: number) => void;
 };
 
-export type ChildrenType = {
+export type Props = {
   children: React.ReactNode;
 };
 
@@ -153,4 +153,27 @@ export interface AuthContextModel {
   // signUp: (email: string, password: string) => Promise<UserCredential>
   // sendPasswordResetEmail?: (email: string) => Promise<void>
   dispatch: Dispatch<any>;
+}
+// FORM COMPONENT
+export interface FormProps extends Props {
+  action?: string;
+  onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+}
+
+export interface UserDetails {
+  userName: string;
+  password: string;
+}
+
+export interface ContactInfoProps {
+  eMail: string;
+  phone: string;
+  website: string;
+}
+
+// LOGIN - SIGNUP TYPES
+
+export interface HasAccountProps extends Props {
+  action: string;
+  onLogin: () => void;
 }

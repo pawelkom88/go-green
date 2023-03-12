@@ -1,10 +1,5 @@
 import Button from "@components/ui/button/Button";
-import { ChildrenType } from "types/types";
-
-interface HasAccountProps extends ChildrenType {
-  action: string;
-  onLogin: () => void;
-}
+import { HasAccountProps } from "types/types";
 
 export default function HasAccount({ children, action, onLogin }: HasAccountProps) {
   return (

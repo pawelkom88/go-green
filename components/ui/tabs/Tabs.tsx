@@ -1,4 +1,4 @@
-import { chargingPointTabName } from "helpers/helpers";
+import { chargingPointTabNames } from "constants/constants";
 
 type TabsProps = {
   activeTab: string;
@@ -8,7 +8,7 @@ type TabsProps = {
 export default function Tabs({ activeTab, onActiveTab }: TabsProps) {
   return (
     <ul className="flex-center space-x-2 overflow-x-auto overflow-y-hidden sm:justify-center flex-nowrap text-primary-clr mb-4 cursor-pointer text-sm md:text-lg">
-      {chargingPointTabName?.map(({ id, tabName }) => {
+      {chargingPointTabNames?.map(({ id, tabName }) => {
         return (
           <li
             tabIndex={0}

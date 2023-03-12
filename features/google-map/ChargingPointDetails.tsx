@@ -6,10 +6,11 @@ import Comments from "@features/comments/Comment";
 import ChargingPointPhotos from "@features/charging-point-photos/ChargingPointPhotos";
 import Modal from "@components/ui/modal/Modal";
 import Tabs from "@components/ui/tabs/Tabs";
-import { ChargingPointDetailsProps } from "types/types";
-import { chargingPointTabName, handleLocation } from "helpers/helpers";
+import { ChargingPointDetailsProps, Coords } from "types/types";
+import { handleLocation } from "helpers/helpers";
+import { chargingPointTabNames } from "constants/constants";
 
-const [details, comments, photos] = chargingPointTabName;
+const [details, comments, photos] = chargingPointTabNames;
 
 export default function ChargingPointDetails({
   direction,
@@ -21,12 +22,12 @@ export default function ChargingPointDetails({
   const [activeTab, setActiveTab] = useState("Details");
   const [error, value, copyToClipboard] = useCopyToClipboard();
 
-  const destination = {
+  const destination: Coords = {
     lat: selectedPoint?.address.lat,
     lng: selectedPoint?.address.lng,
   };
 
-  const shareLink = handleLocation(userLocation, destination);
+  const shareLink: string = handleLocation(userLocation, destination) ?? "";
 
   function handleClipboard() {
     copyToClipboard(shareLink);

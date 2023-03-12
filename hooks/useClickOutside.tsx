@@ -1,7 +1,7 @@
-import { useEffect, useRef } from "react";
+import { MutableRefObject, useEffect, useRef } from "react";
 
 export default function useClickOutside(callback: () => void) {
-  let domNode = useRef<any>(null);
+  let domNode: MutableRefObject<any> = useRef(null);
 
   useEffect(() => {
     function eventHandler(event: MouseEvent) {

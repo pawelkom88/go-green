@@ -3,7 +3,7 @@ import Modal from "@components/ui/modal/Modal";
 
 type ErrorFallbackProps = {
   error: Error;
-  resetErrorBoundary: (...args: Array<unknown>) => void;
+  resetErrorBoundary: (...args: unknown[]) => void;
 };
 
 export default function ErrorFallback({ error, resetErrorBoundary }: ErrorFallbackProps) {

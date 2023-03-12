@@ -4,22 +4,15 @@ import Input from "@components/ui/input-field/Input";
 import ShowPasswordIcon from "@components/ui/icons/ShowPasswordIcon";
 import HidePasswordIcon from "@components/ui/icons/HidePasswordIcon";
 import ClearInputFieldIcon from "@components/ui/icons/ClearInputFieldIcon";
-import { loginBtnStyles, signInBtnStyles } from "@helpers/helpers";
-import { ChildrenType } from "types/types";
-
-interface FormProps extends ChildrenType {
-  action?: string;
-  onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
-}
-
-const initialState = {
-  userName: "",
-  password: "",
-};
+import { loginBtnStyles, signInBtnStyles } from "@constants/constants";
+import { FormProps, UserDetails } from "types/types";
 
 export default function Form({ children, action, onSubmit }: FormProps) {
-  const [userDetails, setUserDetails] = useState(initialState);
-  const [showPassword, setShowPassword] = useState(false);
+  const [userDetails, setUserDetails] = useState<UserDetails>({
+    userName: "",
+    password: "",
+  });
+  const [showPassword, setShowPassword] = useState<boolean>(false);
 
   function handleUserDetails(e: Event) {
     const { name, value } = e.target as HTMLInputElement;

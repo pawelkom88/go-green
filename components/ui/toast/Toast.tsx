@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { ChildrenType } from "types/types";
+import { Props } from "types/types";
 import Button from "../button/Button";
 
-export default function Toast({ children }: ChildrenType) {
+export default function Toast({ children }: Props) {
   const [openToast, setOpenToast] = useState(true);
 
   useEffect(() => {

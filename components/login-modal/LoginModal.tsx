@@ -2,7 +2,7 @@ import useToggle from "@hooks/useToggle";
 import Button from "@components/ui/button/Button";
 import Modal from "@components/ui/modal/Modal";
 import Login from "@components/login/Login";
-import { signInBtnStyles } from "@helpers/helpers";
+import { signInBtnStyles } from "@constants/constants";
 
 export default function LoginModal() {
   const { isShown, handleOnShow } = useToggle();

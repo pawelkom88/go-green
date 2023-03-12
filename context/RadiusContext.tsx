@@ -1,5 +1,5 @@
 import { useState, createContext, useContext } from "react";
-import { ChildrenType } from "types/types";
+import { Props } from "types/types";
 
 type RadiusContextModel = {
   radius: number;
@@ -8,16 +8,16 @@ type RadiusContextModel = {
 
 export const RadiusContext = createContext<RadiusContextModel | null>(null);
 
-export default function RadiusContextProvider({ children }: ChildrenType) {
-  const [radius, setRadius] = useState(2);
+export default function RadiusContextProvider({ children }: Props) {
+  const [radius, setRadius] = useState<number>(2);
 
   return <RadiusContext.Provider value={{ radius, setRadius }}>{children}</RadiusContext.Provider>;
 }
 
 export function useRadius() {
-  const context = useContext(RadiusContext);
+  const context: RadiusContextModel | null = useContext(RadiusContext);
   if (context === undefined) {
     throw new Error("useRadius must be used within a RadiusContextProvider");
   }
-  return context as RadiusContextModel;
+  return context;
 }
