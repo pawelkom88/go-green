@@ -1,10 +1,10 @@
 import { useState } from "react";
 import Input from "@components/ui/input-field/Input";
 import Button from "@components/ui/button/Button";
-import { submitBtnStyles } from "@helpers/helpers";
+import { submitBtnStyles } from "@constants/constants";
 
 export default function PostCodeValidation({}) {
-  const [input, setInput] = useState("");
+  const [input, setInput] = useState<string>("");
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();

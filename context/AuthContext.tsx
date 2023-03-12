@@ -2,13 +2,13 @@ import { createContext, useReducer, useEffect } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { User as FirebaseUser } from "firebase/auth";
 import { auth } from "@lib/config";
-import { ChildrenType, AuthContextModel } from "types/types";
+import { Props, AuthContextModel } from "types/types";
 import { actionObj } from "@store/actions";
 import authReducer from "@store/authReducer";
 
 export const AuthContext = createContext<AuthContextModel>({} as AuthContextModel);
 
-export default function AuthContextProvider({ children }: ChildrenType) {
+export default function AuthContextProvider({ children }: Props) {
   const [state, dispatch] = useReducer(authReducer, { user: null, authIsReady: false });
 
   useEffect(() => {

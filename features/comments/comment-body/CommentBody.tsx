@@ -12,7 +12,7 @@ export default function CommentBody({ details }: CommentDetails) {
   const { userName, rating, id, title, content, timestamp } = details ?? [];
 
   const { isShown, handleOnShow } = useToggle();
-  const convertedTimestamp = timestamp?.toDate()?.toLocaleString();
+  const convertedTimestamp:string = timestamp?.toDate()?.toLocaleString();
 
   // close menu after clicking outside it
   let domNode = useClickOutside(() => {

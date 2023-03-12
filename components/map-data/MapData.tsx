@@ -1,7 +1,7 @@
 import useFetch from "@hooks/useFetch";
 import { useCurrentLocation } from "@context/UserLocationContext";
 import { useRadius } from "@context/RadiusContext";
-import { Coords } from "types/types";
+import { BoundingBox, Coords } from "types/types";
 import useBoundingBox from "@hooks/useBoundingBox";
 import Map from "@components/map/Map";
 import useDebounce from "@hooks/useDebounce";
@@ -10,14 +10,31 @@ import Spinner from "@components/ui/spinner/Spinner";
 import { DataType } from "types/types";
 
 export default function MapData() {
-  const { currentLocation: userLocation } = useCurrentLocation();
+  const { currentLocation } = useCurrentLocation();
   const { radius } = useRadius();
-  const { boundingBoxPolygon } = useBoundingBox(userLocation as Coords, radius);
-  const debouncedValue = useDebounce(boundingBoxPolygon, 1500);
+  const { boundingBoxPolygon } = useBoundingBox(currentLocation, radius);
+
+  const debouncedValue: BoundingBox = useDebounce(boundingBoxPolygon, 1500);
+
   const { data, loading, error } = useFetch(debouncedValue);
 
+  // const xxx = data?.reduce((acc, data) => {
+  //   const {
+  //     AddressInfo,
+  //     Connections,
+  //     OperatorInfo,
+  //     StatusType,
+  //     UsageCost,
+  //     UsageType,
+  //     GeneralComments,
+  //     NumberOfPoints: NumberOfChargingPoints,
+  //   } = data;
+
+  //   return {...acc, [category]: [...(acc[category] || []), id]};
+  // }, {})
+
   // data transformation
-  const transformedData = (data as null | Array<DataType>)?.map((globalData: any) => {
+  const transformedData: DataType[] = data?.map(data => {
     const {
       AddressInfo,
       Connections,
@@ -26,8 +43,8 @@ export default function MapData() {
       UsageCost,
       UsageType,
       GeneralComments,
-      NumberOfPoints,
-    } = globalData;
+      NumberOfPoints: NumberOfChargingPoints,
+    } = data;
 
     const chargingPointsInfo = {
       id: AddressInfo.ID,
@@ -43,7 +60,7 @@ export default function MapData() {
         currentType: Connections[0]?.CurrentType?.Description,
         level: Connections[0]?.Level?.IsFastChargeCapable,
       },
-      info: {
+      contactInfo: {
         eMail: OperatorInfo?.ContactEmail,
         phone: OperatorInfo?.PhonePrimaryContact,
         website: OperatorInfo?.WebsiteURL,
@@ -53,7 +70,7 @@ export default function MapData() {
       },
       cost: UsageCost,
       paymentOptions: UsageType,
-      NumberOfPoints,
+      NumberOfChargingPoints,
     };
 
     return chargingPointsInfo;

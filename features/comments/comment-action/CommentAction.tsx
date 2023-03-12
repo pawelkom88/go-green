@@ -7,7 +7,7 @@ import { setDoc, doc, serverTimestamp } from "firebase/firestore";
 import { db } from "@lib/config";
 import { v4 as uuidv4 } from "uuid";
 import { CommentActionProps } from "types/types";
-import { commentBtnStyles, disabledBtnStyles } from "@helpers/helpers";
+import { commentBtnStyles, disabledBtnStyles } from "@constants/constants";
 
 export default function CommentAction({
   callback,

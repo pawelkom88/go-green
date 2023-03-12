@@ -1,6 +1,6 @@
-import { ChildrenType } from "types/types";
+import { Props } from "types/types";
 
-interface InputProps extends ChildrenType {
+interface InputProps extends Props {
   onChange: any;
   // onChange: (e: Event) => void;
   srOnly: boolean;

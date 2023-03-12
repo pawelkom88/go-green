@@ -5,7 +5,7 @@ import { FirebaseError } from "@firebase/util";
 import { CollectionObject } from "types/types";
 
 export default function useCollection(col: string) {
-  const [data, setData] = useState<null | Array<CollectionObject>>(null);
+  const [data, setData] = useState<null | CollectionObject[]>(null);
   const [error, setError] = useState<null | string>(null);
 
   useEffect(() => {
@@ -14,14 +14,14 @@ export default function useCollection(col: string) {
 
     // realtime listener that takes as arguments reference and function that is invoked every time data is changed
     const unsubscribe = onSnapshot(ref, snapshot => {
-      let comments: Array<CollectionObject> = [];
+      let comments: CollectionObject[] = [];
       snapshot.docs.forEach(
         doc => {
           // create new object and add it to comments array
-          comments?.push({ ...(doc.data() as any), id: doc.id as string });
+          comments?.push({ ...(doc.data() as any), id: doc.id ?? "" });
         },
         (error: FirebaseError) => {
-          setError(error.message as string);
+          setError(error.message);
         }
       );
 

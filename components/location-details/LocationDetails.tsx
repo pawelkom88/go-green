@@ -3,11 +3,11 @@ import AddedToFavouritesIcon from "@components/ui/icons/AddedToFavouritesIcon";
 import AddToFavouritesIcon from "@components/ui/icons/AddToFavouritesIcon";
 import ShareIcon from "@components/ui/icons/ShareIcon";
 import Button from "@components/ui/button/Button";
-import PointInfo from "./point-info/PointInfo";
+import ChargingPointInfo from "./point-info/ChargingPointInfo";
 import Toast from "@components/ui/toast/Toast";
-import { ChargingPointDetailsType, DataType } from "types/types";
+import { ChargingPointDetails, DataType } from "types/types";
 
-interface LocationDetailsProps extends ChargingPointDetailsType {
+interface LocationDetailsProps extends ChargingPointDetails {
   onCopy: () => void;
 }
 
@@ -17,7 +17,7 @@ export default function LocationDetails({
   chargingPointDetails,
 }: LocationDetailsProps) {
   const [favourites, setFavourites] = useState<DataType[]>([]);
-  const [addedToFavorites, setAddedToFavourites] = useState(false);
+  const [addedToFavorites, setAddedToFavourites] = useState<boolean>(false);
 
   const { distance, duration } = direction?.routes[0].legs[0] ?? {};
 
@@ -29,6 +29,7 @@ export default function LocationDetails({
   ) : (
     <AddedToFavouritesIcon size={35} fill="#9dc88d" />
   );
+
   function addToFavorite(chargingPoint: DataType): void {
     if (!favourites.includes(chargingPoint)) {
       setFavourites([...favourites, chargingPoint]);
@@ -58,9 +59,9 @@ export default function LocationDetails({
           <span className="py-2 px-2">Distance: {distance?.text}</span>
           <span className="py-2 px-2">Estimated Travel Time: {duration?.text}</span>
         </div>
-        <PointInfo details={chargingPointDetails}></PointInfo>
+        <ChargingPointInfo details={chargingPointDetails}></ChargingPointInfo>
       </div>
-      {addedToFavorites && <Toast>{address?.title} has been added to favourites.</Toast>}
+      {addedToFavorites && <Toast>{address.title} has been added to favourites.</Toast>}
     </>
   );
 }

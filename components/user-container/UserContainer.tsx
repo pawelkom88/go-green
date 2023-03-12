@@ -1,13 +1,13 @@
 import useAuthContext from "@hooks/useAuthContext";
-import { ChildrenType } from "types/types";
+import { Props } from "types/types";
 
-interface UserContainer extends ChildrenType {
+interface UserContainer extends Props {
   action: string;
 }
 
 export default function UserContainer({ children, action }: UserContainer) {
   // const { user } = useAuthContext();
-  let user = true
+  let user = true;
 
   if (!user) {
     return (
