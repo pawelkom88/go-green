@@ -19,7 +19,7 @@ export default function UserLocationContextProvider({ children }: Props) {
 
 export function useCurrentLocation() {
   const userLocation = useContext(LocationContext);
-  if (userLocation === undefined) {
+  if (userLocation == null) {
     throw new Error("useCurrentLocation must be used within a UserLocationContextProvider");
   }
   return userLocation as LocationContextType;

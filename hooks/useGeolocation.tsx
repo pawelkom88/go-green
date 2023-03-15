@@ -1,7 +1,13 @@
 import { useState } from "react";
 import { GeolocationType, PositionType, Coords } from "types/types";
 
-const options = {
+interface Options {
+  enableHighAccuracy: boolean;
+  timeout: number;
+  maximumAge: number;
+}
+
+const options: Options = {
   enableHighAccuracy: true,
   timeout: 1000,
   maximumAge: 0,
@@ -12,7 +18,7 @@ export default function useGeolocation() {
   const [currentLocation, setCurrentLocation] = useState<undefined | Coords>();
 
   function handleLocationError(error: GeolocationType): void {
-    let message;
+    let message: string;
 
     switch (error.code) {
       case 1:
@@ -45,7 +51,7 @@ export default function useGeolocation() {
     });
   }
 
-  function getCurrentPosition() {
+  function getCurrentPosition(): void {
     if (!navigator.geolocation) {
       setStatus("Geolocation is not supported by your browser");
       return;

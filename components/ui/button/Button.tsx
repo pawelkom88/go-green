@@ -1,13 +1,13 @@
+import { Props } from "types/types";
 import React from "react";
 
-type ButtonType = {
-  children: React.ReactNode;
+interface ButtonType extends Props {
   className?: string;
   title?: string;
   type?: "submit" | "button";
   disabled?: boolean;
   onClick?: () => void | (() => boolean);
-};
+}
 
 export default function Button({
   children,

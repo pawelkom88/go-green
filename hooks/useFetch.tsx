@@ -1,13 +1,14 @@
 import { useState, useEffect } from "react";
 import { BoundingBox } from "types/types";
+import { POIDetails } from "domain/api-types";
 
 export default function useFetch(query: BoundingBox) {
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [data, setData] = useState<POIDetails[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<null | string>(null);
   const [lat1, lng1, lat2, lng2] = query || [];
 
-  const controller = new AbortController();
+  const controller: AbortController = new AbortController();
 
   useEffect(() => {
     if (!lat1) return;
@@ -34,8 +35,8 @@ export default function useFetch(query: BoundingBox) {
           setData(data);
           setLoading(false);
         }
-      } catch (error: any) {
-        const message = `An error has occured: ${error.message}`;
+      } catch (error: unknown) {
+        const message = `An error has occured: ${(error as Error).message}`;
         setError(message);
         setLoading(false);
       }

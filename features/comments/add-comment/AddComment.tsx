@@ -4,7 +4,7 @@ import Button from "@components/ui/button/Button";
 import UserContainer from "@components/user-container/UserContainer";
 import Modal from "@components/ui/modal/Modal";
 import { CollectionObject } from "types/types";
-import { commentBtnStyles } from "@constants/constants";
+import { commentBtnStyles } from "domain/constants";
 
 type AddCommentProps = {
   onAddComment: (val: boolean) => void;

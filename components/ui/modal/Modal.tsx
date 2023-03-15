@@ -4,12 +4,12 @@ import CloseBtnIcon from "../icons/CloseBtnIcon";
 import Overlay from "@components/ui/modal/Overlay";
 import Button from "@components/ui/button/Button";
 import FocusLock from "react-focus-lock";
+import { Props } from "types/types";
 
-type ModalTypes = {
-  children?: React.ReactNode;
+interface ModalTypes extends Props {
   callback?: (val: boolean) => void;
   size: string;
-};
+}
 
 export default function Modal({ children, callback, size }: ModalTypes) {
   const [isOpen, setIsopen] = useState(true);

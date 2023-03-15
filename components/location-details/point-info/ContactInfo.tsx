@@ -1,4 +1,4 @@
-import { noInfo } from "@constants/constants";
+import { noInfo } from "domain/constants";
 import { ContactInfoProps } from "types/types";
 
 export default function ContactInfo({ contactInfo }: { contactInfo: ContactInfoProps }) {

@@ -4,7 +4,7 @@ import { useCurrentLocation } from "@context/UserLocationContext";
 import MobileMenu from "@components/mobile-menu/MobileMenu";
 import Sidebar from "@components/sidebar/Sidebar";
 import Nav from "@components/navigation/Nav";
-import MapData from "@components/map-data/MapData";
+import Map from "@components/map/Map";
 import Modal from "@components/ui/modal/Modal";
 
 //error boundry
@@ -25,7 +25,7 @@ export default function Home() {
           <Sidebar />
           <main className="w-full">
             <Nav />
-            <MapData />
+            <Map />
             <MobileMenu />
           </main>
         </RadiusContextProvider>

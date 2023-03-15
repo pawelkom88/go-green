@@ -12,10 +12,10 @@ export default function ChargingPointInfo({
 }: ChargingPointInfoType) {
   
   const chargingPoint: Coords = {
-    lat: selectedPoint?.address.lat,
-    lng: selectedPoint?.address.lng,
+    lat: selectedPoint?.AddressInfo.address.lat,
+    lng: selectedPoint?.AddressInfo.address.lng,
   };
-
+  
   const directionLink: string = handleLocation(userLocation, chargingPoint) ?? "";
 
   handleLocation(userLocation, chargingPoint);
@@ -28,8 +28,8 @@ export default function ChargingPointInfo({
       }}
       position={chargingPoint}>
       <div className="w-full mx-auto text-primary-clr text-center p-4 flex flex-col">
-        <h3 className="font-bold text-lg my-2">{selectedPoint.address.title}</h3>
-        <span>{selectedPoint.address.postCode}</span>
+        <h3 className="font-bold text-lg my-2">{selectedPoint.AddressInfo.address.title}</h3>
+        <span>{selectedPoint.AddressInfo.address.postCode}</span>
         <div className="flex justify-evenly">
           <Button
             onClick={() => onShowDetails(true)}

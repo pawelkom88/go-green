@@ -6,13 +6,14 @@ import CommentSettings from "@features/comments/comment-settings/CommentSettings
 // import DropdownMenu from "@features/comments/comment-dropdown-menu/DropdownMenu";
 import CommentRating from "@features/comments/comment-rating/CommentRating";
 // import CommentAction from "@features/comments/comment-action/CommentAction";
-import { CommentDetails } from "types/types";
+import { CollectionObject } from "types/types";
 
-export default function CommentBody({ details }: CommentDetails) {
+export default function CommentBody({ details }: { details: CollectionObject }) {
   const { userName, rating, id, title, content, timestamp } = details ?? [];
+  const convertedTimestamp: string = timestamp?.toDate().toLocaleString();
+  // const convertedTimestamp:string = timestamp?.toDate()?.toLocaleString();
 
   const { isShown, handleOnShow } = useToggle();
-  const convertedTimestamp:string = timestamp?.toDate()?.toLocaleString();
 
   // close menu after clicking outside it
   let domNode = useClickOutside(() => {

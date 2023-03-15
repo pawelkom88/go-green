@@ -12,7 +12,7 @@ type CommentSettingsProsp = {
 export default function CommentSettings({ commentId, isShown, onClose }: CommentSettingsProsp) {
   const { isShown: editComment, handleOnShow: setEditComment } = useToggle();
 
-  function handleRemove() {
+  function handleCommentRemove() {
     console.log("remove");
   }
 
@@ -38,7 +38,7 @@ export default function CommentSettings({ commentId, isShown, onClose }: Comment
               Edit
             </li>
             <li
-              onClick={handleRemove}
+              onClick={handleCommentRemove}
               className="block py-2 px-4 hover:bg-primary-clr  dark:hover:text-secondary-clr cursor-pointer">
               Remove
             </li>

@@ -9,7 +9,7 @@ import { uploadType } from "types/types";
 const fileTypes = ["JPG", "PNG"];
 
 export default function ChargingPointPhotos() {
-  const [file, setFile] = useState<null | uploadType>(null);
+  const [file, setFile] = useState<uploadType>();
   const { isShown: sizeError, handleOnShow: setSizeError } = useToggle();
 
   function handleUpload(file: uploadType) {
