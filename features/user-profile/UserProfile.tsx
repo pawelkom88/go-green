@@ -1,10 +1,7 @@
 import Image from "next/image";
 import Button from "@components/ui/button/Button";
-import Input from "@components/ui/input-field/Input";
-
-// EXTRACT !!
-const btnUserProfileStyles =
-  "inline-flex items-center px-4 py-2 text-sm font-medium text-center text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-700 dark:focus:ring-gray-700";
+import { btnUserProfileStyles } from "domain/constants";
+import UserData from "./UserData";
 
 export default function UserProfile() {
   function handleCheckbox() {
@@ -25,48 +22,7 @@ export default function UserProfile() {
         <Button className={btnUserProfileStyles}>asdasdasd</Button>
         <Button className={btnUserProfileStyles}>Btn</Button>
       </div>
-
-      {/* START */}
-      <div className="w-full relative shadow-md sm:rounded-lg mt-8">
-        <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-          <thead className="text-gray-900 uppercase">
-            <tr>
-              <th className="px-6 py-3">Favourites points</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr className="bg-white  hover:bg-primary-clr hover:text-secondary-clr">
-              <td className="w-4 p-4">
-                <div className="flex items-center">
-                  <Input
-                    id="checkbox"
-                    onChange={handleCheckbox}
-                    name="checkbox-table"
-                    type="checkbox"
-                    className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded dark:bg-gray-700 dark:border-gray-600"
-                    srOnly={true}
-                    required={false}>
-                    checkbox
-                  </Input>
-                </div>
-              </td>
-              <th
-                scope="row"
-                className="text-left px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
-                Point name
-              </th>
-              <td className="px-6 py-4">
-                <a
-                  href="#"
-                  className="font-medium text-blue-600 dark:text-blue-500 hover:underline">
-                  Details
-                </a>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      {/* END */}
+      <UserData />
     </div>
   );
 }

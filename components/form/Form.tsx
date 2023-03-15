@@ -4,7 +4,7 @@ import Input from "@components/ui/input-field/Input";
 import ShowPasswordIcon from "@components/ui/icons/ShowPasswordIcon";
 import HidePasswordIcon from "@components/ui/icons/HidePasswordIcon";
 import ClearInputFieldIcon from "@components/ui/icons/ClearInputFieldIcon";
-import { loginBtnStyles, signInBtnStyles } from "@constants/constants";
+import { loginBtnStyles, signInBtnStyles } from "domain/constants";
 import { FormProps, UserDetails } from "types/types";
 
 export default function Form({ children, action, onSubmit }: FormProps) {

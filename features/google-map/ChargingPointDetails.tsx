@@ -8,7 +8,7 @@ import Modal from "@components/ui/modal/Modal";
 import Tabs from "@components/ui/tabs/Tabs";
 import { ChargingPointDetailsProps, Coords } from "types/types";
 import { handleLocation } from "helpers/helpers";
-import { chargingPointTabNames } from "constants/constants";
+import { chargingPointTabNames } from "domain/constants";
 
 const [details, comments, photos] = chargingPointTabNames;
 
@@ -19,12 +19,12 @@ export default function ChargingPointDetails({
   chargingPointDetails,
   onShowDetails,
 }: ChargingPointDetailsProps) {
-  const [activeTab, setActiveTab] = useState("Details");
+  const [activeTab, setActiveTab] = useState<string>("Details");
   const [error, value, copyToClipboard] = useCopyToClipboard();
 
   const destination: Coords = {
-    lat: selectedPoint?.address.lat,
-    lng: selectedPoint?.address.lng,
+    lat: selectedPoint?.AddressInfo.address.lat,
+    lng: selectedPoint?.AddressInfo.address.lng,
   };
 
   const shareLink: string = handleLocation(userLocation, destination) ?? "";
@@ -44,7 +44,7 @@ export default function ChargingPointDetails({
             chargingPointDetails={chargingPointDetails}
           />
         )}
-        {activeTab === comments.tabName && <Comments selectedPointId={selectedPoint.id} />}
+        {activeTab === comments.tabName && <Comments selectedPointId={selectedPoint.AddressInfo.id} />}
         {activeTab === photos.tabName && <ChargingPointPhotos />}
       </Modal>
       {error && <Modal size="h-[300px] flex-center">{error}</Modal>}

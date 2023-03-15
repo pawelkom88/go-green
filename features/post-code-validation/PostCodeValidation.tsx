@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Input from "@components/ui/input-field/Input";
 import Button from "@components/ui/button/Button";
-import { submitBtnStyles } from "@constants/constants";
+import { submitBtnStyles } from "domain/constants";
 
 export default function PostCodeValidation({}) {
   const [input, setInput] = useState<string>("");

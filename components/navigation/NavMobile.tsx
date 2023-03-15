@@ -4,11 +4,7 @@ import FilterIcon from "@components/ui/icons/FilterIcon";
 import Button from "@components/ui/button/Button";
 import useToggle from "@hooks/useToggle";
 
-type NavMobileProps = {
-  onRadiusChange: (val: number) => void;
-};
-
-export default function NavMobile({ onRadiusChange }: NavMobileProps) {
+export default function NavMobile({ onRadiusChange }: { onRadiusChange: (val: number) => void }) {
   const { isShown, handleOnShow } = useToggle();
 
   return (

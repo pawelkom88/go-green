@@ -2,7 +2,7 @@ import FilterCheckbox from "@components/ui/filter-checkbox/FilterCheckbox";
 import Button from "@components/ui/button/Button";
 import FilterIcon from "@components/ui/icons/FilterIcon";
 import { Props } from "types/types";
-import { FiltersBtnStyles } from "@constants/constants";
+import { FiltersBtnStyles } from "domain/constants";
 
 export default function Filters({ children }: Props) {
   function someHandler() {

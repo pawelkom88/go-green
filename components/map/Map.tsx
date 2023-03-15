@@ -1,13 +1,12 @@
 import { useCurrentLocation } from "@context/UserLocationContext";
 import Modal from "@components/ui/modal/Modal";
 import { GoogleMap, useLoadScript, MarkerF } from "@react-google-maps/api";
-import { containerStyles, londonCoords } from "@constants/constants";
+import { containerStyles, londonCoords } from "domain/constants";
 import Features from "@features/google-map/Features";
-import { Coords, MapProps } from "types/types";
+import { Coords } from "types/types";
 
-export default function Map({ data }: MapProps) {
+export default function Map() {
   const { currentLocation } = useCurrentLocation();
-
   const { isLoaded, loadError } = useLoadScript({
     id: "google-map-script",
     googleMapsApiKey: process.env.NEXT_PUBLIC_API_KEY as string,
@@ -23,7 +22,7 @@ export default function Map({ data }: MapProps) {
             user position - default to London coords 
           */}
           <MarkerF icon={"/assets/electric-car.svg"} position={userLocation} />
-          <Features data={data} />
+          <Features />
         </GoogleMap>
       ) : (
         "Loading"

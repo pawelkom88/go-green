@@ -1,4 +1,4 @@
-import { chargingPointTabNames } from "constants/constants";
+import { chargingPointTabNames } from "domain/constants";
 
 type TabsProps = {
   activeTab: string;

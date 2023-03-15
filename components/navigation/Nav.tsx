@@ -8,8 +8,9 @@ import LoginModal from "@components/login-modal/LoginModal";
 import { useCurrentLocation } from "@context/UserLocationContext";
 
 export default function Nav() {
-  const { getCurrentPosition: onLocateUser } = useCurrentLocation();
+  const { getCurrentPosition } = useCurrentLocation();
   const { user } = useAuthContext();
+  // move down to mobile
   const { setRadius: onRadiusChange } = useRadius();
 
   return (
@@ -20,7 +21,7 @@ export default function Nav() {
             Find the nearest charging point
           </h1>
           <PostCodeValidation />
-          <div onClick={onLocateUser} className="h-full ml-2 px-2">
+          <div onClick={getCurrentPosition} className="h-full ml-2 px-2">
             <LocationIcon size={25} fill="#f1b24a" />
           </div>
           <NavMobile onRadiusChange={onRadiusChange} />

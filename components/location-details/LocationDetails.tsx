@@ -5,7 +5,8 @@ import ShareIcon from "@components/ui/icons/ShareIcon";
 import Button from "@components/ui/button/Button";
 import ChargingPointInfo from "./point-info/ChargingPointInfo";
 import Toast from "@components/ui/toast/Toast";
-import { ChargingPointDetails, DataType } from "types/types";
+import { ChargingPointDetails } from "types/types";
+import { POIDetails } from "domain/api-types";
 
 interface LocationDetailsProps extends ChargingPointDetails {
   onCopy: () => void;
@@ -16,12 +17,12 @@ export default function LocationDetails({
   direction,
   chargingPointDetails,
 }: LocationDetailsProps) {
-  const [favourites, setFavourites] = useState<DataType[]>([]);
+  const [favourites, setFavourites] = useState<POIDetails[]>([]);
   const [addedToFavorites, setAddedToFavourites] = useState<boolean>(false);
 
   const { distance, duration } = direction?.routes[0].legs[0] ?? {};
 
-  const { address } = chargingPointDetails ?? {};
+  const { AddressInfo } = chargingPointDetails ?? {};
 
   // use data from firebase and check if its added
   const IsAddedToFavoritesIcon = addedToFavorites ? (
@@ -30,7 +31,7 @@ export default function LocationDetails({
     <AddedToFavouritesIcon size={35} fill="#9dc88d" />
   );
 
-  function addToFavorite(chargingPoint: DataType): void {
+  function addToFavorite(chargingPoint: POIDetails): void {
     if (!favourites.includes(chargingPoint)) {
       setFavourites([...favourites, chargingPoint]);
       setAddedToFavourites(true);
@@ -41,7 +42,9 @@ export default function LocationDetails({
   return (
     <>
       <div className="flex flex-col rounded-lg text-primary-clr p-2">
-        <h2 className="mb-1 text-xl font-semibold text-center p-2">{address.title || "Unknown"}</h2>
+        <h2 className="mb-1 text-xl font-semibold text-center p-2">
+          {AddressInfo.Title || "Unknown"}
+        </h2>
         <div className="flex-center space-x-4">
           <Button
             className="p-2"
@@ -61,7 +64,7 @@ export default function LocationDetails({
         </div>
         <ChargingPointInfo details={chargingPointDetails}></ChargingPointInfo>
       </div>
-      {addedToFavorites && <Toast>{address.title} has been added to favourites.</Toast>}
+      {addedToFavorites && <Toast>{AddressInfo.Title} has been added to favourites.</Toast>}
     </>
   );
 }

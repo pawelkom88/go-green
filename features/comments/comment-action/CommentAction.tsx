@@ -7,7 +7,7 @@ import { setDoc, doc, serverTimestamp } from "firebase/firestore";
 import { db } from "@lib/config";
 import { v4 as uuidv4 } from "uuid";
 import { CommentActionProps } from "types/types";
-import { commentBtnStyles, disabledBtnStyles } from "@constants/constants";
+import { commentBtnStyles, disabledBtnStyles } from "domain/constants";
 
 export default function CommentAction({
   callback,
@@ -20,7 +20,7 @@ export default function CommentAction({
 
   const commentContentRef = useRef<HTMLTextAreaElement>(null);
 
-  function handleTitle(e: Event) {
+  function handleCommentTitle(e: Event) {
     setTitle((e.target as HTMLInputElement).value);
   }
 
@@ -28,7 +28,7 @@ export default function CommentAction({
     e.preventDefault();
 
     const commentData = {
-      userName: "logged in user",
+      userName: "logged in user name / change",
       title,
       rating: numberOfStars,
       content: commentContentRef?.current?.value,
@@ -62,7 +62,7 @@ export default function CommentAction({
           })}
         </div>
         <Input
-          onChange={handleTitle}
+          onChange={handleCommentTitle}
           value={title}
           srOnly={true}
           id="title"

@@ -1,31 +1,38 @@
 import { useState } from "react";
+
 import { useCurrentLocation } from "@context/UserLocationContext";
 import ChargingPointInfo from "@features/google-map/ChargingPointInfo";
 import ChargingPointDetails from "@features/google-map/ChargingPointDetails";
 import Marker from "@features/google-map/Marker";
 import { DirectionsRenderer } from "@react-google-maps/api";
-import { DataType, MapProps } from "types/types";
+import { POIDetails } from "domain/api-types";
 
-export default function Features({ data }: MapProps) {
-  const { currentLocation: userLocation } = useCurrentLocation();
-  const [selectedPoint, setSelectedPoint] = useState<null | DataType>(null);
+export default function Features() {
+  const { currentLocation } = useCurrentLocation();
+  const [selectedPoint, setSelectedPoint] = useState<null | POIDetails>(null);
   const [direction, setDirections] = useState<null | google.maps.DirectionsResult>(null);
   const [showDetails, setShowDetails] = useState<boolean>(false);
 
   return (
     <>
       <Marker
+        userLocation={currentLocation}
+        onSetSelectedPoint={setSelectedPoint}
+        onSetDirection={setDirections}
+      />
+      {/* <>
+      <Marker
         userLocation={userLocation}
         onSetSelectedPoint={setSelectedPoint}
         onSetDirection={setDirections}
         data={data}
-      />
+      /> */}
       {/* 
         charging points info 
       */}
       {selectedPoint && (
         <ChargingPointInfo
-          userLocation={userLocation}
+          userLocation={currentLocation}
           selectedPoint={selectedPoint}
           onCloseClick={setSelectedPoint}
           onShowDetails={setShowDetails}
@@ -36,7 +43,7 @@ export default function Features({ data }: MapProps) {
       */}
       {selectedPoint && showDetails && (
         <ChargingPointDetails
-          userLocation={userLocation}
+          userLocation={currentLocation}
           selectedPoint={selectedPoint}
           direction={direction}
           chargingPointDetails={selectedPoint}

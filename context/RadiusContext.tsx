@@ -16,7 +16,7 @@ export default function RadiusContextProvider({ children }: Props) {
 
 export function useRadius() {
   const context: RadiusContextModel | null = useContext(RadiusContext);
-  if (context === undefined) {
+  if (context == null) {
     throw new Error("useRadius must be used within a RadiusContextProvider");
   }
   return context;

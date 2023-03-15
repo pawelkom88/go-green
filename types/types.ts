@@ -1,3 +1,4 @@
+import { POIDetails } from './../domain/api-types';
 import { Timestamp } from "@firebase/firestore-types";
 import { Dispatch } from "react";
 import {
@@ -13,52 +14,63 @@ import {
 // change ?
 type infoDataType = any;
 
-export type CollectionObject = {
+export interface CollectionObject {
   id?: string;
   content: string;
   rating: number;
   title: string;
   timestamp: Timestamp;
   userName: string;
-};
+}
 
-export type CommentDetails = {
-  details: CollectionObject;
-};
+// export interface RawData {
+//   AddressInfo: {
+//     id: number;
+//     address: {
+//       title: string;
+//       lat: number;
+//       lng: number;
+//       postCode: string;
+//       info: null | string;
+//     };
+//   };
+//   Connections: {
+//     connectionType: null | string;
+//     currentType: string;
+//     level: boolean;
+//   };
+//   OperatorInfo: {
+//     eMail: infoDataType;
+//     phone: infoDataType;
+//     website: infoDataType;
+//   };
+//   StatusType: {
+//     ConnectionType: null | boolean;
+//   };
+//   UsageCost: null;
+//   UsageType: {
+//     IsAccessKeyRequired: boolean;
+//     IsMembershipRequired: boolean;
+//     IsPayAtLocation: boolean;
+//   };
+//   GeneralComments: string;
+//   NumberOfPoints: null | number;
+// }
 
-export type DataType = {
-  id: number;
-  address: {
-    title: string;
-    lat: number;
-    lng: number;
-    postCode: string;
-    info: null | string;
-  };
-  connection: {
-    connectionType: null | string;
-    currentType: string;
-    level: boolean;
-  };
-  contactInfo: {
-    eMail: infoDataType;
-    phone: infoDataType;
-    website: infoDataType;
-  };
-  statusType: {
-    ConnectionType: null | boolean;
-  };
-  cost: null | string;
-  paymentOptions: {
-    IsAccessKeyRequired: boolean;
-    IsMembershipRequired: boolean;
-    IsPayAtLocation: boolean;
-  };
-  NumberOfChargingPoints: null | number;
-};
+//   statusType: {
+//     ConnectionType: null | boolean;
+//   };
+//   cost: null | string;
+//   paymentOptions: {
+//     IsAccessKeyRequired: boolean;
+//     IsMembershipRequired: boolean;
+//     IsPayAtLocation: boolean;
+//   };
+//   NumberOfChargingPoints: null | number;
+// }
 
 export type ChargingPointDetails = {
-  chargingPointDetails: DataType;
+  chargingPointDetails: POIDetails;
   direction: null | google.maps.DirectionsResult;
 };
 
@@ -78,10 +90,10 @@ export type Coords = {
 };
 
 export type MapProps = {
-  data: DataType[] | undefined;
+  data: RawData[] | undefined;
 };
 
-export type BoundingBox = undefined | null | Array<number>;
+export type BoundingBox = undefined | null | number[];
 
 // USE GEOLOCATION HOOK TYPES
 export interface GeolocationType {
@@ -131,15 +143,15 @@ export type CommentActionProps = {
 };
 
 export type ChargingPointDetailsProps = {
-  chargingPointDetails: DataType;
+  chargingPointDetails: POIDetails;
   userLocation: UserLocationType;
-  selectedPoint: DataType;
+  selectedPoint: POIDetails;
   direction: null | google.maps.DirectionsResult;
   onShowDetails?: (val: boolean) => void;
 };
 
 export type ChargingPointInfoType = {
-  selectedPoint: DataType;
+  selectedPoint: POIDetails;
   userLocation: UserLocationType;
   onCloseClick: (val: null) => void;
   onShowDetails: (val: boolean) => void;

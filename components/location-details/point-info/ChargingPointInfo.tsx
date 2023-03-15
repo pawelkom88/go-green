@@ -2,11 +2,11 @@ import Image from "next/image";
 import InfoRow from "@components/ui/info-row/InfoRow";
 
 import ContactInfo from "./ContactInfo";
-import { noInfo, socketTypeImages } from "@constants/constants";
-import { DataType } from "types/types";
+import { noInfo, socketTypeImages } from "domain/constants";
 import MembershipInfo from "./MembershipInfo";
+import { POIDetails } from "domain/api-types";
 
-export default function ChargingPointInfo({ details }: { details: DataType }) {
+export default function ChargingPointInfo({ details }: { details: POIDetails }) {
   const {
     connection,
     paymentOptions,
