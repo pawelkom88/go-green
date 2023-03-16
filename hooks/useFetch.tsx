@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react";
-import { BoundingBox } from "domain/types";
-import { POIDetails } from "domain/api-types";
+import { ExtendedPOIDetails } from "domain/api-types";
 
-export default function useFetch(query: BoundingBox) {
-  const [data, setData] = useState<POIDetails[]>([]);
+export default function useFetch(query: number[]) {
+  const [data, setData] = useState<ExtendedPOIDetails[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<null | string>(null);
   const [lat1, lng1, lat2, lng2] = query || [];

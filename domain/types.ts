@@ -10,30 +10,11 @@ import {
   signInWithEmailAndPassword,
   sendPasswordResetEmail,
 } from "firebase/auth";
-// API DATA TYPES
-
-export interface CollectionObject {
-  id?: string;
-  content: string;
-  rating: number;
-  title: string;
-  timestamp: Timestamp;
-  userName: string;
-}
-
-export type ChargingPointDetails = {
-  chargingPointDetails: ExtendedPOIDetails;
-  direction: null | google.maps.DirectionsResult;
-};
-
-// export type UserLocationType = undefined | Coords;
 
 export type Coords = {
   lat: number;
   lng: number;
 };
-
-export type BoundingBox = undefined | null | number[];
 
 // USE GEOLOCATION HOOK TYPES
 export interface GeolocationType {
@@ -53,12 +34,11 @@ export interface UserPositionCoords {
 
 export interface MarkerProps {
   userLocation: Coords;
-  onSetSelectedPoint: (val: POIDetails) => void;
+  onSetSelectedPoint: (val: ExtendedPOIDetails) => void;
   onSetDirection: (val: google.maps.DirectionsResult) => void;
   maxResults: number;
 }
 
-// UNIVERSAL TYPES
 export interface MaxResults {
   maxResults: number;
 }
@@ -92,15 +72,18 @@ export type CommentActionProps = {
   selectedPointId?: number;
 };
 
-export type ChargingPointDetailsProps = {
-  chargingPointDetails: POIDetails;
-  userLocation: Coords;
-  selectedPoint: POIDetails;
+export type ChargingPointDetails = {
+  chargingPointDetails: ExtendedPOIDetails;
   direction: null | google.maps.DirectionsResult;
-  onShowDetails?: (val: boolean) => void;
 };
 
-export type ChargingPointInfoType = {
+export interface ChargingPointDetailsProps extends ChargingPointDetails {
+  userLocation: Coords;
+  selectedPoint: POIDetails;
+  onShowDetails?: (val: boolean) => void;
+}
+
+export type ChargingPointInfo = {
   selectedPoint: POIDetails;
   userLocation: Coords;
   onCloseClick: (val: null) => void;
@@ -131,6 +114,15 @@ export interface ContactInfoProps {
   eMail: string;
   phone: string;
   website: string;
+}
+
+export interface CollectionObject {
+  id?: string;
+  content: string;
+  rating: number;
+  title: string;
+  timestamp: Timestamp;
+  userName: string;
 }
 
 // LOGIN - SIGNUP TYPES
