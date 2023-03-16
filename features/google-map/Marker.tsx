@@ -3,7 +3,7 @@ import useFetch from "@hooks/useFetch";
 import useDebounce from "@hooks/useDebounce";
 import { useState } from "react";
 import { MarkerF } from "@react-google-maps/api";
-import { BoundingBox, MarkerProps } from "domain/types";
+import { MarkerProps } from "domain/types";
 import Modal from "@components/ui/modal/Modal";
 import Spinner from "@components/ui/spinner/Spinner";
 
@@ -15,7 +15,7 @@ export default function Marker({
 }: MarkerProps) {
   const [status, setStatus] = useState<string>("");
   const { boundingBoxPolygon } = useBoundingBox(userLocation, maxResults);
-  const debouncedValue: BoundingBox = useDebounce(boundingBoxPolygon, 1500);
+  const debouncedValue: number[] = useDebounce(boundingBoxPolygon, 1500);
   const { data, loading, error } = useFetch(debouncedValue);
 
   function fetchDirections({ lat, lng }: google.maps.LatLngLiteral) {

@@ -5,13 +5,12 @@ import ChargingPointInfo from "@features/google-map/ChargingPointInfo";
 import ChargingPointDetails from "@features/google-map/ChargingPointDetails";
 import Marker from "@features/google-map/Marker";
 import { DirectionsRenderer } from "@react-google-maps/api";
-import { POIDetails } from "domain/api-types";
+import { ExtendedPOIDetails, POIDetails } from "domain/api-types";
 import { MaxResults } from "domain/types";
-import { londonCoords } from "domain/constants";
 
 export default function Features({ maxResults }: MaxResults) {
   const { currentLocation } = useCurrentLocation();
-  const [selectedPoint, setSelectedPoint] = useState<null | POIDetails>(null);
+  const [selectedPoint, setSelectedPoint] = useState<null | ExtendedPOIDetails>(null);
   const [direction, setDirections] = useState<null | google.maps.DirectionsResult>(null);
   const [showDetails, setShowDetails] = useState<boolean>(false);
 
