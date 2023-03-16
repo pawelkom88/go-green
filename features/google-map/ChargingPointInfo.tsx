@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "@components/ui/button/Button";
 import { InfoWindow } from "@react-google-maps/api";
-import { ChargingPointInfo, Coords } from "domain/types";
+import { ChargingPointInfoProps, Coords } from "domain/types";
 import { handleLocation } from "@helpers/helpers";
 
 export default function ChargingPointInfo({
@@ -9,7 +9,8 @@ export default function ChargingPointInfo({
   selectedPoint,
   onCloseClick,
   onShowDetails,
-}: ChargingPointInfo) {
+}: ChargingPointInfoProps) {
+  
   const chargingPointCoords: Coords = {
     lat: selectedPoint?.AddressInfo.Latitude,
     lng: selectedPoint?.AddressInfo.Longitude,
