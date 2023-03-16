@@ -1,9 +1,10 @@
 import { createContext, useContext } from "react";
 import useGeolocation from "@hooks/useGeolocation";
-import { Props, Coords } from "types/types";
+import { Props, Coords } from "domain/types";
+import { londonCoords } from "domain/constants";
 
 type LocationContextType = {
-  currentLocation: Coords | undefined;
+  currentLocation: Coords;
   getCurrentPosition: () => void;
   status: string;
 };
@@ -11,7 +12,7 @@ type LocationContextType = {
 const LocationContext = createContext<LocationContextType | null>(null);
 
 export default function UserLocationContextProvider({ children }: Props) {
-  const { currentLocation, getCurrentPosition, status } = useGeolocation();
+  const { currentLocation = londonCoords, getCurrentPosition, status } = useGeolocation();
   const values = { currentLocation, getCurrentPosition, status };
 
   return <LocationContext.Provider value={values}>{children}</LocationContext.Provider>;

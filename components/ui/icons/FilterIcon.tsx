@@ -1,6 +1,6 @@
-import { IconProps } from "types/types";
+import { IconProps } from "domain/types";
 
-export default function FilterIcon({size, fill} :IconProps) {
+export default function FilterIcon({ size, fill }: IconProps) {
   return (
     <svg
       width={size}

@@ -1,4 +1,4 @@
-import { IconProps } from "types/types";
+import { IconProps } from "domain/types";
 
 interface TickIconProps extends IconProps {
   strokeClr: string;

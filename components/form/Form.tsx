@@ -5,7 +5,7 @@ import ShowPasswordIcon from "@components/ui/icons/ShowPasswordIcon";
 import HidePasswordIcon from "@components/ui/icons/HidePasswordIcon";
 import ClearInputFieldIcon from "@components/ui/icons/ClearInputFieldIcon";
 import { loginBtnStyles, signInBtnStyles } from "domain/constants";
-import { FormProps, UserDetails } from "types/types";
+import { FormProps, UserDetails } from "domain/types";
 
 export default function Form({ children, action, onSubmit }: FormProps) {
   const [userDetails, setUserDetails] = useState<UserDetails>({

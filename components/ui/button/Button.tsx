@@ -1,4 +1,4 @@
-import { Props } from "types/types";
+import { Props } from "domain/types";
 import React from "react";
 
 interface ButtonType extends Props {

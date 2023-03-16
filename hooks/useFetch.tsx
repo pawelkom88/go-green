@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { BoundingBox } from "types/types";
+import { BoundingBox } from "domain/types";
 import { POIDetails } from "domain/api-types";
 
 export default function useFetch(query: BoundingBox) {

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useCurrentLocation } from "@context/UserLocationContext";
 
 // components
@@ -10,10 +11,15 @@ import Modal from "@components/ui/modal/Modal";
 //error boundry
 import { ErrorBoundary } from "react-error-boundary";
 import ErrorFallback from "@components/error-boundries/ErrorFallback";
-import RadiusContextProvider from "@context/RadiusContext";
 
 export default function Home() {
   const { currentLocation, getCurrentPosition, status } = useCurrentLocation();
+
+  const [maxResults, setMaxResults] = useState<number>(2);
+
+  function setNumberOfDisplayedPoints(value: number): void {
+    setMaxResults(value);
+  }
 
   return (
     <ErrorBoundary
@@ -21,14 +27,12 @@ export default function Home() {
       onReset={() => getCurrentPosition()}
       resetKeys={[currentLocation]}>
       <div className="w-full bg-primary-clr">
-        <RadiusContextProvider>
-          <Sidebar />
-          <main className="w-full">
-            <Nav />
-            <Map />
-            <MobileMenu />
-          </main>
-        </RadiusContextProvider>
+        <Sidebar onSetDisplayedPoints={setNumberOfDisplayedPoints} />
+        <main className="w-full">
+          <Nav onSetDisplayedPoints={setNumberOfDisplayedPoints} />
+          <Map maxResults={maxResults} />
+          <MobileMenu />
+        </main>
       </div>
 
       {status?.length !== 0 && (

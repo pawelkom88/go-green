@@ -1,4 +1,5 @@
-import { POIDetails } from './../domain/api-types';
+import { ExtendedPOIDetails } from "domain/api-types";
+import { POIDetails } from "./api-types";
 import { Timestamp } from "@firebase/firestore-types";
 import { Dispatch } from "react";
 import {
@@ -11,9 +12,6 @@ import {
 } from "firebase/auth";
 // API DATA TYPES
 
-// change ?
-type infoDataType = any;
-
 export interface CollectionObject {
   id?: string;
   content: string;
@@ -23,74 +21,16 @@ export interface CollectionObject {
   userName: string;
 }
 
-// export interface RawData {
-//   AddressInfo: {
-//     id: number;
-//     address: {
-//       title: string;
-//       lat: number;
-//       lng: number;
-//       postCode: string;
-//       info: null | string;
-//     };
-//   };
-//   Connections: {
-//     connectionType: null | string;
-//     currentType: string;
-//     level: boolean;
-//   };
-//   OperatorInfo: {
-//     eMail: infoDataType;
-//     phone: infoDataType;
-//     website: infoDataType;
-//   };
-//   StatusType: {
-//     ConnectionType: null | boolean;
-//   };
-//   UsageCost: null;
-//   UsageType: {
-//     IsAccessKeyRequired: boolean;
-//     IsMembershipRequired: boolean;
-//     IsPayAtLocation: boolean;
-//   };
-//   GeneralComments: string;
-//   NumberOfPoints: null | number;
-// }
-
-//   statusType: {
-//     ConnectionType: null | boolean;
-//   };
-//   cost: null | string;
-//   paymentOptions: {
-//     IsAccessKeyRequired: boolean;
-//     IsMembershipRequired: boolean;
-//     IsPayAtLocation: boolean;
-//   };
-//   NumberOfChargingPoints: null | number;
-// }
-
 export type ChargingPointDetails = {
-  chargingPointDetails: POIDetails;
+  chargingPointDetails: ExtendedPOIDetails;
   direction: null | google.maps.DirectionsResult;
 };
 
-export type ChargingPointAddress = {
-  title: string;
-  lat: number;
-  lng: number;
-  postCode: string;
-  info: string;
-};
-
-export type UserLocationType = undefined | Coords;
+// export type UserLocationType = undefined | Coords;
 
 export type Coords = {
   lat: number;
   lng: number;
-};
-
-export type MapProps = {
-  data: RawData[] | undefined;
 };
 
 export type BoundingBox = undefined | null | number[];
@@ -104,18 +44,28 @@ export interface GeolocationType {
   };
 }
 
-export interface PositionType {
+export interface UserPositionCoords {
   coords: {
     latitude: number;
     longitude: number;
   };
 }
 
-// UNIVERSAL TYPES
+export interface MarkerProps {
+  userLocation: Coords;
+  onSetSelectedPoint: (val: POIDetails) => void;
+  onSetDirection: (val: google.maps.DirectionsResult) => void;
+  maxResults: number;
+}
 
-export type FiltersProps = {
-  onRadiusChange: (val: number) => void;
-};
+// UNIVERSAL TYPES
+export interface MaxResults {
+  maxResults: number;
+}
+
+export interface SetMaxResults {
+  onSetDisplayedPoints: (val: number) => void;
+}
 
 export type Props = {
   children: React.ReactNode;
@@ -144,7 +94,7 @@ export type CommentActionProps = {
 
 export type ChargingPointDetailsProps = {
   chargingPointDetails: POIDetails;
-  userLocation: UserLocationType;
+  userLocation: Coords;
   selectedPoint: POIDetails;
   direction: null | google.maps.DirectionsResult;
   onShowDetails?: (val: boolean) => void;
@@ -152,7 +102,7 @@ export type ChargingPointDetailsProps = {
 
 export type ChargingPointInfoType = {
   selectedPoint: POIDetails;
-  userLocation: UserLocationType;
+  userLocation: Coords;
   onCloseClick: (val: null) => void;
   onShowDetails: (val: boolean) => void;
 };

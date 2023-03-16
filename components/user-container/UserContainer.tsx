@@ -1,5 +1,5 @@
 import useAuthContext from "@hooks/useAuthContext";
-import { Props } from "types/types";
+import { Props } from "domain/types";
 
 interface UserContainer extends Props {
   action: string;

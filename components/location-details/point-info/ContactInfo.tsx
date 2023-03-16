@@ -1,24 +1,24 @@
+import { OperatorInfo } from "domain/api-types";
 import { noInfo } from "domain/constants";
-import { ContactInfoProps } from "types/types";
 
-export default function ContactInfo({ contactInfo }: { contactInfo: ContactInfoProps }) {
-  const { eMail, phone, website } = contactInfo || noInfo;
+export default function ContactInfo({ operatorInfo }: { operatorInfo: OperatorInfo }) {
+  const { ContactEmail, PhonePrimaryContact, WebsiteURL } = operatorInfo || noInfo;
 
   return (
     <ul className="text-sm md:text-md space-y-2">
       <li>
-        <a className="underline" href={`mailto:${eMail}`}>
-          {eMail}
+        <a className="underline" href={`mailto:${ContactEmail}`}>
+          {ContactEmail}
         </a>
       </li>
       <li>
-        <a className="underline" href={`tel:${phone}`}>
-          {phone}
+        <a className="underline" href={`tel:${PhonePrimaryContact}`}>
+          {PhonePrimaryContact}
         </a>
       </li>
       <li>
-        <a className="underline" href={website}>
-          {website}
+        <a className="underline" href={WebsiteURL || ""}>
+          {WebsiteURL}
         </a>
       </li>
     </ul>

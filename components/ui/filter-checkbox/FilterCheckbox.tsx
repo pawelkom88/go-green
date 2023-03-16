@@ -1,5 +1,5 @@
 import React from "react";
-import { Props } from "types/types";
+import { Props } from "domain/types";
 
 export default function FilterCheckbox({ children }: Props) {
   return (

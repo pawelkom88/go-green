@@ -1,4 +1,4 @@
-import { Coords } from "types/types";
+import { Coords } from "domain/types";
 
 export const noInfo: string = "Not available";
 
