@@ -1,17 +1,20 @@
 import useAuthContext from "@hooks/useAuthContext";
-import { useRadius } from "@context/RadiusContext";
 import PostCodeValidation from "@features/post-code-validation/PostCodeValidation";
 import UserMenu from "@components/user-menu/UserMenu";
 import LocationIcon from "@components/ui/icons/LocationIcon";
-import NavMobile from "./NavMobile";
 import LoginModal from "@components/login-modal/LoginModal";
 import { useCurrentLocation } from "@context/UserLocationContext";
+import { SetMaxResults } from "domain/types";
+import Slider from "@components/ui/slider/Slider";
+import Filters from "@features/filters/Filters";
+import FilterIcon from "@components/ui/icons/FilterIcon";
+import Button from "@components/ui/button/Button";
+import useToggle from "@hooks/useToggle";
 
-export default function Nav() {
+export default function Nav({ onSetDisplayedPoints }: SetMaxResults) {
   const { getCurrentPosition } = useCurrentLocation();
   const { user } = useAuthContext();
-  // move down to mobile
-  const { setRadius: onRadiusChange } = useRadius();
+  const { isShown, handleOnShow } = useToggle();
 
   return (
     <>
@@ -24,7 +27,19 @@ export default function Nav() {
           <div onClick={getCurrentPosition} className="h-full ml-2 px-2">
             <LocationIcon size={25} fill="#f1b24a" />
           </div>
-          <NavMobile onRadiusChange={onRadiusChange} />
+          {/* NAV MOBILE START */}
+          <Button onClick={() => handleOnShow(!isShown)} className="lg:hidden h-full px-2">
+            <FilterIcon size={25} fill="#f1b24a" />
+          </Button>
+          <nav
+            className={`${
+              isShown ? "h-[50vh]" : "h-0"
+            } absolute top-[100%] w-full transition-all duration-300 overflow-hidden bg-primary-clr`}>
+            <Filters>
+              <Slider onSetDisplayedPoints={onSetDisplayedPoints} />
+            </Filters>
+          </nav>
+          {/* NAV MOBILE END */}
           {user ? <UserMenu /> : <LoginModal />}
         </div>
       </nav>

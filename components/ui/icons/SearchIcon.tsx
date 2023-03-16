@@ -1,6 +1,6 @@
-import { IconProps } from "types/types";
+import { IconProps } from "domain/types";
 
-export default function SearchIcon({size,fill}:IconProps) {
+export default function SearchIcon({ size, fill }: IconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

@@ -4,7 +4,7 @@ import CloseBtnIcon from "../icons/CloseBtnIcon";
 import Overlay from "@components/ui/modal/Overlay";
 import Button from "@components/ui/button/Button";
 import FocusLock from "react-focus-lock";
-import { Props } from "types/types";
+import { Props } from "domain/types";
 
 interface ModalTypes extends Props {
   callback?: (val: boolean) => void;

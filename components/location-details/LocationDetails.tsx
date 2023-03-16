@@ -5,7 +5,7 @@ import ShareIcon from "@components/ui/icons/ShareIcon";
 import Button from "@components/ui/button/Button";
 import ChargingPointInfo from "./point-info/ChargingPointInfo";
 import Toast from "@components/ui/toast/Toast";
-import { ChargingPointDetails } from "types/types";
+import { ChargingPointDetails } from "domain/types";
 import { POIDetails } from "domain/api-types";
 
 interface LocationDetailsProps extends ChargingPointDetails {
@@ -20,9 +20,9 @@ export default function LocationDetails({
   const [favourites, setFavourites] = useState<POIDetails[]>([]);
   const [addedToFavorites, setAddedToFavourites] = useState<boolean>(false);
 
-  const { distance, duration } = direction?.routes[0].legs[0] ?? {};
+  const { distance, duration } = direction?.routes[0].legs[0] || {};
 
-  const { AddressInfo } = chargingPointDetails ?? {};
+  const { AddressInfo } = chargingPointDetails || {};
 
   // use data from firebase and check if its added
   const IsAddedToFavoritesIcon = addedToFavorites ? (
@@ -62,7 +62,7 @@ export default function LocationDetails({
           <span className="py-2 px-2">Distance: {distance?.text}</span>
           <span className="py-2 px-2">Estimated Travel Time: {duration?.text}</span>
         </div>
-        <ChargingPointInfo details={chargingPointDetails}></ChargingPointInfo>
+        <ChargingPointInfo chargingPointDetails={chargingPointDetails}></ChargingPointInfo>
       </div>
       {addedToFavorites && <Toast>{AddressInfo.Title} has been added to favourites.</Toast>}
     </>

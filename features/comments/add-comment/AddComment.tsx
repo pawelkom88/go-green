@@ -3,7 +3,7 @@ import CommentBody from "@features/comments/comment-body/CommentBody";
 import Button from "@components/ui/button/Button";
 import UserContainer from "@components/user-container/UserContainer";
 import Modal from "@components/ui/modal/Modal";
-import { CollectionObject } from "types/types";
+import { CollectionObject } from "domain/types";
 import { commentBtnStyles } from "domain/constants";
 
 type AddCommentProps = {

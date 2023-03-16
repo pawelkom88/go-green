@@ -6,7 +6,7 @@ import CommentSettings from "@features/comments/comment-settings/CommentSettings
 // import DropdownMenu from "@features/comments/comment-dropdown-menu/DropdownMenu";
 import CommentRating from "@features/comments/comment-rating/CommentRating";
 // import CommentAction from "@features/comments/comment-action/CommentAction";
-import { CollectionObject } from "types/types";
+import { CollectionObject } from "domain/types";
 
 export default function CommentBody({ details }: { details: CollectionObject }) {
   const { userName, rating, id, title, content, timestamp } = details ?? [];

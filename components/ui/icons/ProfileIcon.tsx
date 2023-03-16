@@ -1,4 +1,4 @@
-import { IconProps } from "types/types";
+import { IconProps } from "domain/types";
 
 export default function ProfileIcon({ className, size, fill }: IconProps) {
   return (

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { GeolocationType, PositionType, Coords } from "types/types";
+import { GeolocationType, UserPositionCoords, Coords } from "domain/types";
 
 interface Options {
   enableHighAccuracy: boolean;
@@ -42,7 +42,7 @@ export default function useGeolocation() {
     setStatus(message);
   }
 
-  function getCoordinates(position: PositionType) {
+  function getCoordinates(position: UserPositionCoords) {
     const crd = position.coords;
 
     setCurrentLocation({

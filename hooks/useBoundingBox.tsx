@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import * as turf from "@turf/turf";
-import { Coords, BoundingBox } from "types/types";
+import { Coords, BoundingBox } from "domain/types";
 
 export default function useBoundingBox(currentLocation: Coords | undefined, radius: number) {
   const [boundingBoxPolygon, setBoundingBoxPolygon] = useState<BoundingBox>(null);

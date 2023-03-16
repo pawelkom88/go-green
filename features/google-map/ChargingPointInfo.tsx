@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "@components/ui/button/Button";
 import { InfoWindow } from "@react-google-maps/api";
-import { ChargingPointInfoType, Coords } from "types/types";
+import { ChargingPointInfoType, Coords } from "domain/types";
 import { handleLocation } from "@helpers/helpers";
 
 export default function ChargingPointInfo({
@@ -10,15 +10,14 @@ export default function ChargingPointInfo({
   onCloseClick,
   onShowDetails,
 }: ChargingPointInfoType) {
-  
-  const chargingPoint: Coords = {
-    lat: selectedPoint?.AddressInfo.address.lat,
-    lng: selectedPoint?.AddressInfo.address.lng,
+  const chargingPointCoords: Coords = {
+    lat: selectedPoint?.AddressInfo.Latitude,
+    lng: selectedPoint?.AddressInfo.Longitude,
   };
-  
-  const directionLink: string = handleLocation(userLocation, chargingPoint) ?? "";
 
-  handleLocation(userLocation, chargingPoint);
+  const directionLink: string = handleLocation(userLocation, chargingPointCoords) || "";
+
+  handleLocation(userLocation, chargingPointCoords);
 
   return (
     <InfoWindow
@@ -26,10 +25,10 @@ export default function ChargingPointInfo({
         onCloseClick(null);
         () => onShowDetails(false);
       }}
-      position={chargingPoint}>
+      position={chargingPointCoords}>
       <div className="w-full mx-auto text-primary-clr text-center p-4 flex flex-col">
-        <h3 className="font-bold text-lg my-2">{selectedPoint.AddressInfo.address.title}</h3>
-        <span>{selectedPoint.AddressInfo.address.postCode}</span>
+        <h3 className="font-bold text-lg my-2">{selectedPoint.AddressInfo.Title}</h3>
+        <span>{selectedPoint.AddressInfo.Postcode}</span>
         <div className="flex justify-evenly">
           <Button
             onClick={() => onShowDetails(true)}

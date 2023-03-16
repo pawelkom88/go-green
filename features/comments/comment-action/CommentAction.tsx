@@ -6,7 +6,7 @@ import Input from "@components/ui/input-field/Input";
 import { setDoc, doc, serverTimestamp } from "firebase/firestore";
 import { db } from "@lib/config";
 import { v4 as uuidv4 } from "uuid";
-import { CommentActionProps } from "types/types";
+import { CommentActionProps } from "domain/types";
 import { commentBtnStyles, disabledBtnStyles } from "domain/constants";
 
 export default function CommentAction({

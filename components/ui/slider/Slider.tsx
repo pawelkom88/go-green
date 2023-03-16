@@ -1,11 +1,11 @@
-import { FiltersProps } from "types/types";
+import { SetMaxResults } from "domain/types";
 import Input from "../input-field/Input";
 
-export default function Slider({ onRadiusChange }: FiltersProps) {
+export default function Slider({ onSetDisplayedPoints }: SetMaxResults) {
   return (
     <fieldset className="my-6 sm:w-60 text-white">
       <Input
-        onChange={onRadiusChange}
+        onChange={(e: Event) => onSetDisplayedPoints(+(e.target as HTMLInputElement).value)}
         type="range"
         className="w-full accent-secondary-clr"
         min="1"
@@ -13,7 +13,9 @@ export default function Slider({ onRadiusChange }: FiltersProps) {
         srOnly={true}
         name="range"
         id="range"
-        required={false}>
+        required={false}
+        // value={maxResults}
+      >
         range input
       </Input>
       <div aria-hidden="true" className="flex justify-between px-1">

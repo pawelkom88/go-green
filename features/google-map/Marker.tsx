@@ -1,72 +1,62 @@
 import useBoundingBox from "@hooks/useBoundingBox";
 import useFetch from "@hooks/useFetch";
 import useDebounce from "@hooks/useDebounce";
-import { useRadius } from "@context/RadiusContext";
 import { useState } from "react";
 import { MarkerF } from "@react-google-maps/api";
-import { BoundingBox, UserLocationType, Coords, MapProps } from "types/types";
+import { BoundingBox, MarkerProps } from "domain/types";
 import Modal from "@components/ui/modal/Modal";
 import Spinner from "@components/ui/spinner/Spinner";
-import { POIDetails } from "domain/api-types";
-
-interface MarkerProps extends MapProps {
-  userLocation: UserLocationType;
-  onSetSelectedPoint: (val: POIDetails) => void;
-  onSetDirection: (val: google.maps.DirectionsResult) => void;
-}
 
 export default function Marker({
-  // data,
   onSetSelectedPoint,
   onSetDirection,
   userLocation,
+  maxResults,
 }: MarkerProps) {
   const [status, setStatus] = useState<string>("");
-  const { radius } = useRadius();
-  const { boundingBoxPolygon } = useBoundingBox(userLocation, radius);
+  const { boundingBoxPolygon } = useBoundingBox(userLocation, maxResults);
   const debouncedValue: BoundingBox = useDebounce(boundingBoxPolygon, 1500);
   const { data, loading, error } = useFetch(debouncedValue);
 
-  function fetchDirections(chargingPoint: TYPE) {
+  function fetchDirections({ lat, lng }: google.maps.LatLngLiteral) {
     if (!userLocation) return;
 
-    const { Latitude, Longitude } = chargingPoint;
-
     const service = new google.maps.DirectionsService();
-    const request = {
-      origin: { Latitude, Longitude },
+    const request: google.maps.DirectionsRequest = {
+      origin: { lat, lng },
       destination: userLocation,
       travelMode: google.maps.TravelMode.DRIVING,
     };
 
-    service.route(request, function getResults(result, status) {
-      if (status === "OK" && result) {
-        onSetDirection(result);
-      } else {
-        setStatus("Directions request failed due to " + status);
+    service.route(
+      request,
+      function getResults(
+        result: google.maps.DirectionsResult | null,
+        status: google.maps.DirectionsStatus
+      ): void {
+        if (status === "OK" && result) {
+          onSetDirection(result);
+        } else {
+          setStatus("Directions request failed due to " + status);
+        }
       }
-    });
+    );
   }
 
   if (data) {
     return (
       <>
         {data.map(chargingPoint => {
-          const { Latitude, Longitude } = chargingPoint;
-
-          // investigate why undefined
-          console.log(Latitude, Longitude);
+          const { Latitude: lat, Longitude: lng } = chargingPoint.AddressInfo;
 
           return (
             <MarkerF
               key={chargingPoint.ID}
               icon={"/assets/charger-station.svg"}
-              // TO BE FIXED - check docs what position takes in
-              position={{ Latitude, Longitude }}
-              // TO BE FIXED
+              position={{ lat, lng }}
               onClick={() => {
                 onSetSelectedPoint(chargingPoint);
-                fetchDirections(chargingPoint.AddressInfo);
+                fetchDirections({ lat, lng });
               }}
             />
           );

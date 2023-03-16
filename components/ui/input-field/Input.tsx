@@ -1,4 +1,4 @@
-import { Props } from "types/types";
+import { Props } from "domain/types";
 
 interface InputProps extends Props {
   onChange: any;

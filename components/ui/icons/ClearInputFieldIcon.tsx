@@ -1,4 +1,4 @@
-import { IconProps } from "types/types";
+import { IconProps } from "domain/types";
 
 export default function ClearInputFieldIcon({ size, className }: IconProps) {
   return (

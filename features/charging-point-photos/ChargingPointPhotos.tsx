@@ -4,7 +4,7 @@ import DragAndDrop from "@components/ui/drag&drop/DragAndDrop";
 import Modal from "@components/ui/modal/Modal";
 import UserContainer from "@components/user-container/UserContainer";
 import { FileUploader } from "react-drag-drop-files";
-import { uploadType } from "types/types";
+import { uploadType } from "domain/types";
 
 const fileTypes = ["JPG", "PNG"];
 
