@@ -83,7 +83,7 @@ export interface ChargingPointDetailsProps extends ChargingPointDetails {
   onShowDetails?: (val: boolean) => void;
 }
 
-export type ChargingPointInfo = {
+export type ChargingPointInfoProps = {
   selectedPoint: POIDetails;
   userLocation: Coords;
   onCloseClick: (val: null) => void;
