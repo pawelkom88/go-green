@@ -5,17 +5,14 @@ import AddComment from "./add-comment/AddComment";
 export default function Comment({ selectedPointId }: { selectedPointId: number }) {
   const { isShown: addComment, handleOnShow: setAddComment } = useToggle();
 
+  const openAddCommentModal = addComment && (
+    <CommentAction idRequired={false} selectedPointId={selectedPointId} onModalClose={setAddComment} />
+  );
+
   return (
     <>
       <AddComment onAddComment={setAddComment} selectedPointId={selectedPointId} />
-
-      {addComment && (
-        <CommentAction
-          idRequired={false}
-          selectedPointId={selectedPointId}
-          callback={setAddComment}
-        />
-      )}
+      {openAddCommentModal}
     </>
   );
 }

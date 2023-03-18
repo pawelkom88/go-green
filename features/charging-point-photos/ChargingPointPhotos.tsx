@@ -1,18 +1,24 @@
 import { useState } from "react";
 import useToggle from "@hooks/useToggle";
 import DragAndDrop from "@components/ui/drag&drop/DragAndDrop";
-import Modal from "@components/ui/modal/Modal";
+import Modal from "@components/modal/Modal";
 import UserContainer from "@components/user-container/UserContainer";
 import { FileUploader } from "react-drag-drop-files";
-import { uploadType } from "domain/types";
+import { PhotoUpload } from "domain/types";
 
 const fileTypes = ["JPG", "PNG"];
 
 export default function ChargingPointPhotos() {
-  const [file, setFile] = useState<uploadType>();
+  const [file, setFile] = useState<PhotoUpload>();
   const { isShown: sizeError, handleOnShow: setSizeError } = useToggle();
 
-  function handleUpload(file: uploadType) {
+  const uploadErrorMsg = sizeError && (
+    <Modal size="flex-center h-[300]" onModalClose={() => setSizeError(false)}>
+      The file you are trying to upload is too large.
+    </Modal>
+  );
+
+  function handleUpload(file: PhotoUpload): void {
     setFile(file);
   }
   // message if it was successfully uploaded or not
@@ -29,15 +35,10 @@ export default function ChargingPointPhotos() {
             maxSize={1}>
             <DragAndDrop />
           </FileUploader>
-          <div className="mt-8">{file && file?.name}</div>
+          <div className="mt-8">{file?.name}</div>
         </UserContainer>
       </div>
-
-      {sizeError && (
-        <Modal size="flex-center h-[300]" callback={() => setSizeError(false)}>
-          The file you are trying to upload is too large.
-        </Modal>
-      )}
+      {uploadErrorMsg}
     </>
   );
 }

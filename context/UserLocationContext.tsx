@@ -3,11 +3,11 @@ import useGeolocation from "@hooks/useGeolocation";
 import { Props, Coords } from "domain/types";
 import { londonCoords } from "domain/constants";
 
-type LocationContextType = {
+interface LocationContextType {
   currentLocation: Coords;
   getCurrentPosition: () => void;
   status: string;
-};
+}
 
 const LocationContext = createContext<LocationContextType | null>(null);
 

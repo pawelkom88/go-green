@@ -1,21 +1,15 @@
 import React, { useState } from "react";
-// import hadleKeyPress from "helpers/helpers";
-import CloseBtnIcon from "../icons/CloseBtnIcon";
-import Overlay from "@components/ui/modal/Overlay";
-import Button from "@components/ui/button/Button";
+import CloseBtnIcon from "../ui/icons/CloseBtnIcon";
+import Overlay from "@components/modal/Overlay";
+import Button from "@components/button/Button";
 import FocusLock from "react-focus-lock";
-import { Props } from "domain/types";
+import { ModalTypes } from "domain/types";
 
-interface ModalTypes extends Props {
-  callback?: (val: boolean) => void;
-  size: string;
-}
-
-export default function Modal({ children, callback, size }: ModalTypes) {
+export default function Modal({ children, onModalClose, size }: ModalTypes) {
   const [isOpen, setIsopen] = useState(true);
 
   function closeModal() {
-    callback?.(false);
+    onModalClose?.(false);
     setIsopen(false);
   }
 

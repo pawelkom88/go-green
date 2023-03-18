@@ -1,16 +1,19 @@
 import useToggle from "@hooks/useToggle";
 import Dots from "@components/ui/icons/Dots";
-import Button from "@components/ui/button/Button";
+import Button from "@components/button/Button";
 import CommentAction from "@features/comments/comment-action/CommentAction";
+import { CommentSettingsProsp } from "domain/types";
 
-type CommentSettingsProsp = {
-  commentId: string | undefined;
-  isShown: boolean;
-  onClose: (val: boolean) => void;
-};
-
-export default function CommentSettings({ commentId, isShown, onClose }: CommentSettingsProsp) {
+export default function CommentSettings({
+  commentId,
+  showCommentSettings,
+  handleCommentSettings,
+}: CommentSettingsProsp) {
   const { isShown: editComment, handleOnShow: setEditComment } = useToggle();
+
+  const openCommentEditModal = editComment && (
+    <CommentAction commentId={commentId} onModalClose={setEditComment} idRequired={true} />
+  );
 
   function handleCommentRemove() {
     console.log("remove");
@@ -19,36 +22,37 @@ export default function CommentSettings({ commentId, isShown, onClose }: Comment
   return (
     <>
       <Button
-        onClick={() => onClose(!isShown)}
+        onClick={() => handleCommentSettings(!showCommentSettings)}
         className="inline-flex items-center p-2 text-sm font-medium text-center text-gray-400 bg-gray-100 rounded-lg hover:bg-primary-clr"
         type="button">
         <Dots size={25} fill="#f1b24a" />
         <span className="sr-only">Comment settings</span>
       </Button>
-      {isShown && (
+      {showCommentSettings && (
         <div className="absolute top-14 -right-8 z-10 w-36 bg-slate-50 rounded divide-y shadow ">
           <ul
             className="text-sm text-dark-text-clr border border-primary-clr rounded-lg"
             aria-labelledby="dropdownMenuIconHorizontalButton">
-            <li
-              onClick={() => {
-                setEditComment(true), onClose(false);
-              }}
-              className="block py-2 px-4 hover:bg-primary-clr  dark:hover:text-secondary-clr cursor-pointer">
-              Edit
+            <li>
+              <Button
+                onClick={() => {
+                  setEditComment(true), handleCommentSettings(false);
+                }}
+                className="w-full block py-2 px-4 hover:bg-primary-clr  dark:hover:text-secondary-clr cursor-pointer">
+                Edit
+              </Button>
             </li>
-            <li
-              onClick={handleCommentRemove}
-              className="block py-2 px-4 hover:bg-primary-clr  dark:hover:text-secondary-clr cursor-pointer">
-              Remove
+            <li>
+              <Button
+                onClick={handleCommentRemove}
+                className="w-full first-letter:first-line:block py-2 px-4 hover:bg-primary-clr  dark:hover:text-secondary-clr cursor-pointer">
+                Remove
+              </Button>
             </li>
           </ul>
         </div>
       )}
-
-      {editComment && (
-        <CommentAction commentId={commentId} callback={setEditComment} idRequired={true} />
-      )}
+      {openCommentEditModal}
     </>
   );
 }

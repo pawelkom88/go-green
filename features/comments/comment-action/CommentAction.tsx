@@ -1,16 +1,16 @@
 import { useState, useRef } from "react";
-import Button from "@components/ui/button/Button";
-import Modal from "@components/ui/modal/Modal";
+import Button from "@components/button/Button";
+import Modal from "@components/modal/Modal";
 import SetCommentRating from "@features/comments/set-comment-rating/SetCommentRating";
 import Input from "@components/ui/input-field/Input";
 import { setDoc, doc, serverTimestamp } from "firebase/firestore";
 import { db } from "@lib/config";
 import { v4 as uuidv4 } from "uuid";
-import { CommentActionProps } from "domain/types";
+import { CommentActionProps, UserComment } from "domain/types";
 import { commentBtnStyles, disabledBtnStyles } from "domain/constants";
 
 export default function CommentAction({
-  callback,
+  onModalClose,
   idRequired = false,
   commentId,
   selectedPointId,
@@ -27,7 +27,9 @@ export default function CommentAction({
   async function handleSubmit(e: any) {
     e.preventDefault();
 
-    const commentData = {
+    onModalClose(false);
+    
+    const userComment: UserComment = {
       userName: "logged in user name / change",
       title,
       rating: numberOfStars,
@@ -36,17 +38,16 @@ export default function CommentAction({
     };
 
     if (idRequired) {
-      await setDoc(doc(db, "comments", commentId as string), commentData);
+      await setDoc(doc(db, "comments", commentId as string), userComment);
     } else {
-      await setDoc(doc(db, "comments", `${selectedPointId + uuidv4()}`), commentData);
+      await setDoc(doc(db, "comments", `${selectedPointId + uuidv4()}`), userComment);
     }
 
-    callback(false);
     // add toast
   }
 
   return (
-    <Modal size="w-full min-h-[400px] flex-center" callback={() => callback(false)}>
+    <Modal size="w-full min-h-[400px] flex-center" onModalClose={onModalClose}>
       <form onSubmit={handleSubmit} className="flex flex-col">
         <span>How do you rate this point ?</span>
         <div className="flex my-4">

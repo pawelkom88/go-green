@@ -1,12 +1,18 @@
-import Button from "@components/ui/button/Button";
+import Button from "@components/button/Button";
 import ProfileIcon from "@components/ui/icons/ProfileIcon";
 import SignOutIcon from "@components/ui/icons/SignOutIcon";
-import Modal from "@components/ui/modal/Modal";
+import Modal from "@components/modal/Modal";
 import UserProfile from "@features/user-profile/UserProfile";
 import useToggle from "@hooks/useToggle";
 
 export default function UserMenuOptions() {
   const { isShown, handleOnShow } = useToggle();
+
+  const showUserProfile = isShown && (
+    <Modal size="w-full h-3/4" onModalClose={() => handleOnShow(false)}>
+      <UserProfile />
+    </Modal>
+  );
 
   function signOut() {
     console.log("asd");
@@ -28,11 +34,7 @@ export default function UserMenuOptions() {
           </Button>
         </li>
       </ul>
-      {isShown && (
-        <Modal size="w-full h-3/4" callback={() => handleOnShow(false)}>
-          <UserProfile />
-        </Modal>
-      )}
+      {showUserProfile}
     </>
   );
 }

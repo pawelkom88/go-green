@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Button from "@components/ui/button/Button";
+import Button from "@components/button/Button";
 import Input from "@components/ui/input-field/Input";
 import ShowPasswordIcon from "@components/ui/icons/ShowPasswordIcon";
 import HidePasswordIcon from "@components/ui/icons/HidePasswordIcon";
@@ -22,6 +22,12 @@ export default function Form({ children, action, onSubmit }: FormProps) {
       [name]: value,
     });
   }
+
+  const isPasswordVisible = showPassword ? (
+    <HidePasswordIcon className="absolute top-[.4rem] right-[.2rem] z-50" size={20} />
+  ) : (
+    <ShowPasswordIcon size={28} />
+  );
 
   return (
     <form onSubmit={onSubmit} className="relative space-y-6">
@@ -55,11 +61,7 @@ export default function Form({ children, action, onSubmit }: FormProps) {
         <Button
           className="absolute top-[1.6rem] right-[.9rem] z-50"
           onClick={() => setShowPassword(!showPassword)}>
-          {showPassword ? (
-            <HidePasswordIcon className="absolute top-[.4rem] right-[.2rem] z-50" size={20} />
-          ) : (
-            <ShowPasswordIcon size={28} />
-          )}
+          {isPasswordVisible}
         </Button>
         {userDetails.password.length > 0 && (
           <Button onClick={() => setUserDetails({ ...userDetails, password: "" })}>

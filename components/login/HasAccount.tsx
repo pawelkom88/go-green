@@ -1,4 +1,4 @@
-import Button from "@components/ui/button/Button";
+import Button from "@components/button/Button";
 import { HasAccountProps } from "domain/types";
 
 export default function HasAccount({ children, action, onLogin }: HasAccountProps) {

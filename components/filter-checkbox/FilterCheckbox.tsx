@@ -3,8 +3,8 @@ import { Props } from "domain/types";
 
 export default function FilterCheckbox({ children }: Props) {
   return (
-    <div className="m-1">
-      <label htmlFor="filter" className="flex-center cursor-pointer">
+    <div className="w-full m-1">
+      <label htmlFor="filter" className="flex items-center justify-between cursor-pointer">
         <span className="label-text mr-2">{children}</span>
         <input
           id="filter"

@@ -1,13 +1,4 @@
-import { Props } from "domain/types";
-import React from "react";
-
-interface ButtonType extends Props {
-  className?: string;
-  title?: string;
-  type?: "submit" | "button";
-  disabled?: boolean;
-  onClick?: () => void | (() => boolean);
-}
+import { ButtonType } from "domain/types";
 
 export default function Button({
   children,

@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "@components/ui/button/Button";
+import Button from "@components/button/Button";
 import { InfoWindow } from "@react-google-maps/api";
 import { ChargingPointInfoProps, Coords } from "domain/types";
 import { handleLocation } from "@helpers/helpers";

@@ -1,3 +1,4 @@
+import { MutableRefObject } from "react";
 import { Props } from "domain/types";
 
 interface InputProps extends Props {

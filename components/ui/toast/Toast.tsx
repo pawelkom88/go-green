@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Props } from "domain/types";
-import Button from "../button/Button";
+import Button from "../../button/Button";
 
 export default function Toast({ children }: Props) {
   const [openToast, setOpenToast] = useState(true);

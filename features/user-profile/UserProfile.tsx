@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Button from "@components/ui/button/Button";
+import Button from "@components/button/Button";
 import { btnUserProfileStyles } from "domain/constants";
 import UserData from "./UserData";
 

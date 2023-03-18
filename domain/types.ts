@@ -1,6 +1,6 @@
 import { ExtendedPOIDetails } from "domain/api-types";
 import { POIDetails } from "./api-types";
-import { Timestamp } from "@firebase/firestore-types";
+import { Timestamp, FieldValue } from "@firebase/firestore-types";
 import { Dispatch } from "react";
 import {
   Auth,
@@ -11,13 +11,13 @@ import {
   sendPasswordResetEmail,
 } from "firebase/auth";
 
-export type Coords = {
+export interface Coords {
   lat: number;
   lng: number;
-};
+}
 
 // USE GEOLOCATION HOOK TYPES
-export interface GeolocationType {
+export interface LocationError {
   code: number;
   message: string;
   info?: {
@@ -31,46 +31,98 @@ export interface UserPositionCoords {
     longitude: number;
   };
 }
+export type MaxResult = number;
+
+export interface SliderProps {
+  id: number;
+  label: string;
+  min: string;
+  max: string;
+  onChange?: (val: string) => void;
+  value: string;
+}
 
 export interface MarkerProps {
   userLocation: Coords;
   onSetSelectedPoint: (val: ExtendedPOIDetails) => void;
   onSetDirection: (val: google.maps.DirectionsResult) => void;
-  maxResults: number;
+  maxResults: MaxResult;
+}
+
+export interface HasAccountProps extends Props {
+  action: string;
+  onLogin: () => void;
+}
+
+export interface LocationDetailsProps extends ChargingPointDetails {
+  onCopy: () => void;
+}
+
+export interface ButtonType extends Props {
+  className?: string;
+  title?: string;
+  type?: "submit" | "button";
+  disabled?: boolean;
+  onClick?: () => void | (() => boolean);
 }
 
 export interface MaxResults {
-  maxResults: number;
+  maxResults: MaxResult;
+  onSetNumberOfFetchedPOI: (val: number) => void;
 }
 
-export interface SetMaxResults {
-  onSetDisplayedPoints: (val: number) => void;
+export interface ModalTypes extends Props {
+  onModalClose?: (val: boolean) => void;
+  size: string;
 }
 
-export type Props = {
+export interface Props {
   children: React.ReactNode;
-};
+}
 
-export type IconProps = {
+export interface IconProps {
   className?: string;
   size: number;
   fill?: string;
-};
+}
 
-export type uploadType = {
+export interface OverlayType extends Props {
+  onClose: () => void;
+}
+
+export interface PhotoUpload {
   lastModified: number;
   name: string;
   size: number;
   type: string;
   webkitRelativePath: string;
-};
+}
+
+export interface AddCommentProps {
+  onAddComment: (val: boolean) => void;
+  selectedPointId: number;
+}
+
+export interface CommentSettingsProsp {
+  commentId: string | undefined;
+  showCommentSettings: boolean;
+  handleCommentSettings: (val: boolean) => void;
+}
 
 export type CommentActionProps = {
   commentId?: string;
   idRequired: boolean;
-  callback: (val: boolean) => void;
+  onModalClose: (val: boolean) => void;
   selectedPointId?: number;
 };
+
+export interface UserComment {
+  userName: string;
+  title: string;
+  rating: number;
+  content: string | undefined;
+  timestamp: FieldValue;
+}
 
 export type ChargingPointDetails = {
   chargingPointDetails: ExtendedPOIDetails;
@@ -116,7 +168,7 @@ export interface ContactInfoProps {
   website: string;
 }
 
-export interface CollectionObject {
+export interface Comment {
   id?: string;
   content: string;
   rating: number;
@@ -126,8 +178,3 @@ export interface CollectionObject {
 }
 
 // LOGIN - SIGNUP TYPES
-
-export interface HasAccountProps extends Props {
-  action: string;
-  onLogin: () => void;
-}
