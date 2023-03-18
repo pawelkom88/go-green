@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { ExtendedPOIDetails } from "domain/api-types";
 
-export default function useFetch(query: number[]) {
+export default function useFetch(query: number[], debouncedMaxResults: number) {
+
   const [data, setData] = useState<ExtendedPOIDetails[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<null | string>(null);
@@ -20,7 +21,7 @@ export default function useFetch(query: number[]) {
 
       try {
         if (query) {
-          const url = `/.netlify/functions/token-hider?bbox=(${lat1},${lng1}),(${lat2},${lng2})`;
+          const url = `/.netlify/functions/token-hider?output=json&maxresults=${debouncedMaxResults}&bbox=(${lat1},${lng1}),(${lat2},${lng2}) `;
 
           const response = await fetch(url, signal);
 
@@ -42,7 +43,7 @@ export default function useFetch(query: number[]) {
     })();
 
     return () => controller.abort("cancel request");
-  }, [lat1, lng1, lat2, lng2]);
+  }, [lat1, lng1, lat2, lng2, debouncedMaxResults]);
 
   return { data, loading, error };
 }

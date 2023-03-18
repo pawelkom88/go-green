@@ -1,4 +1,4 @@
-import { Coords } from "domain/types";
+import { Coords, SliderProps } from "domain/types";
 
 export const noInfo: string = "Not available";
 
@@ -44,8 +44,7 @@ export const commentBtnStyles: ButtonStyles =
 
 export const disabledBtnStyles: ButtonStyles = "bg-gray-200 py-2 px-4 text-black font-bold text-sm";
 
-export const FiltersBtnStyles =
-  "w-full h-12 font-bold uppercase py-2 border-2 border-primary-clr hover:bg-secondary-clr";
+export const FiltersBtnStyles = "w-36 h-12 font-bold uppercase py-2 hover:bg-secondary-clr";
 
 export const btnUserProfileStyles: ButtonStyles =
   "inline-flex items-center px-4 py-2 text-sm font-medium text-center text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-700 dark:focus:ring-gray-700";
@@ -72,4 +71,21 @@ export const socketTypeImages: SocketTypeImages[] = [
     socketType: "x",
     src: "/assets/connectors/chademo.webp",
   },
+];
+
+interface ConnectorTypes {
+  id: number;
+  value: string;
+  type: string;
+}
+
+export const connectorTypes: ConnectorTypes[] = [
+  { id: 1, value: "1", type: "Type 1" },
+  { id: 2, value: "", type: "Type2" },
+  { id: 3, value: "3", type: "Type 3" },
+];
+
+export const sliderProps: SliderProps[] = [
+  { id: 1, label: "Number of charging point on the map", min: "10", max: "200", value: "1" },
+  { id: 2, label: "Distance in miles", min: "1", max: "100", value: "1" },
 ];

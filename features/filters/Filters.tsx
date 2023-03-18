@@ -1,35 +1,36 @@
-import FilterCheckbox from "@components/ui/filter-checkbox/FilterCheckbox";
-import Button from "@components/ui/button/Button";
+import FilterCheckbox from "@components/filter-checkbox/FilterCheckbox";
+import Button from "@components/button/Button";
 import FilterIcon from "@components/ui/icons/FilterIcon";
 import { Props } from "domain/types";
 import { FiltersBtnStyles } from "domain/constants";
 
-export default function Filters({ children }: Props) {
-  function someHandler() {
+export default function Filters({ children, onSubmit }: Props) {
+  function resetFilters() {
     console.log("handler");
   }
 
   return (
-    <div className="absolute w-full h-full bg-primary-clr z-40 flex-center border-b-4 border-b-teriary-clr lg:border-0">
-      <form className="lg:h-full w-full flex-center flex-col">
+    <div className="w-full h-full flex-center">
+      <form onSubmit={onSubmit} className="lg:h-full w-full flex-center flex-col">
         <div className="flex-center gap-2">
           <h2 className="text-2xl font-bold my-4 mr-2 uppercase">Filters</h2>
           <FilterIcon size={35} fill="#f1b24a" />
         </div>
-        <FilterCheckbox>1</FilterCheckbox>
-        <br />
-        <FilterCheckbox>2</FilterCheckbox>
-        <br />
-        <FilterCheckbox>3</FilterCheckbox>
-        <br />
+
+        <div className="flex flex-col items-start gap-2">
+          <FilterCheckbox>Membership required ?</FilterCheckbox>
+          <br />
+          <FilterCheckbox>closest one ?</FilterCheckbox>
+          <br />
+          <FilterCheckbox>33333333</FilterCheckbox>
+          <br />
+        </div>
         {children}
-        <div className="w-3/4 flex-center px-1">
-          <Button
-            onClick={someHandler}
-            className={`${FiltersBtnStyles} bg-white text-black  hover:bg-secondary-clr`}>
+        <div className="flex-center gap-2">
+          <Button type="submit" className={`${FiltersBtnStyles} bg-primary-clr text-white`}>
             Apply
           </Button>
-          <Button onClick={someHandler} className={`${FiltersBtnStyles} bg-teriary-clr`}>
+          <Button onClick={resetFilters} className={`${FiltersBtnStyles} bg-teriary-clr `}>
             Clear All
           </Button>
         </div>

@@ -1,25 +1,23 @@
 import { useState } from "react";
 import { useCurrentLocation } from "@context/UserLocationContext";
-
-// components
 import MobileMenu from "@components/mobile-menu/MobileMenu";
-import Sidebar from "@components/sidebar/Sidebar";
 import Nav from "@components/navigation/Nav";
 import Map from "@components/map/Map";
-import Modal from "@components/ui/modal/Modal";
-
-//error boundry
+import Modal from "@components/modal/Modal";
 import { ErrorBoundary } from "react-error-boundary";
 import ErrorFallback from "@components/error-boundries/ErrorFallback";
 
 export default function Home() {
   const { currentLocation, getCurrentPosition, status } = useCurrentLocation();
 
-  const [maxResults, setMaxResults] = useState<number>(2);
+  const [maxResults, setMaxResults] = useState<number>(100);
+  const [filters, setFilters] = useState<number>(0);
 
-  function setNumberOfDisplayedPoints(value: number): void {
-    setMaxResults(value);
-  }
+  function handleFilters() {}
+
+  // function setNumberOfFetchedPOI(numberOfPOI: number): void {
+  //   setMaxResults(numberOfPOI);
+  // }
 
   return (
     <ErrorBoundary
@@ -27,10 +25,9 @@ export default function Home() {
       onReset={() => getCurrentPosition()}
       resetKeys={[currentLocation]}>
       <div className="w-full bg-primary-clr">
-        <Sidebar onSetDisplayedPoints={setNumberOfDisplayedPoints} />
         <main className="w-full">
-          <Nav onSetDisplayedPoints={setNumberOfDisplayedPoints} />
-          <Map maxResults={maxResults} />
+          <Nav onHandleFilters={handleFilters} />
+          <Map filters={filters} />
           <MobileMenu />
         </main>
       </div>

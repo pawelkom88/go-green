@@ -1,46 +1,54 @@
 import useAuthContext from "@hooks/useAuthContext";
-import PostCodeValidation from "@features/post-code-validation/PostCodeValidation";
+import { useState } from "react";
 import UserMenu from "@components/user-menu/UserMenu";
 import LocationIcon from "@components/ui/icons/LocationIcon";
 import LoginModal from "@components/login-modal/LoginModal";
 import { useCurrentLocation } from "@context/UserLocationContext";
-import { SetMaxResults } from "domain/types";
-import Slider from "@components/ui/slider/Slider";
+import Slider from "@components/slider/Slider";
 import Filters from "@features/filters/Filters";
 import FilterIcon from "@components/ui/icons/FilterIcon";
-import Button from "@components/ui/button/Button";
+import Button from "@components/button/Button";
 import useToggle from "@hooks/useToggle";
+import FiltersSelect from "@components/filters-select/FiltersSelect";
+import Modal from "@components/modal/Modal";
+import { sliderProps } from "domain/constants";
 
-export default function Nav({ onSetDisplayedPoints }: SetMaxResults) {
+export default function Nav({ onHandleFilters }) {
+  const [filters, setFilters] = useState({});
   const { getCurrentPosition } = useCurrentLocation();
   const { user } = useAuthContext();
   const { isShown, handleOnShow } = useToggle();
 
+  // onHandleFilters
+
+  const IsUserLoggedIn = user ? <UserMenu /> : <LoginModal />;
+
+  const showModalWithFilters = isShown && (
+    <Modal size="w-full h-full md:h-3/4 flex-center flex-col gap-2">
+      <Filters onSubmit={setFilters}>
+        <FiltersSelect />
+        {sliderProps.map(props => {
+          return <Slider key={props.id} props={props} onChange={setFilters} />;
+        })}
+      </Filters>
+    </Modal>
+  );
+
   return (
     <>
       <nav className="h-max relative py-2 z-10">
-        <div className="h-full flex justify-evenly lg:justify-center items-center flex-wrap lg:pr-4 lg:ml-24 gap-2">
-          <h1 className="text-md sm:text-md xl:text-xl text-secondary-clr tracking-wide uppercase font-bold md:mr-6 py-2">
+        <div className="h-full flex justify-center items-center flex-wrap md:ml-4 gap-2">
+          <h1 className="text-sm sm:text-md xl:text-xl text-secondary-clr tracking-wide uppercase font-bold py-2 md:grow">
             Find the nearest charging point
           </h1>
-          <PostCodeValidation />
-          <div onClick={getCurrentPosition} className="h-full ml-2 px-2">
+          <Button onClick={getCurrentPosition} className="h-full mx-2 md:px-2">
             <LocationIcon size={25} fill="#f1b24a" />
-          </div>
-          {/* NAV MOBILE START */}
-          <Button onClick={() => handleOnShow(!isShown)} className="lg:hidden h-full px-2">
+          </Button>
+          <Button onClick={() => handleOnShow(!isShown)} className=" h-full md:px-2 md:mr-8">
             <FilterIcon size={25} fill="#f1b24a" />
           </Button>
-          <nav
-            className={`${
-              isShown ? "h-[50vh]" : "h-0"
-            } absolute top-[100%] w-full transition-all duration-300 overflow-hidden bg-primary-clr`}>
-            <Filters>
-              <Slider onSetDisplayedPoints={onSetDisplayedPoints} />
-            </Filters>
-          </nav>
-          {/* NAV MOBILE END */}
-          {user ? <UserMenu /> : <LoginModal />}
+          {showModalWithFilters}
+          {IsUserLoggedIn}
         </div>
       </nav>
     </>

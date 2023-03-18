@@ -2,15 +2,11 @@ import { useState } from "react";
 import AddedToFavouritesIcon from "@components/ui/icons/AddedToFavouritesIcon";
 import AddToFavouritesIcon from "@components/ui/icons/AddToFavouritesIcon";
 import ShareIcon from "@components/ui/icons/ShareIcon";
-import Button from "@components/ui/button/Button";
+import Button from "@components/button/Button";
 import ChargingPointInfo from "./point-info/ChargingPointInfo";
 import Toast from "@components/ui/toast/Toast";
-import { ChargingPointDetails } from "domain/types";
+import { LocationDetailsProps } from "domain/types";
 import { POIDetails } from "domain/api-types";
-
-interface LocationDetailsProps extends ChargingPointDetails {
-  onCopy: () => void;
-}
 
 export default function LocationDetails({
   onCopy,

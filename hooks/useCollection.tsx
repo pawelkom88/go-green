@@ -2,10 +2,10 @@ import { useState, useEffect } from "react";
 import { db } from "@lib/config";
 import { collection, onSnapshot } from "firebase/firestore";
 import { FirebaseError } from "@firebase/util";
-import { CollectionObject } from "domain/types";
+import { Comment } from "domain/types";
 
 export default function useCollection(col: string) {
-  const [data, setData] = useState<null | CollectionObject[]>(null);
+  const [data, setData] = useState<null | Comment[]>(null);
   const [error, setError] = useState<null | string>(null);
 
   useEffect(() => {
@@ -14,7 +14,7 @@ export default function useCollection(col: string) {
 
     // realtime listener that takes as arguments reference and function that is invoked every time data is changed
     const unsubscribe = onSnapshot(ref, snapshot => {
-      let comments: CollectionObject[] = [];
+      let comments: Comment[] = [];
       snapshot.docs.forEach(
         doc => {
           // create new object and add it to comments array

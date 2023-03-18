@@ -1,23 +1,20 @@
-import { useState } from "react";
 import useToggle from "@hooks/useToggle";
 import useClickOutside from "@hooks/useClickOutside";
 import Image from "next/image";
 import CommentSettings from "@features/comments/comment-settings/CommentSettings";
-// import DropdownMenu from "@features/comments/comment-dropdown-menu/DropdownMenu";
 import CommentRating from "@features/comments/comment-rating/CommentRating";
-// import CommentAction from "@features/comments/comment-action/CommentAction";
-import { CollectionObject } from "domain/types";
+import { Comment } from "domain/types";
 
-export default function CommentBody({ details }: { details: CollectionObject }) {
+export default function CommentBody({ details }: { details: Comment }) {
   const { userName, rating, id, title, content, timestamp } = details ?? [];
-  const convertedTimestamp: string = timestamp?.toDate().toLocaleString();
-  // const convertedTimestamp:string = timestamp?.toDate()?.toLocaleString();
 
-  const { isShown, handleOnShow } = useToggle();
+  const convertedTimestamp: string = timestamp?.toDate().toLocaleString();
+
+  const { isShown: showCommentSettings, handleOnShow: handleCommentSettings } = useToggle();
 
   // close menu after clicking outside it
   let domNode = useClickOutside(() => {
-    handleOnShow(false);
+    handleCommentSettings(false);
   });
 
   return (
@@ -50,18 +47,14 @@ export default function CommentBody({ details }: { details: CollectionObject }) 
               <span className="mr-3 text-sm text-dark-text-clr font-bold">{title}</span>
             </div>
           </div>
-
-          <CommentSettings commentId={id} isShown={isShown} onClose={handleOnShow} />
-          {/* <CommentSettings openSettings={isShown} onClose={handleOnShow}>
-            {isShown && <DropdownMenu onEdit={setEditComment} onClose={handleOnShow} />}
-          </CommentSettings> */}
+          <CommentSettings
+            commentId={id}
+            showCommentSettings={showCommentSettings}
+            handleCommentSettings={handleCommentSettings}
+          />
         </footer>
         <p className="text-gray-800">{content}</p>
       </article>
-
-      {/* {editComment && (
-        <CommentAction commentId={details.id} callback={setEditComment} idRequired={true} />
-      )} */}
     </>
   );
 }

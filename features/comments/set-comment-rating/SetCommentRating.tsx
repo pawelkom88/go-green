@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Button from "@components/ui/button/Button";
+import Button from "@components/button/Button";
 
 type SetCommentRatingProps = {
   numberOfStars: number;
@@ -8,7 +8,6 @@ type SetCommentRatingProps = {
 };
 
 export default function SetCommentRating({ numberOfStars, onSet, index }: SetCommentRatingProps) {
-  
   function handleRating(e: React.MouseEvent<HTMLElement>) {
     const target = e.target as HTMLElement;
     onSet(Number(target.dataset.value));

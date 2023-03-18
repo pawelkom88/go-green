@@ -1,22 +1,27 @@
 import useCollection from "@hooks/useCollection";
 import CommentBody from "@features/comments/comment-body/CommentBody";
-import Button from "@components/ui/button/Button";
+import Button from "@components/button/Button";
 import UserContainer from "@components/user-container/UserContainer";
-import Modal from "@components/ui/modal/Modal";
-import { CollectionObject } from "domain/types";
+import Modal from "@components/modal/Modal";
+import { AddCommentProps, Comment } from "domain/types";
 import { commentBtnStyles } from "domain/constants";
-
-type AddCommentProps = {
-  onAddComment: (val: boolean) => void;
-  selectedPointId: number;
-};
 
 export default function AddComment({ onAddComment, selectedPointId }: AddCommentProps) {
   const { data: comments, error } = useCollection("comments");
 
+  const commentFetchErrorMsg = error && (
+    <Modal size="flex-center h-[245px]">
+      <p>Could not fetch data</p>
+    </Modal>
+  );
+
   // only way to find it ????
   const filteredComments = comments?.filter(({ id }) =>
     id?.substring(0, 6).includes(selectedPointId.toString())
+  );
+
+  const noCommentsMsg = !filteredComments?.length && (
+    <p className="text-center mt-4">Be the first who add a comment.</p>
   );
 
   return (
@@ -33,24 +38,15 @@ export default function AddComment({ onAddComment, selectedPointId }: AddComment
                   Add comment
                 </Button>
               </div>
-
-              {!filteredComments?.length && (
-                <p className="text-center mt-4">Be the first who add a comment.</p>
-              )}
+              {noCommentsMsg}
             </>
           </UserContainer>
-
-          {filteredComments?.map((comment: CollectionObject) => {
+          {filteredComments?.map((comment: Comment) => {
             return <CommentBody key={comment.id} details={comment} />;
           })}
         </div>
       </div>
-
-      {error && (
-        <Modal size="flex-center h-[245px]">
-          <p>Could not fetch data</p>
-        </Modal>
-      )}
+      {commentFetchErrorMsg}
     </>
   );
 }

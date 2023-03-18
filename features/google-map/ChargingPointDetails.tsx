@@ -4,7 +4,7 @@ import useCopyToClipboard from "@hooks/useCopyToClipboard";
 import LocationDetails from "@components/location-details/LocationDetails";
 import Comments from "@features/comments/Comment";
 import ChargingPointPhotos from "@features/charging-point-photos/ChargingPointPhotos";
-import Modal from "@components/ui/modal/Modal";
+import Modal from "@components/modal/Modal";
 import Tabs from "@components/ui/tabs/Tabs";
 import { ChargingPointDetailsProps, Coords } from "domain/types";
 import { handleLocation } from "helpers/helpers";
@@ -29,26 +29,30 @@ export default function ChargingPointDetails({
 
   const shareLink: string = handleLocation(userLocation, destination) ?? "";
 
-  function handleClipboard() {
-    copyToClipboard(shareLink);
-  }
+  // function handleClipboard():void {
+  //   copyToClipboard(shareLink);
+  // }
 
   return (
     <>
-      <Modal size="w-full h-full md:h-[90vh]" callback={onShowDetails}>
+      <Modal size="w-full h-full md:h-[90vh]" onModalClose={onShowDetails}>
         <Tabs onActiveTab={setActiveTab} activeTab={activeTab} />
+
         {activeTab === details.tabName && (
           <LocationDetails
-            onCopy={handleClipboard}
+            onCopy={() => copyToClipboard(shareLink)}
             direction={direction}
             chargingPointDetails={chargingPointDetails}
           />
         )}
+
         {activeTab === comments.tabName && (
           <Comments selectedPointId={selectedPoint.AddressInfo.ID || 0} />
         )}
+
         {activeTab === photos.tabName && <ChargingPointPhotos />}
       </Modal>
+
       {error && <Modal size="h-[300px] flex-center">{error}</Modal>}
       {value && <Toast>Link to Google Maps has been copied to clipboard !</Toast>}
     </>

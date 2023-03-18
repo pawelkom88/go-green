@@ -5,10 +5,9 @@ import ChargingPointInfo from "@features/google-map/ChargingPointInfo";
 import ChargingPointDetails from "@features/google-map/ChargingPointDetails";
 import Marker from "@features/google-map/Marker";
 import { DirectionsRenderer } from "@react-google-maps/api";
-import { ExtendedPOIDetails, POIDetails } from "domain/api-types";
-import { MaxResults } from "domain/types";
+import { ExtendedPOIDetails } from "domain/api-types";
 
-export default function Features({ maxResults }: MaxResults) {
+export default function Features() {
   const { currentLocation } = useCurrentLocation();
   const [selectedPoint, setSelectedPoint] = useState<null | ExtendedPOIDetails>(null);
   const [direction, setDirections] = useState<null | google.maps.DirectionsResult>(null);
@@ -20,7 +19,6 @@ export default function Features({ maxResults }: MaxResults) {
         userLocation={currentLocation}
         onSetSelectedPoint={setSelectedPoint}
         onSetDirection={setDirections}
-        maxResults={maxResults}
       />
       {/* 
         charging points info 

@@ -1,9 +1,4 @@
-import { Props } from "domain/types";
-import React from "react";
-
-interface OverlayType extends Props {
-  onClose: () => void;
-}
+import { OverlayType } from "domain/types";
 
 export default function Overlay({ children, onClose }: OverlayType) {
   return (

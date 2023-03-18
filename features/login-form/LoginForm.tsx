@@ -1,7 +1,6 @@
 import HasAccount from "@components/login/HasAccount";
 import Form from "@components/form/Form";
 
-
 export default function LoginForm({ onSignedUp }: {
   onSignedUp: () => void;
 }) {

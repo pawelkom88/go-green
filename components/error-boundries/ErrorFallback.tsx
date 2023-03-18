@@ -1,5 +1,5 @@
-import Button from "@components/ui/button/Button";
-import Modal from "@components/ui/modal/Modal";
+import Button from "@components/button/Button";
+import Modal from "@components/modal/Modal";
 
 type ErrorFallbackProps = {
   error: Error;
