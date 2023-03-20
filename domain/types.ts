@@ -16,6 +16,13 @@ export interface Coords {
   lng: number;
 }
 
+export interface InitialFilters {
+  // memberShipRequired: string;
+  connectorType: string;
+  maxResults: string;
+  distance: string;
+}
+
 // USE GEOLOCATION HOOK TYPES
 export interface LocationError {
   code: number;
@@ -38,7 +45,6 @@ export interface SliderProps {
   label: string;
   min: string;
   max: string;
-  onChange?: (val: string) => void;
   value: string;
 }
 
@@ -46,7 +52,8 @@ export interface MarkerProps {
   userLocation: Coords;
   onSetSelectedPoint: (val: ExtendedPOIDetails) => void;
   onSetDirection: (val: google.maps.DirectionsResult) => void;
-  maxResults: MaxResult;
+  // maxResults: MaxResult;
+  filters: InitialFilters;
 }
 
 export interface HasAccountProps extends Props {

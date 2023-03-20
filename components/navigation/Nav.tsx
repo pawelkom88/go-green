@@ -1,20 +1,20 @@
 import useAuthContext from "@hooks/useAuthContext";
-import { useState } from "react";
+
 import UserMenu from "@components/user-menu/UserMenu";
 import LocationIcon from "@components/ui/icons/LocationIcon";
-import LoginModal from "@components/login-modal/LoginModal";
+import LoginModal from "@components/login/login-modal/LoginModal";
 import { useCurrentLocation } from "@context/UserLocationContext";
-import Slider from "@components/slider/Slider";
+import Slider from "@features/filters/slider/Slider";
 import Filters from "@features/filters/Filters";
 import FilterIcon from "@components/ui/icons/FilterIcon";
 import Button from "@components/button/Button";
 import useToggle from "@hooks/useToggle";
-import FiltersSelect from "@components/filters-select/FiltersSelect";
+import FiltersSelect from "@features/filters/filters-select/FiltersSelect";
 import Modal from "@components/modal/Modal";
 import { sliderProps } from "domain/constants";
+import { Dispatch } from "react";
 
-export default function Nav({ onHandleFilters }) {
-  const [filters, setFilters] = useState({});
+export default function Nav({ setFilters }: { setFilters: Dispatch<any> }) {
   const { getCurrentPosition } = useCurrentLocation();
   const { user } = useAuthContext();
   const { isShown, handleOnShow } = useToggle();
@@ -24,9 +24,9 @@ export default function Nav({ onHandleFilters }) {
   const IsUserLoggedIn = user ? <UserMenu /> : <LoginModal />;
 
   const showModalWithFilters = isShown && (
-    <Modal size="w-full h-full md:h-3/4 flex-center flex-col gap-2">
+    <Modal size="w-full h-full md:h-[52rem] flex-center flex-col gap-2">
       <Filters onSubmit={setFilters}>
-        <FiltersSelect />
+        <FiltersSelect setFilters={setFilters} />
         {sliderProps.map(props => {
           return <Slider key={props.id} props={props} onChange={setFilters} />;
         })}

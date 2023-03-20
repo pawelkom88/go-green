@@ -3,7 +3,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { User as FirebaseUser } from "firebase/auth";
 import { auth } from "@lib/config";
 import { Props, AuthContextModel } from "domain/types";
-import { actionObj } from "@store/actions";
+import { authActions } from "@store/actions";
 import authReducer from "@store/authReducer";
 
 export const AuthContext = createContext<AuthContextModel>({} as AuthContextModel);
@@ -13,7 +13,7 @@ export default function AuthContextProvider({ children }: Props) {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, user => {
-      dispatch({ type: actionObj.authIsReady, payload: user as FirebaseUser });
+      dispatch({ type: authActions.authIsReady, payload: user as FirebaseUser });
     });
 
     return () => unsubscribe();

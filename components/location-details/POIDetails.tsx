@@ -3,17 +3,17 @@ import AddedToFavouritesIcon from "@components/ui/icons/AddedToFavouritesIcon";
 import AddToFavouritesIcon from "@components/ui/icons/AddToFavouritesIcon";
 import ShareIcon from "@components/ui/icons/ShareIcon";
 import Button from "@components/button/Button";
-import ChargingPointInfo from "./point-info/ChargingPointInfo";
+import ConnectionInfo from "./point-info/ConnectionInfo";
 import Toast from "@components/ui/toast/Toast";
 import { LocationDetailsProps } from "domain/types";
-import { POIDetails } from "domain/api-types";
+import { POIDetails as POI_Details} from "domain/api-types";
 
-export default function LocationDetails({
+export default function POIDetails({
   onCopy,
   direction,
   chargingPointDetails,
 }: LocationDetailsProps) {
-  const [favourites, setFavourites] = useState<POIDetails[]>([]);
+  const [favourites, setFavourites] = useState<POI_Details[]>([]);
   const [addedToFavorites, setAddedToFavourites] = useState<boolean>(false);
 
   const { distance, duration } = direction?.routes[0].legs[0] || {};
@@ -27,7 +27,7 @@ export default function LocationDetails({
     <AddedToFavouritesIcon size={35} fill="#9dc88d" />
   );
 
-  function addToFavorite(chargingPoint: POIDetails): void {
+  function addToFavorite(chargingPoint: POI_Details): void {
     if (!favourites.includes(chargingPoint)) {
       setFavourites([...favourites, chargingPoint]);
       setAddedToFavourites(true);
@@ -39,7 +39,7 @@ export default function LocationDetails({
     <>
       <div className="flex flex-col rounded-lg text-primary-clr p-2">
         <h2 className="mb-1 text-xl font-semibold text-center p-2">
-          {AddressInfo.Title || "Unknown"}
+          {AddressInfo.Title == "null" ? "Unknown" : AddressInfo.Title}
         </h2>
         <div className="flex-center space-x-4">
           <Button
@@ -58,7 +58,7 @@ export default function LocationDetails({
           <span className="py-2 px-2">Distance: {distance?.text}</span>
           <span className="py-2 px-2">Estimated Travel Time: {duration?.text}</span>
         </div>
-        <ChargingPointInfo chargingPointDetails={chargingPointDetails}></ChargingPointInfo>
+        <ConnectionInfo chargingPointDetails={chargingPointDetails}></ConnectionInfo>
       </div>
       {addedToFavorites && <Toast>{AddressInfo.Title} has been added to favourites.</Toast>}
     </>

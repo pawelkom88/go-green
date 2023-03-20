@@ -17,7 +17,7 @@ export default function MobileMenu() {
     <>
       <div
         onClick={() => handleOnShow(true)}
-        className="w-12 h-12 bg-primary-clr rounded-full lg:hidden fixed bottom-4 left-2 flex-center z-10">
+        className="w-12 h-12 bg-primary-clr rounded-full lg:hidden fixed bottom-4 left-2 flex-center">
         <UserIcon fill="#f1b24a" />
       </div>
       {showLoginModal}
