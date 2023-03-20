@@ -1,13 +1,14 @@
 import { useState } from "react";
 
 import { useCurrentLocation } from "@context/UserLocationContext";
-import ChargingPointInfo from "@features/google-map/ChargingPointInfo";
-import ChargingPointDetails from "@features/google-map/ChargingPointDetails";
+import POIInfoBox from "@features/google-map/POIInfoBox";
+import POIInfo from "@features/google-map/POIInfo";
 import Marker from "@features/google-map/Marker";
 import { DirectionsRenderer } from "@react-google-maps/api";
 import { ExtendedPOIDetails } from "domain/api-types";
+import { InitialFilters } from "domain/types";
 
-export default function Features() {
+export default function Features({ filters }: { filters: InitialFilters }) {
   const { currentLocation } = useCurrentLocation();
   const [selectedPoint, setSelectedPoint] = useState<null | ExtendedPOIDetails>(null);
   const [direction, setDirections] = useState<null | google.maps.DirectionsResult>(null);
@@ -19,12 +20,13 @@ export default function Features() {
         userLocation={currentLocation}
         onSetSelectedPoint={setSelectedPoint}
         onSetDirection={setDirections}
+        filters={filters}
       />
       {/* 
         charging points info 
       */}
       {selectedPoint && (
-        <ChargingPointInfo
+        <POIInfoBox
           userLocation={currentLocation}
           selectedPoint={selectedPoint}
           onCloseClick={setSelectedPoint}
@@ -35,7 +37,7 @@ export default function Features() {
         charging points details such as connection time and payment 
       */}
       {selectedPoint && showDetails && (
-        <ChargingPointDetails
+        <POIInfo
           userLocation={currentLocation}
           selectedPoint={selectedPoint}
           direction={direction}

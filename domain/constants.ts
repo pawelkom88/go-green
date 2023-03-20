@@ -50,27 +50,46 @@ export const btnUserProfileStyles: ButtonStyles =
   "inline-flex items-center px-4 py-2 text-sm font-medium text-center text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-700 dark:focus:ring-gray-700";
 
 interface SocketTypeImages {
+  id: number;
   socketType: string;
   src: string;
 }
 
 export const socketTypeImages: SocketTypeImages[] = [
   {
-    socketType: "x",
+    id: 1,
+    socketType: "SAE J1772-2009 Type 1",
     src: "/assets/connectors/type-1.webp",
   },
   {
+    id: 2,
     socketType: "IEC 62196-2 Type 2",
-    src: "/assets/connectors/type-2.webp",
+    src: "/assets/connectors/Type-2.webp",
   },
   {
+    id: 3,
     socketType: "IEC 62196-3 Configuration FF",
-    src: "/assets/connectors/ccs.webp",
+    src: "/assets/connectors/CCS.webp",
   },
   {
-    socketType: "x",
+    id: 4,
+    socketType: "CHAdeMO",
     src: "/assets/connectors/chademo.webp",
   },
+  {
+    id: 5,
+    socketType: "Tesla",
+    src: "/assets/connectors/tesla.webp",
+  },
+  {
+    id: 6,
+    socketType: "BS1363 / Type G",
+    src: "/assets/connectors/GB-T.webp",
+  },
+  // {7,
+  //   socketType: "BS1363 / Type G",
+  //   src: "/assets/connectors/GB-T.webp",
+  // },
 ];
 
 interface ConnectorTypes {
@@ -80,12 +99,13 @@ interface ConnectorTypes {
 }
 
 export const connectorTypes: ConnectorTypes[] = [
-  { id: 1, value: "1", type: "Type 1" },
-  { id: 2, value: "", type: "Type2" },
-  { id: 3, value: "3", type: "Type 3" },
+  { id: 1, value: "0", type: "Type 1" },
+  { id: 2, value: "1", type: "IEC 62196-2 Type 2" },
+  { id: 3, value: "2", type: "CCS" },
+  { id: 4, value: "3", type: "CHAdeMO" },
 ];
 
 export const sliderProps: SliderProps[] = [
-  { id: 1, label: "Number of charging point on the map", min: "10", max: "200", value: "1" },
+  { id: 1, label: "Number of results", min: "10", max: "200", value: "1" },
   { id: 2, label: "Distance in miles", min: "1", max: "100", value: "1" },
 ];

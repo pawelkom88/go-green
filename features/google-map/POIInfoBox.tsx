@@ -4,13 +4,12 @@ import { InfoWindow } from "@react-google-maps/api";
 import { ChargingPointInfoProps, Coords } from "domain/types";
 import { handleLocation } from "@helpers/helpers";
 
-export default function ChargingPointInfo({
+export default function POIInfoBox({
   userLocation,
   selectedPoint,
   onCloseClick,
   onShowDetails,
 }: ChargingPointInfoProps) {
-  
   const chargingPointCoords: Coords = {
     lat: selectedPoint?.AddressInfo.Latitude,
     lng: selectedPoint?.AddressInfo.Longitude,
@@ -28,7 +27,9 @@ export default function ChargingPointInfo({
       }}
       position={chargingPointCoords}>
       <div className="w-full mx-auto text-primary-clr text-center p-4 flex flex-col">
-        <h3 className="font-bold text-lg my-2">{selectedPoint.AddressInfo.Title}</h3>
+        <h3 className="font-bold text-lg my-2">
+          {selectedPoint.AddressInfo.Title == "null" ? "Unknown" : selectedPoint.AddressInfo.Title}
+        </h3>
         <span>{selectedPoint.AddressInfo.Postcode}</span>
         <div className="flex justify-evenly">
           <Button

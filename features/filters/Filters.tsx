@@ -1,10 +1,15 @@
-import FilterCheckbox from "@components/filter-checkbox/FilterCheckbox";
+import FilterCheckbox from "@features/filters/filter-checkbox/FilterCheckbox";
+import { Dispatch } from "react";
 import Button from "@components/button/Button";
 import FilterIcon from "@components/ui/icons/FilterIcon";
 import { Props } from "domain/types";
 import { FiltersBtnStyles } from "domain/constants";
 
-export default function Filters({ children, onSubmit }: Props) {
+interface Filters extends Props {
+  onSubmit: Dispatch<any>;
+}
+
+export default function Filters({ children, onSubmit }: Filters) {
   function resetFilters() {
     console.log("handler");
   }

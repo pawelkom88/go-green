@@ -11,7 +11,7 @@ export default function Marker({ onSetSelectedPoint, onSetDirection, userLocatio
   const [status, setStatus] = useState<string>("");
   const { boundingBoxPolygon } = useBoundingBox(userLocation, 2);
 
-  const [debouncedMaxResults] = useDebounce(50, 1500);
+  const [debouncedMaxResults] = useDebounce(100, 1500);
 
   // const [debouncedMaxResults] = useDebounce(maxResults, 1500);
   const { data, loading, error } = useFetch(boundingBoxPolygon, debouncedMaxResults);

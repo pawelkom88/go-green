@@ -8,7 +8,7 @@ import { PhotoUpload } from "domain/types";
 
 const fileTypes = ["JPG", "PNG"];
 
-export default function ChargingPointPhotos() {
+export default function POIPhotos() {
   const [file, setFile] = useState<PhotoUpload>();
   const { isShown: sizeError, handleOnShow: setSizeError } = useToggle();
 
