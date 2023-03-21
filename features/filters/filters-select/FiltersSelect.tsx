@@ -1,5 +1,4 @@
 import { useState } from "react";
-import useKeyPress from "@hooks/useKeyPress";
 import useClickOutside from "@hooks/useClickOutside";
 import Image from "next/image";
 import { connectorTypes, socketTypeImages } from "domain/constants";
@@ -11,22 +10,19 @@ export default function FiltersSelect({ setFilters }: FiltersProps) {
   const [connectorType, setConnectorType] = useState<string | null>(null);
   const { isShown: showDropdown, handleOnShow: handleShowDropdown } = useToggle();
 
-  const showDropdownOnKeyPress = useKeyPress("Enter");
-  const closeDropdownOnKeyPress = useKeyPress("Escape");
-
-  function openDropDownOnKeyPress() {
-    if (showDropdownOnKeyPress) handleShowDropdown(true);
+  function openDropDownOnKeyPress({ key }: React.KeyboardEvent) {
+    if (key === "Enter") handleShowDropdown(true);
   }
 
-  function closeDropDownOnKeyPress() {
-    if (closeDropdownOnKeyPress) handleShowDropdown(false);
+  function closeDropDownOnKeyPress({ key }: React.KeyboardEvent) {
+    if (key === "Escape") handleShowDropdown(false);
   }
 
-  function selectConnectorTypeOnKeyPress({ key }: any, type: string) {
-    if (showDropdownOnKeyPress && key !== 'Tab') {
-      setFilters({ type: filtersActions.connectorType, payload: type });
-      handleShowDropdown(false);
-    }
+  function selectConnectorTypeOnKeyPress(key: string, type: string) {
+    if (key !== "Enter") return;
+
+    setFilters({ type: filtersActions.connectorType, payload: type });
+    handleShowDropdown(false);
   }
 
   let domNode = useClickOutside(() => {
@@ -42,7 +38,7 @@ export default function FiltersSelect({ setFilters }: FiltersProps) {
         <ul
           tabIndex={0}
           onKeyDown={showDropdown ? closeDropDownOnKeyPress : openDropDownOnKeyPress}
-          onClick={() => handleShowDropdown(!showDropdown)}
+          onClick={() => handleShowDropdown(true)}
           className="relative w-full">
           <li className="bg-secondary-clr text-primary mt-4 p-2 text-center cursor-pointer">
             Connector type
@@ -57,7 +53,9 @@ export default function FiltersSelect({ setFilters }: FiltersProps) {
                   onMouseEnter={() => setConnectorType(value)}
                   onMouseLeave={() => setConnectorType(null)}
                   onFocus={() => setConnectorType(value)}
-                  onKeyDown={e => selectConnectorTypeOnKeyPress(e, type)}
+                  onKeyDown={({ key }: React.KeyboardEvent) =>
+                    selectConnectorTypeOnKeyPress(key, type)
+                  }
                   className="bg-primary-clr text-white p-2 hover:bg-teriary-clr focus:bg-teriary-clr cursor-pointer"
                   key={id}
                   value={value}>
