@@ -1,7 +1,7 @@
 import { User as FirebaseUser } from "firebase/auth";
 import { authActions } from "./actions";
 
-interface Actions {
+export interface Actions {
   type: string;
   payload: FirebaseUser;
 }

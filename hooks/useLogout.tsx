@@ -5,11 +5,12 @@ import { authActions } from "@store/actions";
 
 export default function useLogout() {
   const { dispatch } = useAuthContext();
+
   function logUserOut() {
     try {
       signOut(auth).then(() => dispatch({ type: authActions.logout }));
-    } catch (error: any) {
-      console.log(`Something went wrong : ${error.message}`);
+    } catch (error: unknown) {
+      console.log(`Something went wrong : ${(error as Error).message}`);
     }
   }
 

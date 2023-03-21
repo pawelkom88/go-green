@@ -1,22 +1,23 @@
-import { InitialFilters } from "domain/types";
-import { FiltersActions } from "./actions";
+import { Actions, InitialFilters } from "domain/types";
+import { filtersActions } from "./actions";
+import { initialFilters } from "domain/constants";
 
-interface Actions {
-  type: string;
-  //change
-  payload: string;
-}
+export default function filtersReducer(
+  filters: InitialFilters,
+  { type, payload = "" }: Actions
+): InitialFilters {
+  switch (type) {
+    case filtersActions.connectorType:
+      return { ...filters, connectorType: payload };
 
-export default function filtersReducer(filters: InitialFilters, action: Actions): InitialFilters {
-  switch (action.type) {
-    case FiltersActions.connectorType:
-      return { ...filters, connectorType: action.payload };
+    case filtersActions.maxResults:
+      return { ...filters, maxResults: payload };
 
-    case FiltersActions.maxResults:
-      return { ...filters, maxResults: action.payload };
+    case filtersActions.distance:
+      return { ...filters, distance: payload };
 
-    case FiltersActions.distance:
-      return { ...filters, distance: action.payload };
+    case filtersActions.reset:
+      return initialFilters;
 
     default:
       return filters;

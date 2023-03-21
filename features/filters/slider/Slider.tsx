@@ -1,5 +1,5 @@
 import { Dispatch } from "react";
-import { SliderProps } from "domain/types";
+import { Actions, SliderProps } from "domain/types";
 import Input from "@components/ui/input-field/Input";
 
 export default function Slider({
@@ -7,7 +7,7 @@ export default function Slider({
   onChange,
 }: {
   props: SliderProps;
-  onChange: Dispatch<any>;
+  onChange: Dispatch<Actions>;
 }) {
   const { label, min, max, value } = props;
 

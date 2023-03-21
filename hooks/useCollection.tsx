@@ -18,7 +18,7 @@ export default function useCollection(col: string) {
       snapshot.docs.forEach(
         doc => {
           // create new object and add it to comments array
-          comments?.push({ ...(doc.data() as any), id: doc.id ?? "" });
+          comments?.push({ ...doc.data(), id: doc.id } as Comment);
         },
         (error: FirebaseError) => {
           setError(error.message);

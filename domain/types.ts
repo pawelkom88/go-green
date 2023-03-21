@@ -11,9 +11,26 @@ import {
   sendPasswordResetEmail,
 } from "firebase/auth";
 
+export interface Actions {
+  type: string;
+  payload?: string;
+}
+
 export interface Coords {
   lat: number;
   lng: number;
+}
+
+export interface FiltersActions {
+  connectorType: string;
+  maxResults: string;
+  distance: string;
+  reset: string;
+}
+export interface AuthActions {
+  login: string;
+  logout: string;
+  authIsReady: string;
 }
 
 export interface InitialFilters {
@@ -21,6 +38,11 @@ export interface InitialFilters {
   connectorType: string;
   maxResults: string;
   distance: string;
+}
+
+export interface FiltersProps {
+  children?: React.ReactNode;
+  setFilters: Dispatch<Actions>;
 }
 
 // USE GEOLOCATION HOOK TYPES

@@ -7,6 +7,7 @@ import ConnectionInfo from "./point-info/ConnectionInfo";
 import Toast from "@components/ui/toast/Toast";
 import { LocationDetailsProps } from "domain/types";
 import { POIDetails as POI_Details} from "domain/api-types";
+import { noInfo } from "domain/constants";
 
 export default function POIDetails({
   onCopy,
@@ -39,7 +40,7 @@ export default function POIDetails({
     <>
       <div className="flex flex-col rounded-lg text-primary-clr p-2">
         <h2 className="mb-1 text-xl font-semibold text-center p-2">
-          {AddressInfo.Title == "null" ? "Unknown" : AddressInfo.Title}
+          {AddressInfo.Title == "null" ? noInfo : AddressInfo.Title}
         </h2>
         <div className="flex-center space-x-4">
           <Button

@@ -1,12 +1,13 @@
-import { Dispatch, useState } from "react";
+import { useState } from "react";
 import useKeyPress from "@hooks/useKeyPress";
 import useClickOutside from "@hooks/useClickOutside";
 import Image from "next/image";
 import { connectorTypes, socketTypeImages } from "domain/constants";
 import useToggle from "@hooks/useToggle";
-import { FiltersActions } from "@store/actions";
+import { filtersActions } from "@store/actions";
+import { FiltersProps } from "domain/types";
 
-export default function FiltersSelect({ setFilters }: { setFilters: Dispatch<any> }) {
+export default function FiltersSelect({ setFilters }: FiltersProps) {
   const [connectorType, setConnectorType] = useState<string | null>(null);
   const { isShown: showDropdown, handleOnShow: handleShowDropdown } = useToggle();
 
@@ -21,11 +22,11 @@ export default function FiltersSelect({ setFilters }: { setFilters: Dispatch<any
     if (closeDropdownOnKeyPress) handleShowDropdown(false);
   }
 
-  function closeDropdownAfterSelectingConnectorType(value: string) {
-    if (showDropdownOnKeyPress) {
-      setConnectorType(value);
+  function selectConnectorTypeOnKeyPress({ key }: any, type: string) {
+    if (showDropdownOnKeyPress && key !== 'Tab') {
+      setFilters({ type: filtersActions.connectorType, payload: type });
+      handleShowDropdown(false);
     }
-    handleShowDropdown(false);
   }
 
   let domNode = useClickOutside(() => {
@@ -37,13 +38,12 @@ export default function FiltersSelect({ setFilters }: { setFilters: Dispatch<any
       <label className="sr-only" htmlFor="charging-point-type">
         Choose a type:
       </label>
-      <div className="w-full sm:w-1/3">
+      <div className="absolute top-[38%] w-full sm:w-1/3 z-50">
         <ul
-          ref={domNode}
           tabIndex={0}
           onKeyDown={showDropdown ? closeDropDownOnKeyPress : openDropDownOnKeyPress}
           onClick={() => handleShowDropdown(!showDropdown)}
-          className="relative w-full h-[210px]">
+          className="relative w-full">
           <li className="bg-secondary-clr text-primary mt-4 p-2 text-center cursor-pointer">
             Connector type
           </li>
@@ -51,15 +51,13 @@ export default function FiltersSelect({ setFilters }: { setFilters: Dispatch<any
             connectorTypes.map(({ id, type, value }) => {
               return (
                 <li
+                  ref={domNode}
                   tabIndex={0}
-                  onClick={() =>
-                    setFilters({ type: FiltersActions.connectorType, payload: type })
-                  }
-                  // onClick={() => setConnectorType(value)}
+                  onClick={() => setFilters({ type: filtersActions.connectorType, payload: type })}
                   onMouseEnter={() => setConnectorType(value)}
                   onMouseLeave={() => setConnectorType(null)}
                   onFocus={() => setConnectorType(value)}
-                  onKeyDown={() => closeDropdownAfterSelectingConnectorType(value)}
+                  onKeyDown={e => selectConnectorTypeOnKeyPress(e, type)}
                   className="bg-primary-clr text-white p-2 hover:bg-teriary-clr focus:bg-teriary-clr cursor-pointer"
                   key={id}
                   value={value}>
@@ -69,7 +67,7 @@ export default function FiltersSelect({ setFilters }: { setFilters: Dispatch<any
             })}
           {showDropdown && connectorType && (
             <Image
-              className="hidden md:block absolute top-[1.8rem] -right-40 border"
+              className="hidden md:block absolute top-[3rem] -right-40 border"
               width={150}
               height={150}
               src={socketTypeImages[+connectorType]?.src}

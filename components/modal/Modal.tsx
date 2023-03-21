@@ -24,8 +24,8 @@ export default function Modal({ children, onModalClose, size }: ModalTypes) {
                 isOpen ? "animate-start" : "animate-end"
               } ${size} overflow-y-auto bg-white md:max-w-3xl text-lg md:text-xl`}
               open>
-              <Button className="absolute top-4 right-4" onClick={closeModal}>
-                <CloseBtnIcon size={25} />
+              <Button onClick={closeModal}>
+                <CloseBtnIcon size={25} className="absolute top-4 right-4" />
               </Button>
               {children}
             </dialog>

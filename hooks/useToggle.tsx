@@ -4,7 +4,7 @@ export default function useToggle() {
   const [isShown, setIsShown] = useState<boolean>(false);
 
   function handleOnShow(condition: boolean) {
-    if (condition === true) {
+    if (condition) {
       setIsShown(condition);
     } else {
       setIsShown(false);

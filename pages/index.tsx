@@ -7,14 +7,7 @@ import Map from "@components/map/Map";
 import Modal from "@components/modal/Modal";
 import { ErrorBoundary } from "react-error-boundary";
 import ErrorFallback from "@components/error-boundries/ErrorFallback";
-import { InitialFilters } from "domain/types";
-
-const initialFilters: InitialFilters = {
-  // memberShipRequired: "",
-  connectorType: "",
-  maxResults: "",
-  distance: "",
-};
+import { initialFilters } from "domain/constants";
 
 export default function Home() {
   const { currentLocation, getCurrentPosition, status } = useCurrentLocation();
