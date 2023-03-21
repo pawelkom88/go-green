@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { LocationError, UserPositionCoords, Coords } from "domain/types";
+import { londonCoords } from "domain/constants";
 
 interface Options {
   enableHighAccuracy: boolean;
@@ -15,7 +16,7 @@ const options: Options = {
 
 export default function useGeolocation() {
   const [status, setStatus] = useState<string>("");
-  const [currentLocation, setCurrentLocation] = useState<undefined | Coords>();
+  const [currentLocation = londonCoords, setCurrentLocation] = useState<Coords>();
 
   function handleLocationError(error: LocationError): void {
     let message: string;
@@ -42,7 +43,7 @@ export default function useGeolocation() {
     setStatus(message);
   }
 
-  function getCoordinates(position: UserPositionCoords) {
+  function getCoordinates(position: UserPositionCoords): void {
     const crd = position.coords;
 
     setCurrentLocation({

@@ -14,8 +14,9 @@ export default function Marker({ onSetSelectedPoint, onSetDirection, userLocatio
   const [debouncedMaxResults] = useDebounce(100, 1500);
 
   // const [debouncedMaxResults] = useDebounce(maxResults, 1500);
-  const { data, loading, error } = useFetch(boundingBoxPolygon, debouncedMaxResults);
+  // const { data, loading, error } = useFetch(boundingBoxPolygon, debouncedMaxResults);
 
+  const data = [];
 
   function fetchDirections({ lat, lng }: google.maps.LatLngLiteral) {
     if (!userLocation) return;
@@ -61,12 +62,12 @@ export default function Marker({ onSetSelectedPoint, onSetDirection, userLocatio
           );
         })}
         {status && <Modal size="flex-center h-[300px]">{status}</Modal>}
-        {error && (
+        {/* {error && (
           <Modal size="flex-center h-[245px]">
             An error occured while fetching data. Please try again.
           </Modal>
         )}
-        {loading && <Spinner />}
+        {loading && <Spinner />} */}
       </>
     );
   }

@@ -3,7 +3,7 @@ import { Props } from "domain/types";
 
 interface InputProps extends Props {
   onChange: any;
-  // onChange: (e: Event) => void;
+  // onChange: () => void;
   srOnly: boolean;
   name: string;
   type: string;
