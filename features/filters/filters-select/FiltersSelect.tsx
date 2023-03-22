@@ -10,6 +10,7 @@ export default function FiltersSelect({ setFilters }: FiltersProps) {
   const [connectorType, setConnectorType] = useState<string | null>(null);
   const { isShown: showDropdown, handleOnShow: handleShowDropdown } = useToggle();
 
+
   function openDropDownOnKeyPress({ key }: React.KeyboardEvent) {
     if (key === "Enter") handleShowDropdown(true);
   }
@@ -36,6 +37,7 @@ export default function FiltersSelect({ setFilters }: FiltersProps) {
       </label>
       <div className="absolute top-[38%] w-full sm:w-1/3 z-50">
         <ul
+          ref={domNode}
           tabIndex={0}
           onKeyDown={showDropdown ? closeDropDownOnKeyPress : openDropDownOnKeyPress}
           onClick={() => handleShowDropdown(true)}
@@ -47,10 +49,9 @@ export default function FiltersSelect({ setFilters }: FiltersProps) {
             connectorTypes.map(({ id, type, value }) => {
               return (
                 <li
-                  ref={domNode}
                   tabIndex={0}
                   onClick={() => setFilters({ type: filtersActions.connectorType, payload: type })}
-                  onMouseEnter={() => setConnectorType(value)}
+                  onMouseEnter={() => setConnectorType(type)}
                   onMouseLeave={() => setConnectorType(null)}
                   onFocus={() => setConnectorType(value)}
                   onKeyDown={({ key }: React.KeyboardEvent) =>
@@ -68,8 +69,8 @@ export default function FiltersSelect({ setFilters }: FiltersProps) {
               className="hidden md:block absolute top-[3rem] -right-40 border"
               width={150}
               height={150}
-              src={socketTypeImages[+connectorType]?.src}
-              alt={socketTypeImages[+connectorType]?.socketType}
+              src={socketTypeImages[connectorType]?.src}
+              alt='Connector Type'
             />
           )}
         </ul>
