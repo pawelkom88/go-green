@@ -1,12 +1,16 @@
+import { useFilters } from "@context/FiltersContext";
 import { useCurrentLocation } from "@context/UserLocationContext";
 import Modal from "@components/modal/Modal";
 import { GoogleMap, useLoadScript, MarkerF } from "@react-google-maps/api";
 import { containerStyles } from "domain/constants";
 import Features from "@features/google-map/Features";
-import { InitialFilters } from "domain/types";
 
-export default function Map({ filters }: { filters: InitialFilters }) {
+export default function Map() {
   const { currentLocation } = useCurrentLocation();
+  const { filters } = useFilters();
+  
+console.log(filters)
+
   const { isLoaded, loadError } = useLoadScript({
     id: "google-map-script",
     googleMapsApiKey: process.env.NEXT_PUBLIC_API_KEY as string,
