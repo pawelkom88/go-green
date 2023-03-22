@@ -9,14 +9,12 @@ import Spinner from "@components/ui/spinner/Spinner";
 
 export default function Marker({ onSetSelectedPoint, onSetDirection, userLocation }: MarkerProps) {
   const [status, setStatus] = useState<string>("");
-  const { boundingBoxPolygon } = useBoundingBox(userLocation, 2);
+  const { boundingBoxPolygon } = useBoundingBox(userLocation, .5);
 
-  const [debouncedMaxResults] = useDebounce(100, 1500);
+  const [debouncedMaxResults] = useDebounce(150, 1500);
 
   // const [debouncedMaxResults] = useDebounce(maxResults, 1500);
-  // const { data, loading, error } = useFetch(boundingBoxPolygon, debouncedMaxResults);
-
-  const data = [];
+  const { data, loading, error } = useFetch(boundingBoxPolygon, debouncedMaxResults);
 
   function fetchDirections({ lat, lng }: google.maps.LatLngLiteral) {
     if (!userLocation) return;
@@ -46,28 +44,30 @@ export default function Marker({ onSetSelectedPoint, onSetDirection, userLocatio
   if (data) {
     return (
       <>
-        {data.map(chargingPoint => {
-          const { Latitude: lat, Longitude: lng } = chargingPoint.AddressInfo;
+        {data
+          .filter(({ Connections }) => Connections.length)
+          .map(chargingPoint => {
+            const { Latitude: lat, Longitude: lng } = chargingPoint.AddressInfo;
 
-          return (
-            <MarkerF
-              key={chargingPoint.ID}
-              icon={"/assets/charger-station.svg"}
-              position={{ lat, lng }}
-              onClick={() => {
-                onSetSelectedPoint(chargingPoint);
-                fetchDirections({ lat, lng });
-              }}
-            />
-          );
-        })}
+            return (
+              <MarkerF
+                key={chargingPoint.ID}
+                icon={"/assets/charger-station.svg"}
+                position={{ lat, lng }}
+                onClick={() => {
+                  onSetSelectedPoint(chargingPoint);
+                  fetchDirections({ lat, lng });
+                }}
+              />
+            );
+          })}
         {status && <Modal size="flex-center h-[300px]">{status}</Modal>}
-        {/* {error && (
+        {error && (
           <Modal size="flex-center h-[245px]">
-            An error occured while fetching data. Please try again.
+            An error occurred while fetching data. Please try again
           </Modal>
         )}
-        {loading && <Spinner />} */}
+        {loading && <Spinner />}
       </>
     );
   }
