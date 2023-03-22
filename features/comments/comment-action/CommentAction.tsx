@@ -87,7 +87,7 @@ export default function CommentAction({
         <Button
           type="submit"
           className={`${numberOfStars !== 0 ? commentBtnStyles : disabledBtnStyles} mt-4`}
-          disabled={numberOfStars === 0 ? true : false}>
+          disabled={numberOfStars === 0}>
           Add comment
         </Button>
       </form>

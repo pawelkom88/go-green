@@ -1,14 +1,26 @@
-import { createContext, useReducer } from "react";
-import filtersReducer from "@store/authReducer";
+import { createContext, useContext, useReducer } from "react";
+import filtersReducer from "@store/filtersReducer";
 import { initialFilters } from "domain/constants";
-import { Props } from "domain/types";
+import { Props, InitialFilters, SetFilters } from "domain/types";
 
-export const FiltersContext = createContext(null);
+interface FiltersContext {
+  setFilters: SetFilters;
+  filters: InitialFilters;
+}
 
-export default function FiltersContextProvider({ children }: Props) {
-  const [filters, dispatch] = useReducer(filtersReducer, initialFilters);
+export const FiltersCtx = createContext<FiltersContext | null>(null);
 
-  return (
-    <FiltersContext.Provider value={{ ...filters, dispatch }}>{children}</FiltersContext.Provider>
-  );
+export default function FiltersContext({ children }: Props) {
+  const [filters, setFilters] = useReducer(filtersReducer, initialFilters);
+
+  return <FiltersCtx.Provider value={{ filters, setFilters }}>{children}</FiltersCtx.Provider>;
+}
+
+export function useFilters() {
+  const filters = useContext(FiltersCtx);
+  if (filters == null) {
+    throw new Error("useFilters must be used within a UserLocationContextProvider");
+  }
+
+  return filters;
 }

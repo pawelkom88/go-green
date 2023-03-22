@@ -11,13 +11,14 @@ import useToggle from "@hooks/useToggle";
 import FiltersSelect from "@features/filters/filters-select/FiltersSelect";
 import Modal from "@components/modal/Modal";
 import { sliderProps } from "domain/constants";
-import { FiltersProps } from "domain/types";
+import { useFilters } from "@context/FiltersContext";
 
-export default function Nav({ setFilters }: FiltersProps) {
+export default function Nav() {
   const { getCurrentPosition } = useCurrentLocation();
   const { user } = useAuthContext();
   const { isShown, handleOnShow } = useToggle();
-
+  const { setFilters } = useFilters();
+console.log(setFilters)
   const IsUserLoggedIn = user ? <UserMenu /> : <LoginModal />;
 
   const showModalWithFilters = isShown && (

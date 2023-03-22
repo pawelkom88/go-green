@@ -3,13 +3,13 @@ import useGeolocation from "@hooks/useGeolocation";
 import { Props, Coords } from "domain/types";
 import { londonCoords } from "domain/constants";
 
-interface LocationContextType {
+interface LocationContext {
   currentLocation: Coords;
   getCurrentPosition: () => void;
   status: string;
 }
 
-const LocationContext = createContext<LocationContextType | null>(null);
+const LocationContext = createContext<LocationContext | null>(null);
 
 export default function UserLocationContextProvider({ children }: Props) {
   const { currentLocation = londonCoords, getCurrentPosition, status } = useGeolocation();
@@ -23,5 +23,5 @@ export function useCurrentLocation() {
   if (userLocation == null) {
     throw new Error("useCurrentLocation must be used within a UserLocationContextProvider");
   }
-  return userLocation as LocationContextType;
+  return userLocation as LocationContext;
 }

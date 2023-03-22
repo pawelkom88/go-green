@@ -40,9 +40,11 @@ export interface InitialFilters {
   distance: string;
 }
 
+export type SetFilters = Dispatch<Actions>;
+
 export interface FiltersProps {
   children?: React.ReactNode;
-  setFilters: Dispatch<Actions>;
+  setFilters: SetFilters;
 }
 
 // USE GEOLOCATION HOOK TYPES
@@ -67,7 +69,6 @@ export interface SliderProps {
   label: string;
   min: string;
   max: string;
-  value: string;
 }
 
 export interface MarkerProps {
