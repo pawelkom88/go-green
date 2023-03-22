@@ -9,7 +9,7 @@ export default function Slider({
   props: SliderProps;
   onChange: Dispatch<Actions>;
 }) {
-  const { label, min, max, value } = props;
+  const { label, min, max } = props;
 
   return (
     <fieldset className="relative w-full sm:w-1/2 my-6 text-primary-clr">
@@ -24,7 +24,8 @@ export default function Slider({
         name="range"
         id="range"
         required={false}
-        value={value}>
+        // value={value}
+        >
         {label}
       </Input>
       <div aria-hidden="true" className="flex justify-between px-1">

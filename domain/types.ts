@@ -67,7 +67,6 @@ export interface SliderProps {
   label: string;
   min: string;
   max: string;
-  value: string;
 }
 
 export interface MarkerProps {

@@ -2,14 +2,6 @@ import { Coords, InitialFilters, SliderProps } from "domain/types";
 
 export const noInfo: string = "Not available";
 
-export const connectionFallbackObj = {
-  ConnectionType: { FormalName: noInfo, Title: "" },
-  CurrentType: {
-    Title: "",
-    Description: "",
-  },
-};
-
 export const initialFilters: InitialFilters = {
   // memberShipRequired: "",
   connectorType: "",
@@ -65,47 +57,21 @@ export const btnUserProfileStyles: ButtonStyles =
   "inline-flex items-center px-4 py-2 text-sm font-medium text-center text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-700 dark:focus:ring-gray-700";
 
 interface SocketTypeImages {
-  id: number;
-  socketType: string;
-  src: string;
+  [key: string]: {
+    id: number;
+    src: string;
+  };
 }
 
-export const socketTypeImages: SocketTypeImages[] = [
-  {
-    id: 1,
-    socketType: "SAE J1772-2009",
-    src: "/assets/connectors/type-1.webp",
-  },
-  {
-    id: 2,
-    socketType: "IEC 62196-2 Type 2",
-    src: "/assets/connectors/Type-2.webp",
-  },
-  {
-    id: 3,
-    socketType: "IEC 62196-3 Configuration FF",
-    src: "/assets/connectors/CCS.webp",
-  },
-  {
-    id: 4,
-    socketType: "IEC 62196-3 Configuration AA",
-    src: "/assets/connectors/chademo.webp",
-  },
-  {
-    id: 5,
-    socketType: "Tesla",
-    src: "/assets/connectors/tesla.webp",
-  },
-  {
-    id: 6,
-    socketType: "BS1363 / Type G",
-    src: "/assets/connectors/GB-T.webp",
-  },
-  // {7,
-  //   socketType: "BS1363 / Type G",
-  //   src: "/assets/connectors/GB-T.webp",
-  // },
-];
+export const socketTypeImages: SocketTypeImages = {
+  "SAE J1772-2009": { id: 1, src: "/assets/connectors/type-1.webp" },
+  "IEC 62196-2 Type 2": { id: 2, src: "/assets/connectors/Type-2.webp" },
+  "IEC 62196-2": { id: 3, src: "/assets/connectors/Type-2.webp" },
+  "IEC 62196-3 Configuration FF": { id: 4, src: "/assets/connectors/type-1.webp" },
+  "IEC 62196-3 Configuration AA": { id: 5, src: "/assets/connectors/chademo.webp" },
+  Tesla: { id: 6, src: "/assets/connectors/tesla.webp" },
+  "BS1363 / Type G": { id: 7, src: "/assets/connectors/GB-T.webp" },
+};
 
 interface ConnectorTypes {
   id: number;
@@ -114,17 +80,17 @@ interface ConnectorTypes {
 }
 
 export const connectorTypes: ConnectorTypes[] = [
-  { id: 1, value: "0", type: "SAE J1772-2009 Type 1" },
-  { id: 2, value: "1", type: "IEC 62196-2 Type 2" },
-  { id: 3, value: "2", type: "CCS" },
-  { id: 4, value: "3", type: "CHAdeMO" },
+  { id: 1, value: "0", type: "SAE J1772-2009" },
+  { id: 2, value: "1", type: "IEC 62196-2 Type 2" }, // or IEC 62196-2
+  { id: 3, value: "2", type: "IEC 62196-3 Configuration FF" },
+  { id: 4, value: "3", type: "IEC 62196-3 Configuration AA" },
   { id: 5, value: "4", type: "Tesla" },
   { id: 6, value: "5", type: "BS1363 / Type G" },
 ];
 
 export const sliderProps: SliderProps[] = [
-  { id: 1, label: "Number of results", min: "10", max: "200", value: "1" },
-  { id: 2, label: "Distance in miles", min: "1", max: "100", value: "1" },
+  { id: 1, label: "Number of results", min: "10", max: "200" },
+  { id: 2, label: "Distance in miles", min: ".5", max: "10" },
 ];
 
 interface filtersCheckbox {
@@ -134,6 +100,6 @@ interface filtersCheckbox {
 
 export const filtersCheckbox: filtersCheckbox[] = [
   { id: 1, label: "Is membership required" },
-  { id: 2, label: "Is membership required" },
+  { id: 2, label: "nearest point - use provided distance" },
   { id: 3, label: "Is membership required" },
 ];
