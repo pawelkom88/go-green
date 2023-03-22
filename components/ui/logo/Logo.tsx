@@ -1,11 +1,11 @@
 import Image from "next/image";
 
-type LogoProps = {
+interface LogoProps  {
   className?: string;
   src: string;
   width: number;
   height: number;
-};
+}
 
 export default function Logo({ width, height, src, className }: LogoProps) {
   return (

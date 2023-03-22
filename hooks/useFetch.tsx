@@ -26,7 +26,7 @@ export default function useFetch(query: number[], debouncedMaxResults: number) {
           const response = await fetch(url, signal);
 
           if (!response.ok) {
-            const message = `An error has occured: ${response.status}`;
+            const message = `An error has occurred: ${response.status}`;
             setError(message);
             setLoading(false);
           }
@@ -36,7 +36,7 @@ export default function useFetch(query: number[], debouncedMaxResults: number) {
           setLoading(false);
         }
       } catch (error: unknown) {
-        const message = `An error has occured: ${(error as Error).message}`;
+        const message = `An error has occurred: ${(error as Error).message}`;
         setError(message);
         setLoading(false);
       }

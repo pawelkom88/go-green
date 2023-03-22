@@ -6,11 +6,11 @@ import FocusLock from "react-focus-lock";
 import { ModalTypes } from "domain/types";
 
 export default function Modal({ children, onModalClose, size }: ModalTypes) {
-  const [isOpen, setIsopen] = useState(true);
+  const [isOpen, setIsOpen] = useState(true);
 
   function closeModal() {
     onModalClose?.(false);
-    setIsopen(false);
+    setIsOpen(false);
   }
 
   return (
