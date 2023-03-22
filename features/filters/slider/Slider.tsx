@@ -1,14 +1,7 @@
-import { Dispatch } from "react";
-import { Actions, SliderProps } from "domain/types";
+import { SetFilters, SliderProps } from "domain/types";
 import Input from "@components/ui/input-field/Input";
 
-export default function Slider({
-  props,
-  onChange,
-}: {
-  props: SliderProps;
-  onChange: Dispatch<Actions>;
-}) {
+export default function Slider({ props, onChange }: { props: SliderProps; onChange: SetFilters }) {
   const { label, min, max } = props;
 
   return (
@@ -25,7 +18,7 @@ export default function Slider({
         id="range"
         required={false}
         // value={value}
-        >
+      >
         {label}
       </Input>
       <div aria-hidden="true" className="flex justify-between px-1">
