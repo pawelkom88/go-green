@@ -53,7 +53,7 @@ export default function FiltersSelect({ setFilters }: FiltersProps) {
                   onClick={() => setFilters({ type: filtersActions.connectorType, payload: type })}
                   onMouseEnter={() => setConnectorType(type)}
                   onMouseLeave={() => setConnectorType(null)}
-                  onFocus={() => setConnectorType(value)}
+                  onFocus={() => setConnectorType(type)}
                   onKeyDown={({ key }: React.KeyboardEvent) =>
                     selectConnectorTypeOnKeyPress(key, type)
                   }
@@ -69,7 +69,7 @@ export default function FiltersSelect({ setFilters }: FiltersProps) {
               className="hidden md:block absolute top-[3rem] -right-40 border"
               width={150}
               height={150}
-              src={socketTypeImages[connectorType]?.src}
+              src={socketTypeImages[connectorType]?.src || ''}
               alt='Connector Type'
             />
           )}
