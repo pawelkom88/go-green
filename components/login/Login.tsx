@@ -13,7 +13,7 @@ export default function Login() {
   );
 
   return (
-    <div className="w-full max-w-md p-8 space-y-3 rounded-xl  text-dark-text-clr">
+    <div className="w-full max-w-md p-8 space-y-3 rounded-xl  text-dark-text-clr -mt-24">
       <AnimatedLogo />
       <h1 className="text-2xl font-bold text-center">{isShown ? "Sign up" : "Login"}</h1>
       {form}
