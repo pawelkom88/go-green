@@ -18,7 +18,7 @@ export default function Nav() {
   const { user } = useAuthContext();
   const { isShown, handleOnShow } = useToggle();
   const { setFilters } = useFilters();
-console.log(setFilters)
+
   const IsUserLoggedIn = user ? <UserMenu /> : <LoginModal />;
 
   const showModalWithFilters = isShown && (
@@ -26,7 +26,7 @@ console.log(setFilters)
       <Filters setFilters={setFilters}>
         <FiltersSelect setFilters={setFilters} />
         {sliderProps.map(props => {
-          return <Slider key={props.id} props={props} onChange={setFilters} />;
+          return <Slider key={props.id} props={props} setFilters={setFilters} />;
         })}
       </Filters>
     </Modal>

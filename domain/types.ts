@@ -1,3 +1,4 @@
+import { initialFilters } from "domain/constants";
 import { ExtendedPOIDetails } from "domain/api-types";
 import { POIDetails } from "./api-types";
 import { Timestamp, FieldValue } from "@firebase/firestore-types";
@@ -12,8 +13,8 @@ import {
 } from "firebase/auth";
 
 export interface Actions {
-  type: string;
-  payload?: string;
+  type: string | boolean;
+  payload?: string | boolean;
 }
 
 export interface Coords {
@@ -24,8 +25,8 @@ export interface Coords {
 export interface FiltersActions {
   connectorType: string;
   maxResults: string;
-  distance: string;
-  reset: string;
+  distance: string | boolean;
+  membership: string | boolean;
 }
 export interface AuthActions {
   login: string;
@@ -33,18 +34,14 @@ export interface AuthActions {
   authIsReady: string;
 }
 
-export interface InitialFilters {
-  // memberShipRequired: string;
-  connectorType: string;
-  maxResults: string;
-  distance: string;
-}
+export type InitialFilters = FiltersActions;
 
 export type SetFilters = Dispatch<Actions>;
 
 export interface FiltersProps {
   children?: React.ReactNode;
   setFilters: SetFilters;
+  name?: string;
 }
 
 // USE GEOLOCATION HOOK TYPES
@@ -66,6 +63,7 @@ export type MaxResult = number;
 
 export interface SliderProps {
   id: number;
+  name: string;
   label: string;
   min: string;
   max: string;
@@ -75,8 +73,6 @@ export interface MarkerProps {
   userLocation: Coords;
   onSetSelectedPoint: (val: ExtendedPOIDetails) => void;
   onSetDirection: (val: google.maps.DirectionsResult) => void;
-  // maxResults: MaxResult;
-  filters: InitialFilters;
 }
 
 export interface HasAccountProps extends Props {
@@ -107,7 +103,7 @@ export interface ModalTypes extends Props {
 }
 
 export interface Props {
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }
 
 export interface IconProps {

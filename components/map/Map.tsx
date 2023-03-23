@@ -7,9 +7,6 @@ import Features from "@features/google-map/Features";
 
 export default function Map() {
   const { currentLocation } = useCurrentLocation();
-  const { filters } = useFilters();
-  
-console.log(filters)
 
   const { isLoaded, loadError } = useLoadScript({
     id: "google-map-script",
@@ -19,7 +16,7 @@ console.log(filters)
   const showMap = isLoaded ? (
     <GoogleMap mapContainerStyle={containerStyles} zoom={14} center={currentLocation}>
       <MarkerF icon={"/assets/electric-car.svg"} position={currentLocation} />
-      <Features filters={filters} />
+      <Features />
     </GoogleMap>
   ) : (
     "Loading"

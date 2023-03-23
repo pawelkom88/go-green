@@ -6,9 +6,8 @@ import POIInfo from "@features/google-map/POIInfo";
 import Marker from "@features/google-map/Marker";
 import { DirectionsRenderer } from "@react-google-maps/api";
 import { ExtendedPOIDetails } from "domain/api-types";
-import { InitialFilters } from "domain/types";
 
-export default function Features({ filters }: { filters: InitialFilters }) {
+export default function Features() {
   const { currentLocation } = useCurrentLocation();
   const [selectedPoint, setSelectedPoint] = useState<null | ExtendedPOIDetails>(null);
   const [direction, setDirections] = useState<null | google.maps.DirectionsResult>(null);
@@ -20,7 +19,7 @@ export default function Features({ filters }: { filters: InitialFilters }) {
         userLocation={currentLocation}
         onSetSelectedPoint={setSelectedPoint}
         onSetDirection={setDirections}
-        filters={filters}
+       
       />
       {/* 
         charging points info 

@@ -3,10 +3,11 @@ import { Coords, InitialFilters, SliderProps } from "domain/types";
 export const noInfo: string = "Not available";
 
 export const initialFilters: InitialFilters = {
-  // memberShipRequired: "",
   connectorType: "",
   maxResults: "",
-  distance: "",
+  distance: false,
+  membership: false,
+  // applyFilters ?????
 };
 
 interface ContainerStyles {
@@ -89,17 +90,18 @@ export const connectorTypes: ConnectorTypes[] = [
 ];
 
 export const sliderProps: SliderProps[] = [
-  { id: 1, label: "Number of results", min: "10", max: "200" },
-  { id: 2, label: "Distance in miles", min: ".5", max: "10" },
+  { id: 1, name: 'maxResults', label: "Number of results", min: "10", max: "200" },
+  { id: 2, name: 'distance', label: "Distance in miles", min: ".5", max: "10" },
 ];
 
 interface filtersCheckbox {
   id: number;
   label: string;
+  name: string;
 }
 
 export const filtersCheckbox: filtersCheckbox[] = [
-  { id: 1, label: "Is membership required" },
-  { id: 2, label: "nearest point - use provided distance" },
-  { id: 3, label: "Is membership required" },
+  { id: 1, label: "Is membership required", name: "membership" },
+  { id: 2, label: "nearest point - use provided distance", name: "distance" },
+  { id: 3, label: "Is membership required", name: "xxx" },
 ];

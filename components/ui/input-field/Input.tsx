@@ -3,8 +3,9 @@ import { Props } from "domain/types";
 
 interface InputProps extends Props {
   onChange: any;
+  onKeyDown?: any;
   // onChange: () => void;
-  srOnly: boolean;
+  srOnly?: boolean;
   name: string;
   type: string;
   id: string;
@@ -15,10 +16,12 @@ interface InputProps extends Props {
   required: boolean | undefined;
   min?: string;
   max?: string;
+  checked?: boolean;
 }
 
 export default function Input({
   onChange,
+  onKeyDown,
   value,
   srOnly = true,
   children,
@@ -31,6 +34,7 @@ export default function Input({
   required,
   min,
   max,
+  checked,
 }: InputProps) {
   return (
     <>
@@ -38,6 +42,7 @@ export default function Input({
         {children}
       </label>
       <input
+        onKeyDown={onKeyDown}
         onChange={onChange}
         type={type}
         name={name}
@@ -48,6 +53,7 @@ export default function Input({
         required={required}
         min={min}
         max={max}
+        checked={checked}
       />
     </>
   );
