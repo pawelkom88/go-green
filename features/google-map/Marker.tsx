@@ -1,3 +1,4 @@
+import { useFilters } from "@context/FiltersContext";
 import useBoundingBox from "@hooks/useBoundingBox";
 import useFetch from "@hooks/useFetch";
 import { useDebounce } from "use-debounce";
@@ -10,11 +11,13 @@ import Spinner from "@components/ui/spinner/Spinner";
 export default function Marker({ onSetSelectedPoint, onSetDirection, userLocation }: MarkerProps) {
   const [status, setStatus] = useState<string>("");
   const { boundingBoxPolygon } = useBoundingBox(userLocation, .5);
-
   const [debouncedMaxResults] = useDebounce(150, 1500);
 
   // const [debouncedMaxResults] = useDebounce(maxResults, 1500);
   const { data, loading, error } = useFetch(boundingBoxPolygon, debouncedMaxResults);
+  
+  const { filters } = useFilters();
+
 
   function fetchDirections({ lat, lng }: google.maps.LatLngLiteral) {
     if (!userLocation) return;

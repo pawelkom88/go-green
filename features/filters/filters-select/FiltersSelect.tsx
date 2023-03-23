@@ -10,7 +10,6 @@ export default function FiltersSelect({ setFilters }: FiltersProps) {
   const [connectorType, setConnectorType] = useState<string | null>(null);
   const { isShown: showDropdown, handleOnShow: handleShowDropdown } = useToggle();
 
-
   function openDropDownOnKeyPress({ key }: React.KeyboardEvent) {
     if (key === "Enter") handleShowDropdown(true);
   }
@@ -69,8 +68,8 @@ export default function FiltersSelect({ setFilters }: FiltersProps) {
               className="hidden md:block absolute top-[3rem] -right-40 border"
               width={150}
               height={150}
-              src={socketTypeImages[connectorType]?.src || ''}
-              alt='Connector Type'
+              src={socketTypeImages[connectorType]?.src || ""}
+              alt="Connector Type"
             />
           )}
         </ul>
