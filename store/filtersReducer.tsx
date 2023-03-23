@@ -7,17 +7,17 @@ export default function filtersReducer(
   { type, payload = "" }: Actions
 ): InitialFilters {
   switch (type) {
+    case filtersActions.membership:
+      return { ...filters, membership: payload };
+
     case filtersActions.connectorType:
-      return { ...filters, connectorType: payload };
+      return { ...filters, connectorType: payload as string };
 
     case filtersActions.maxResults:
-      return { ...filters, maxResults: payload };
+      return { ...filters, maxResults: payload as string };
 
     case filtersActions.distance:
       return { ...filters, distance: payload };
-
-    case filtersActions.reset:
-      return initialFilters;
 
     default:
       return filters;
