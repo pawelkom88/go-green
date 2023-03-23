@@ -3,9 +3,9 @@ import Button from "@components/button/Button";
 import FilterIcon from "@components/ui/icons/FilterIcon";
 import { FiltersProps } from "domain/types";
 import { FiltersBtnStyles, filtersCheckbox } from "domain/constants";
-import { filtersActions } from "@store/actions";
 
 export default function Filters({ children, setFilters }: FiltersProps) {
+  
   function applyFilters(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
   }
@@ -18,9 +18,9 @@ export default function Filters({ children, setFilters }: FiltersProps) {
           <FilterIcon size={35} fill="#f1b24a" />
         </div>
         <div className="flex flex-col items-start gap-2 mb-24">
-          {filtersCheckbox.map(({ id, label }) => {
+          {filtersCheckbox.map(({ id, label, name }) => {
             return (
-              <FilterCheckbox key={id} setFilters={setFilters}>
+              <FilterCheckbox key={id} name={name} setFilters={setFilters}>
                 {label}
               </FilterCheckbox>
             );
@@ -30,11 +30,6 @@ export default function Filters({ children, setFilters }: FiltersProps) {
         <div className="flex-center gap-2">
           <Button type="submit" className={`${FiltersBtnStyles} bg-primary-clr text-white`}>
             Apply
-          </Button>
-          <Button
-            onClick={() => setFilters({ type: filtersActions.reset })}
-            className={`${FiltersBtnStyles} bg-teriary-clr `}>
-            Clear All
           </Button>
         </div>
       </form>

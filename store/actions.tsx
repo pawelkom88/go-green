@@ -10,5 +10,5 @@ export const filtersActions: FiltersActions = {
   connectorType: "CONNECTOR_TYPE",
   maxResults: "MAX_RESULTS",
   distance: "DISTANCE",
-  reset: "RESET",
+  membership: "MEMBERSHIP",
 };
