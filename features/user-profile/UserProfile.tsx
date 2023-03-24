@@ -1,6 +1,6 @@
-import Image from "next/image";
 import Button from "@components/button/Button";
 import { btnUserProfileStyles } from "domain/constants";
+import Image from "next/image";
 import UserData from "./UserData";
 
 export default function UserProfile() {

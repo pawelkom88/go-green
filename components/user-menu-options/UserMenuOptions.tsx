@@ -1,7 +1,7 @@
 import Button from "@components/button/Button";
+import Modal from "@components/modal/Modal";
 import ProfileIcon from "@components/ui/icons/ProfileIcon";
 import SignOutIcon from "@components/ui/icons/SignOutIcon";
-import Modal from "@components/modal/Modal";
 import UserProfile from "@features/user-profile/UserProfile";
 import useToggle from "@hooks/useToggle";
 

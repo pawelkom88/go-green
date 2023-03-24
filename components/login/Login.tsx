@@ -1,6 +1,6 @@
+import AnimatedLogo from "@components/ui/icons/AnimatedLogo";
 import LoginForm from "@features/login-form/LoginForm";
 import SignUpForm from "@features/signup-form/SignUpForm";
-import AnimatedLogo from "@components/ui/icons/AnimatedLogo";
 import useToggle from "@hooks/useToggle";
 
 export default function Login() {

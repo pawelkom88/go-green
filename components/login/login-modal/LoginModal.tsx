@@ -1,7 +1,7 @@
-import useToggle from "@hooks/useToggle";
 import Button from "@components/button/Button";
-import Modal from "@components/modal/Modal";
 import Login from "@components/login/Login";
+import Modal from "@components/modal/Modal";
+import useToggle from "@hooks/useToggle";
 import { signInBtnStyles } from "domain/constants";
 
 export default function LoginModal() {

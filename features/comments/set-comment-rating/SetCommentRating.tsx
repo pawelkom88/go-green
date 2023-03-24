@@ -1,5 +1,5 @@
-import Image from "next/image";
 import Button from "@components/button/Button";
+import Image from "next/image";
 
 type SetCommentRatingProps = {
   numberOfStars: number;

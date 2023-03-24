@@ -1,8 +1,7 @@
-import { useState, useEffect } from "react";
 import { ExtendedPOIDetails } from "domain/api-types";
+import { useEffect, useState } from "react";
 
 export default function useFetch(query: number[], debouncedMaxResults: number) {
-
   const [data, setData] = useState<ExtendedPOIDetails[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<null | string>(null);

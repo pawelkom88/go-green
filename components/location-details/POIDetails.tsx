@@ -1,13 +1,13 @@
-import { useState } from "react";
+import Button from "@components/button/Button";
 import AddedToFavouritesIcon from "@components/ui/icons/AddedToFavouritesIcon";
 import AddToFavouritesIcon from "@components/ui/icons/AddToFavouritesIcon";
 import ShareIcon from "@components/ui/icons/ShareIcon";
-import Button from "@components/button/Button";
-import ConnectionInfo from "./point-info/ConnectionInfo";
 import Toast from "@components/ui/toast/Toast";
-import { LocationDetailsProps } from "domain/types";
-import { POIDetails as POI_Details} from "domain/api-types";
+import { POIDetails as POI_Details } from "domain/api-types";
 import { noInfo } from "domain/constants";
+import { LocationDetailsProps } from "domain/types";
+import { useState } from "react";
+import ConnectionInfo from "./point-info/ConnectionInfo";
 
 export default function POIDetails({
   onCopy,

@@ -1,32 +1,35 @@
-import useAuthContext from "@hooks/useAuthContext";
-import UserMenu from "@components/user-menu/UserMenu";
-import LocationIcon from "@components/ui/icons/LocationIcon";
-import LoginModal from "@components/login/login-modal/LoginModal";
-import { useCurrentLocation } from "@context/UserLocationContext";
-import Slider from "@features/filters/slider/Slider";
-import Filters from "@features/filters/Filters";
-import FilterIcon from "@components/ui/icons/FilterIcon";
 import Button from "@components/button/Button";
-import useToggle from "@hooks/useToggle";
-import FiltersSelect from "@features/filters/filters-select/FiltersSelect";
+import LoginModal from "@components/login/login-modal/LoginModal";
 import Modal from "@components/modal/Modal";
+import FilterIcon from "@components/ui/icons/FilterIcon";
+import LocationIcon from "@components/ui/icons/LocationIcon";
+import UserMenu from "@components/user-menu/UserMenu";
+import { useCurrentLocation } from "@context/UserLocationContext";
+import Filters from "@features/filters/Filters";
+import FiltersSelect from "@features/filters/filters-select/FiltersSelect";
+import Slider from "@features/filters/slider/Slider";
+import useAuthContext from "@hooks/useAuthContext";
+import useToggle from "@hooks/useToggle";
 import { sliderProps } from "domain/constants";
-import { useFilters } from "@context/FiltersContext";
 
 export default function Nav() {
   const { getCurrentPosition } = useCurrentLocation();
   const { user } = useAuthContext();
   const { isShown, handleOnShow } = useToggle();
-  const { setFilters } = useFilters();
+
+  function applyFilters(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    handleOnShow(false);
+  }
 
   const IsUserLoggedIn = user ? <UserMenu /> : <LoginModal />;
 
   const showModalWithFilters = isShown && (
     <Modal size="w-full h-full md:h-[52rem] flex-center flex-col gap-2" onModalClose={handleOnShow}>
-      <Filters setFilters={setFilters}>
-        <FiltersSelect setFilters={setFilters} />
+      <Filters onApplyFilters={applyFilters}>
+        <FiltersSelect />
         {sliderProps.map(props => {
-          return <Slider key={props.id} props={props} setFilters={setFilters} />;
+          return <Slider key={props.id} props={props} />;
         })}
       </Filters>
     </Modal>

@@ -1,9 +1,9 @@
-import useToggle from "@hooks/useToggle";
-import useClickOutside from "@hooks/useClickOutside";
-import Image from "next/image";
-import CommentSettings from "@features/comments/comment-settings/CommentSettings";
 import CommentRating from "@features/comments/comment-rating/CommentRating";
+import CommentSettings from "@features/comments/comment-settings/CommentSettings";
+import useClickOutside from "@hooks/useClickOutside";
+import useToggle from "@hooks/useToggle";
 import { Comment } from "domain/types";
+import Image from "next/image";
 
 export default function CommentBody({ details }: { details: Comment }) {
   const { userName, rating, id, title, content, timestamp } = details ?? [];

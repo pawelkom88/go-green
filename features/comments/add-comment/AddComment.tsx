@@ -1,10 +1,10 @@
-import useCollection from "@hooks/useCollection";
-import CommentBody from "@features/comments/comment-body/CommentBody";
 import Button from "@components/button/Button";
-import UserContainer from "@components/user-container/UserContainer";
 import Modal from "@components/modal/Modal";
-import { AddCommentProps, Comment } from "domain/types";
+import UserContainer from "@components/user-container/UserContainer";
+import CommentBody from "@features/comments/comment-body/CommentBody";
+import useCollection from "@hooks/useCollection";
 import { commentBtnStyles } from "domain/constants";
+import { AddCommentProps, Comment } from "domain/types";
 
 export default function AddComment({ onAddComment, selectedPointId }: AddCommentProps) {
   const { data: comments, error } = useCollection("comments");

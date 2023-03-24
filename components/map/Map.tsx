@@ -1,9 +1,8 @@
-import { useFilters } from "@context/FiltersContext";
-import { useCurrentLocation } from "@context/UserLocationContext";
 import Modal from "@components/modal/Modal";
-import { GoogleMap, useLoadScript, MarkerF } from "@react-google-maps/api";
-import { containerStyles } from "domain/constants";
+import { useCurrentLocation } from "@context/UserLocationContext";
 import Features from "@features/google-map/Features";
+import { GoogleMap, MarkerF, useLoadScript } from "@react-google-maps/api";
+import { containerStyles } from "domain/constants";
 
 export default function Map() {
   const { currentLocation } = useCurrentLocation();

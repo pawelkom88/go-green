@@ -1,16 +1,12 @@
-import { SetFilters, SliderProps, FiltersActions } from "domain/types";
 import Input from "@components/ui/input-field/Input";
+import { useFilters } from "@context/FiltersContext";
 import { filtersActions } from "@store/actions";
+import { FiltersActions, SliderProps } from "domain/types";
 
-export default function Slider({
-  props,
-  setFilters,
-}: {
-  props: SliderProps;
-  setFilters: SetFilters;
-}) {
+export default function Slider({ props }: { props: SliderProps }) {
+  const { setFilters } = useFilters();
   const { label, min, max, name } = props;
-  
+
   function handleRange({ target }: React.ChangeEvent<HTMLInputElement>) {
     const { value } = target;
 

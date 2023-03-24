@@ -1,7 +1,7 @@
-import { useState } from "react";
 import useAuthContext from "@hooks/useAuthContext";
 import { auth } from "@lib/config";
 import { Auth, User, UserCredential } from "firebase/auth";
+import { useState } from "react";
 
 export default function useAuth(
   method: (auth: Auth, email: string, password: string) => Promise<UserCredential>,

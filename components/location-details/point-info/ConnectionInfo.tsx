@@ -1,9 +1,9 @@
-import Image from "next/image";
 import InfoRow from "@components/ui/info-row/InfoRow";
+import { ExtendedPOIDetails } from "domain/api-types";
+import { noInfo, socketTypeImages } from "domain/constants";
+import Image from "next/image";
 import ContactInfo from "./ContactInfo";
 import MembershipInfo from "./MembershipInfo";
-import { noInfo, socketTypeImages } from "domain/constants";
-import { ExtendedPOIDetails } from "domain/api-types";
 
 export default function ConnectionInfo({
   chargingPointDetails,
@@ -18,10 +18,8 @@ export default function ConnectionInfo({
     ).values(),
   ];
 
-  
   const connectorImage = ConnectionTypesWithoutDuplicates.map(({ ID, ConnectionType }) => {
-
-    const connectionTypeName = ConnectionType.FormalName || ''
+    const connectionTypeName = ConnectionType.FormalName || "";
 
     const ConnectionTypeImage = ConnectionType
       ? socketTypeImages[connectionTypeName].src

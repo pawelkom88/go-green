@@ -1,13 +1,13 @@
-import { useState, useRef } from "react";
 import Button from "@components/button/Button";
 import Modal from "@components/modal/Modal";
-import SetCommentRating from "@features/comments/set-comment-rating/SetCommentRating";
 import Input from "@components/ui/input-field/Input";
-import { setDoc, doc, serverTimestamp } from "firebase/firestore";
+import SetCommentRating from "@features/comments/set-comment-rating/SetCommentRating";
 import { db } from "@lib/config";
-import { v4 as uuidv4 } from "uuid";
-import { CommentActionProps, UserComment } from "domain/types";
 import { commentBtnStyles, disabledBtnStyles } from "domain/constants";
+import { CommentActionProps, UserComment } from "domain/types";
+import { doc, serverTimestamp, setDoc } from "firebase/firestore";
+import { useRef, useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 export default function CommentAction({
   onModalClose,
@@ -28,7 +28,7 @@ export default function CommentAction({
     e.preventDefault();
 
     onModalClose(false);
-    
+
     const userComment: UserComment = {
       userName: "logged in user name / change",
       title,

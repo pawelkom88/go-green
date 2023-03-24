@@ -1,5 +1,4 @@
 import Input from "@components/ui/input-field/Input";
-import React from "react";
 
 export default function UserData() {
   return (

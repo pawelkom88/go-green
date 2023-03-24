@@ -90,8 +90,8 @@ export const connectorTypes: ConnectorTypes[] = [
 ];
 
 export const sliderProps: SliderProps[] = [
-  { id: 1, name: 'maxResults', label: "Number of results", min: "10", max: "200" },
-  { id: 2, name: 'distance', label: "Distance in miles", min: ".5", max: "10" },
+  { id: 1, name: "maxResults", label: "Number of results", min: "10", max: "200" },
+  { id: 2, name: "distance", label: "Distance in miles", min: ".5", max: "10" },
 ];
 
 interface filtersCheckbox {

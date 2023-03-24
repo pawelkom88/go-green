@@ -1,11 +1,11 @@
-import { useState } from "react";
 import Button from "@components/button/Button";
-import Input from "@components/ui/input-field/Input";
-import ShowPasswordIcon from "@components/ui/icons/ShowPasswordIcon";
-import HidePasswordIcon from "@components/ui/icons/HidePasswordIcon";
 import ClearInputFieldIcon from "@components/ui/icons/ClearInputFieldIcon";
+import HidePasswordIcon from "@components/ui/icons/HidePasswordIcon";
+import ShowPasswordIcon from "@components/ui/icons/ShowPasswordIcon";
+import Input from "@components/ui/input-field/Input";
 import { loginBtnStyles, signInBtnStyles } from "domain/constants";
 import { FormProps, UserDetails } from "domain/types";
+import { useState } from "react";
 
 export default function Form({ children, action, onSubmit }: FormProps) {
   const [userDetails, setUserDetails] = useState<UserDetails>({

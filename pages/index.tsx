@@ -1,11 +1,11 @@
-import FiltersContext from "@context/FiltersContext";
-import { useCurrentLocation } from "@context/UserLocationContext";
-import MobileMenu from "@components/navigation/mobile-menu/MobileMenu";
-import Nav from "@components/navigation/Nav";
+import ErrorFallback from "@components/error-boundries/ErrorFallback";
 import Map from "@components/map/Map";
 import Modal from "@components/modal/Modal";
+import MobileMenu from "@components/navigation/mobile-menu/MobileMenu";
+import Nav from "@components/navigation/Nav";
+import FiltersContext from "@context/FiltersContext";
+import { useCurrentLocation } from "@context/UserLocationContext";
 import { ErrorBoundary } from "react-error-boundary";
-import ErrorFallback from "@components/error-boundries/ErrorFallback";
 
 export default function Home() {
   const { currentLocation, getCurrentPosition, status } = useCurrentLocation();

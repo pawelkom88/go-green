@@ -1,6 +1,5 @@
 import { Actions, InitialFilters } from "domain/types";
 import { filtersActions } from "./actions";
-import { initialFilters } from "domain/constants";
 
 export default function filtersReducer(
   filters: InitialFilters,

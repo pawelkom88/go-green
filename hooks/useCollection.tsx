@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
-import { db } from "@lib/config";
-import { collection, onSnapshot } from "firebase/firestore";
 import { FirebaseError } from "@firebase/util";
+import { db } from "@lib/config";
 import { Comment } from "domain/types";
+import { collection, onSnapshot } from "firebase/firestore";
+import { useEffect, useState } from "react";
 
 export default function useCollection(col: string) {
   const [data, setData] = useState<null | Comment[]>(null);

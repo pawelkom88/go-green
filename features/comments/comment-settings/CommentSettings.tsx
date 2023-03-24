@@ -1,7 +1,7 @@
-import useToggle from "@hooks/useToggle";
-import Dots from "@components/ui/icons/Dots";
 import Button from "@components/button/Button";
+import Dots from "@components/ui/icons/Dots";
 import CommentAction from "@features/comments/comment-action/CommentAction";
+import useToggle from "@hooks/useToggle";
 import { CommentSettingsProsp } from "domain/types";
 
 export default function CommentSettings({

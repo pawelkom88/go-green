@@ -1,23 +1,22 @@
+import Modal from "@components/modal/Modal";
+import Spinner from "@components/ui/spinner/Spinner";
 import { useFilters } from "@context/FiltersContext";
 import useBoundingBox from "@hooks/useBoundingBox";
 import useFetch from "@hooks/useFetch";
-import { useDebounce } from "use-debounce";
-import { useState } from "react";
 import { MarkerF } from "@react-google-maps/api";
 import { MarkerProps } from "domain/types";
-import Modal from "@components/modal/Modal";
-import Spinner from "@components/ui/spinner/Spinner";
+import { useState } from "react";
+import { useDebounce } from "use-debounce";
 
 export default function Marker({ onSetSelectedPoint, onSetDirection, userLocation }: MarkerProps) {
   const [status, setStatus] = useState<string>("");
-  const { boundingBoxPolygon } = useBoundingBox(userLocation, .5);
+  const { boundingBoxPolygon } = useBoundingBox(userLocation, 0.5);
   const [debouncedMaxResults] = useDebounce(150, 1500);
 
   // const [debouncedMaxResults] = useDebounce(maxResults, 1500);
   const { data, loading, error } = useFetch(boundingBoxPolygon, debouncedMaxResults);
-  
-  const { filters } = useFilters();
 
+  const { filters } = useFilters();
 
   function fetchDirections({ lat, lng }: google.maps.LatLngLiteral) {
     if (!userLocation) return;
