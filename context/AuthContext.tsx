@@ -1,10 +1,9 @@
-import { createContext, useReducer, useEffect } from "react";
-import { onAuthStateChanged } from "firebase/auth";
-import { User as FirebaseUser } from "firebase/auth";
 import { auth } from "@lib/config";
-import { Props, AuthContextModel } from "domain/types";
 import { authActions } from "@store/actions";
 import authReducer from "@store/authReducer";
+import { AuthContextModel, Props } from "domain/types";
+import { onAuthStateChanged, User as FirebaseUser } from "firebase/auth";
+import { createContext, useEffect, useReducer } from "react";
 
 export const AuthContext = createContext<AuthContextModel>({} as AuthContextModel);
 

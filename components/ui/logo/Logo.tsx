@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-interface LogoProps  {
+interface LogoProps {
   className?: string;
   src: string;
   width: number;

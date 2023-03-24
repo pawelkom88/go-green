@@ -1,7 +1,7 @@
-import UserMenuOptions from "@components/user-menu-options/UserMenuOptions";
-import ChevronIcon from "@components/ui/icons/ChevronIcon";
-import Avatar from "@components/ui/avatar/Avatar";
 import Button from "@components/button/Button";
+import Avatar from "@components/ui/avatar/Avatar";
+import ChevronIcon from "@components/ui/icons/ChevronIcon";
+import UserMenuOptions from "@components/user-menu-options/UserMenuOptions";
 import useToggle from "@hooks/useToggle";
 
 export default function UserMenu() {

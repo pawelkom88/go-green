@@ -1,14 +1,14 @@
-import { useState } from "react";
-import Toast from "@components/ui/toast/Toast";
-import useCopyToClipboard from "@hooks/useCopyToClipboard";
-import POIDetails from "@components/location-details/POIDetails";
-import Comments from "@features/comments/Comment";
 import POIPhotos from "@components/location-details/POI-photos/POIPhotos";
+import POIDetails from "@components/location-details/POIDetails";
 import Modal from "@components/modal/Modal";
 import Tabs from "@components/ui/tabs/Tabs";
+import Toast from "@components/ui/toast/Toast";
+import Comments from "@features/comments/Comment";
+import useCopyToClipboard from "@hooks/useCopyToClipboard";
+import { chargingPointTabNames } from "domain/constants";
 import { ChargingPointDetailsProps, Coords } from "domain/types";
 import { handleLocation } from "helpers/helpers";
-import { chargingPointTabNames } from "domain/constants";
+import { useState } from "react";
 
 const [details, comments, photos] = chargingPointTabNames;
 

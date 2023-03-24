@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import CloseBtnIcon from "../ui/icons/CloseBtnIcon";
-import Overlay from "@components/modal/Overlay";
 import Button from "@components/button/Button";
-import FocusLock from "react-focus-lock";
+import Overlay from "@components/modal/Overlay";
+import CloseBtnIcon from "@components/ui/icons/CloseBtnIcon";
 import { ModalTypes } from "domain/types";
+import { useState } from "react";
+import FocusLock from "react-focus-lock";
 
 export default function Modal({ children, onModalClose, size }: ModalTypes) {
   const [isOpen, setIsOpen] = useState(true);

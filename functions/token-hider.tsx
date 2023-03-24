@@ -1,4 +1,3 @@
-import { ExtendedPOIDetails } from "domain/api-types";
 import fetch from "node-fetch";
 
 export async function handler(event: any) {

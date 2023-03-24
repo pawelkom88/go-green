@@ -1,9 +1,11 @@
-import useToggle from "@hooks/useToggle";
 import Input from "@components/ui/input-field/Input";
-import { FiltersActions , FiltersProps } from "domain/types";
+import { useFilters } from "@context/FiltersContext";
+import useToggle from "@hooks/useToggle";
 import { filtersActions } from "@store/actions";
+import { FilterCheckboxProps, FiltersActions } from "domain/types";
 
-export default function FilterCheckbox({ children, name = "", setFilters }: FiltersProps) {
+export default function FilterCheckbox({ children, name = "" }: FilterCheckboxProps) {
+  const { setFilters } = useFilters();
   const { isShown: isChecked, handleOnShow: handleIsChecked } = useToggle();
 
   function markAsCheckedOnKeyPress({ key }: React.KeyboardEvent) {

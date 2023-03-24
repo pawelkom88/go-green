@@ -1,6 +1,6 @@
-import { useState } from "react";
-import { LocationError, UserPositionCoords, Coords } from "domain/types";
 import { londonCoords } from "domain/constants";
+import { Coords, LocationError, UserPositionCoords } from "domain/types";
+import { useState } from "react";
 
 interface Options {
   enableHighAccuracy: boolean;

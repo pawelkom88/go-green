@@ -1,16 +1,8 @@
-import { initialFilters } from "domain/constants";
+import { FieldValue, Timestamp } from "@firebase/firestore-types";
 import { ExtendedPOIDetails } from "domain/api-types";
+import { User } from "firebase/auth";
+import { Dispatch, FormEvent } from "react";
 import { POIDetails } from "./api-types";
-import { Timestamp, FieldValue } from "@firebase/firestore-types";
-import { Dispatch } from "react";
-import {
-  Auth,
-  UserCredential,
-  User,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  sendPasswordResetEmail,
-} from "firebase/auth";
 
 export interface Actions {
   type: string | boolean;
@@ -38,10 +30,12 @@ export type InitialFilters = FiltersActions;
 
 export type SetFilters = Dispatch<Actions>;
 
-export interface FiltersProps {
-  children?: React.ReactNode;
-  setFilters: SetFilters;
-  name?: string;
+export interface FilterCheckboxProps extends Props {
+  name: string;
+}
+
+export interface FiltersProps extends Props {
+  onApplyFilters: (e: FormEvent<HTMLFormElement>) => void;
 }
 
 // USE GEOLOCATION HOOK TYPES

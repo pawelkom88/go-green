@@ -1,11 +1,10 @@
-import { useState } from "react";
-
 import { useCurrentLocation } from "@context/UserLocationContext";
-import POIInfoBox from "@features/google-map/POIInfoBox";
-import POIInfo from "@features/google-map/POIInfo";
 import Marker from "@features/google-map/Marker";
+import POIInfo from "@features/google-map/POIInfo";
+import POIInfoBox from "@features/google-map/POIInfoBox";
 import { DirectionsRenderer } from "@react-google-maps/api";
 import { ExtendedPOIDetails } from "domain/api-types";
+import { useState } from "react";
 
 export default function Features() {
   const { currentLocation } = useCurrentLocation();
@@ -19,7 +18,6 @@ export default function Features() {
         userLocation={currentLocation}
         onSetSelectedPoint={setSelectedPoint}
         onSetDirection={setDirections}
-       
       />
       {/* 
         charging points info 

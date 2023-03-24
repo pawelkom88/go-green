@@ -1,10 +1,10 @@
-import { useState } from "react";
-import useToggle from "@hooks/useToggle";
-import DragAndDrop from "@components/ui/drag&drop/DragAndDrop";
 import Modal from "@components/modal/Modal";
+import DragAndDrop from "@components/ui/drag&drop/DragAndDrop";
 import UserContainer from "@components/user-container/UserContainer";
-import { FileUploader } from "react-drag-drop-files";
+import useToggle from "@hooks/useToggle";
 import { PhotoUpload } from "domain/types";
+import { useState } from "react";
+import { FileUploader } from "react-drag-drop-files";
 
 const fileTypes = ["JPG", "PNG"];
 

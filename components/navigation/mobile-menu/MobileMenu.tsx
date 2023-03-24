@@ -1,7 +1,6 @@
-import { useState } from "react";
-import UserIcon from "@components/ui/icons/UserIcon";
-import Modal from "@components/modal/Modal";
 import Login from "@components/login/Login";
+import Modal from "@components/modal/Modal";
+import UserIcon from "@components/ui/icons/UserIcon";
 import useToggle from "@hooks/useToggle";
 
 export default function MobileMenu() {

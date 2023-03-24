@@ -1,7 +1,7 @@
-import { createContext, useContext } from "react";
 import useGeolocation from "@hooks/useGeolocation";
-import { Props, Coords } from "domain/types";
 import { londonCoords } from "domain/constants";
+import { Coords, Props } from "domain/types";
+import { createContext, useContext } from "react";
 
 interface LocationContext {
   currentLocation: Coords;

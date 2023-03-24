@@ -1,7 +1,7 @@
-import { createContext, useContext, useReducer } from "react";
 import filtersReducer from "@store/filtersReducer";
 import { initialFilters } from "domain/constants";
-import { Props, InitialFilters, SetFilters } from "domain/types";
+import { InitialFilters, Props, SetFilters } from "domain/types";
+import { createContext, useContext, useReducer } from "react";
 
 interface FiltersContext {
   setFilters: SetFilters;

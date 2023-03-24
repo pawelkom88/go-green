@@ -1,7 +1,7 @@
-import useAuthContext from "./useAuthContext";
 import { auth } from "@lib/config";
-import { signOut } from "firebase/auth";
 import { authActions } from "@store/actions";
+import { signOut } from "firebase/auth";
+import useAuthContext from "./useAuthContext";
 
 export default function useLogout() {
   const { dispatch } = useAuthContext();
