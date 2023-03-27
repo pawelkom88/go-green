@@ -4,11 +4,11 @@ import Modal from "@components/modal/Modal";
 import FilterIcon from "@components/ui/icons/FilterIcon";
 import LocationIcon from "@components/ui/icons/LocationIcon";
 import UserMenu from "@components/user-menu/UserMenu";
+import { useAuthContext } from "@context/AuthContext";
 import { useCurrentLocation } from "@context/UserLocationContext";
 import Filters from "@features/filters/Filters";
 import FiltersSelect from "@features/filters/filters-select/FiltersSelect";
 import Slider from "@features/filters/slider/Slider";
-import useAuthContext from "@hooks/useAuthContext";
 import useToggle from "@hooks/useToggle";
 import { sliderProps } from "domain/constants";
 
