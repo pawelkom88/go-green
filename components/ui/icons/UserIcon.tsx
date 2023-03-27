@@ -1,11 +1,13 @@
 type UserIconProps = {
   fill: string;
+  size: number;
 };
 
-export default function UserIcon({ fill }: UserIconProps) {
+export default function UserIcon({ fill, size }: UserIconProps) {
   return (
     <svg
-      xmlns="http://www.w3.org/2000/svg"  
+      width={size}
+      xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 25 25"
       fill="none"
       className="cursor-pointer pl-[2px] pt-[1px]">
