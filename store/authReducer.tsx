@@ -1,26 +1,25 @@
+import { AuthContextActions } from "domain/types";
 import { User as FirebaseUser } from "firebase/auth";
 import { authActions } from "./actions";
 
-export interface Actions {
-  type: string;
-  payload: FirebaseUser;
-}
-
-interface ReducerState {
+interface InitialAuthState {
   user: null | FirebaseUser;
   authIsReady: boolean;
 }
 
-export default function authReducer(state: ReducerState, action: Actions) {
-  switch (action.type) {
+export default function authReducer(
+  state: InitialAuthState,
+  { type, payload = null }: AuthContextActions
+): InitialAuthState {
+  switch (type) {
     case authActions.login:
-      return { ...state, user: action.payload };
+      return { ...state, user: payload };
 
     case authActions.logout:
       return { ...state, user: null };
 
     case authActions.authIsReady:
-      return { user: action.payload, authIsReady: true };
+      return { user: payload, authIsReady: true };
 
     default:
       return state;

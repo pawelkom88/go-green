@@ -1,10 +1,10 @@
-import { Actions, InitialFilters } from "domain/types";
+import { FilterContextActions, InitialFiltersState } from "domain/types";
 import { filtersActions } from "./actions";
 
 export default function filtersReducer(
-  filters: InitialFilters,
-  { type, payload = "" }: Actions
-): InitialFilters {
+  filters: InitialFiltersState,
+  { type, payload = "" }: FilterContextActions
+): InitialFiltersState {
   switch (type) {
     case filtersActions.membership:
       return { ...filters, membership: payload };
