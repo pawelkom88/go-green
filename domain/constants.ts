@@ -1,8 +1,22 @@
-import { Coords, InitialFilters, SliderProps } from "domain/types";
+import { Coords, InitialFiltersState, SliderProps } from "domain/types";
 
 export const noInfo: string = "Not available";
 
-export const initialFilters: InitialFilters = {
+// type FormActions = "Log in" | "Sign in" | "Sign up";
+
+interface FormActions {
+  signUp: string;
+  signIn: string;
+  logIn: string;
+}
+
+export const formActions: FormActions = {
+  signUp: "Sign up",
+  signIn: "Sign in",
+  logIn: "Log in",
+};
+
+export const initialFilters: InitialFiltersState = {
   connectorType: "",
   maxResults: "",
   distance: false,

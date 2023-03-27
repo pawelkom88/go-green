@@ -1,11 +1,11 @@
 import filtersReducer from "@store/filtersReducer";
 import { initialFilters } from "domain/constants";
-import { InitialFilters, Props, SetFilters } from "domain/types";
+import { InitialFiltersState, Props, SetFilters } from "domain/types";
 import { createContext, useContext, useReducer } from "react";
 
 interface FiltersContext {
   setFilters: SetFilters;
-  filters: InitialFilters;
+  filters: InitialFiltersState;
 }
 
 export const FiltersCtx = createContext<FiltersContext | null>(null);
