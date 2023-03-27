@@ -4,9 +4,14 @@ import { User } from "firebase/auth";
 import { Dispatch, FormEvent } from "react";
 import { POIDetails } from "./api-types";
 
-export interface Actions {
+export interface FilterContextActions {
   type: string | boolean;
   payload?: string | boolean;
+}
+
+export interface AuthContextActions {
+  type: string;
+  payload?: null | User;
 }
 
 export interface Coords {
@@ -26,9 +31,9 @@ export interface AuthActions {
   authIsReady: string;
 }
 
-export type InitialFilters = FiltersActions;
+export type InitialFiltersState = FiltersActions;
 
-export type SetFilters = Dispatch<Actions>;
+export type SetFilters = Dispatch<FilterContextActions>;
 
 export interface FilterCheckboxProps extends Props {
   name: string;
@@ -165,20 +170,19 @@ export type ChargingPointInfoProps = {
 // FIREBASE
 export interface AuthContextModel {
   user: User | null;
-  // auth: Auth;
-  // signIn: (email: string, password: string) => Promise<UserCredential>
-  // signUp: (email: string, password: string) => Promise<UserCredential>
-  // sendPasswordResetEmail?: (email: string) => Promise<void>
-  dispatch: Dispatch<any>;
+  userName: string | undefined;
+  dispatch: Dispatch<AuthContextActions>;
 }
 // FORM COMPONENT
 export interface FormProps extends Props {
   action?: string;
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+  userDetails: UserDetails;
+  onHandleUserDetails: (val: UserDetails) => void;
 }
 
 export interface UserDetails {
-  userName: string;
+  email: string;
   password: string;
 }
 
