@@ -50,6 +50,16 @@ export const chargingPointTabNames: ChargingPointTabNames[] = [
   { id: 3, tabName: "Photos" },
 ];
 
+interface UserContainerActions {
+  addComment: string;
+  uploadPhoto: string;
+}
+
+export const userContainerActions: UserContainerActions = {
+  addComment: "Log in to add comments",
+  uploadPhoto: "Log in to upload images",
+};
+
 type ButtonStyles = string;
 
 export const signInBtnStyles: ButtonStyles =
