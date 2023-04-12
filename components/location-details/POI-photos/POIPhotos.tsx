@@ -2,6 +2,7 @@ import Modal from "@components/modal/Modal";
 import DragAndDrop from "@components/ui/drag&drop/DragAndDrop";
 import UserContainer from "@components/user-container/UserContainer";
 import useToggle from "@hooks/useToggle";
+import { userContainerActions } from "domain/constants";
 import { PhotoUpload } from "domain/types";
 import { useState } from "react";
 import { FileUploader } from "react-drag-drop-files";
@@ -26,7 +27,7 @@ export default function POIPhotos() {
   return (
     <>
       <div className="w-full flex-center flex-col">
-        <UserContainer action="Log in to upload images">
+        <UserContainer action={userContainerActions.uploadPhoto}>
           <FileUploader
             handleChange={handleUpload}
             onSizeError={() => setSizeError(true)}
