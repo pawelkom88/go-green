@@ -8,7 +8,6 @@ import { formActions, signInBtnStyles } from "domain/constants";
 
 export default function LoginModal() {
   const { isShown, handleOnShow } = useToggle();
-
   const { isShown: isRegistered, handleOnShow: handleIsRegistered } = useToggle();
 
   const registrationForm = isRegistered ? (
@@ -25,7 +24,7 @@ export default function LoginModal() {
 
   const showLoginModal = isShown && (
     <Modal size="w-full h-2/3 flex-center" onModalClose={() => handleOnShow(false)}>
-      <div className="w-full max-w-md p-8 space-y-3 rounded-xl  text-dark-text-clr -mt-24">
+      <div className="w-full max-w-sm p-8 space-y-3 rounded-xl  text-dark-text-clr -mt-24">
         <AnimatedLogo />
         <h1 className="text-2xl font-bold text-center">
           {isRegistered ? formActions.signUp : formActions.logIn}
