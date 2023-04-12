@@ -1,3 +1,4 @@
+import { useAuthContext } from "@context/AuthContext";
 import { Props } from "domain/types";
 
 interface UserContainer extends Props {
@@ -5,12 +6,11 @@ interface UserContainer extends Props {
 }
 
 export default function UserContainer({ children, action }: UserContainer) {
-  // const { user } = useAuthContext();
-  let user = true;
+  const { user } = useAuthContext();
 
   if (!user) {
     return (
-      <h2 className="text-md lg:text-2xl font-bold text-dark-text-clr text-center">{action}</h2>
+      <h2 className="text-md lg:text-xl font-bold text-dark-text-clr text-center mt-12">{action}</h2>
     );
   }
 
