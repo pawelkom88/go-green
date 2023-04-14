@@ -1,3 +1,4 @@
+import ErrorMessage from "@components/error-message/ErrorMessage";
 import Modal from "@components/modal/Modal";
 import Spinner from "@components/ui/spinner/Spinner";
 import { useFilters } from "@context/FiltersContext";
@@ -46,30 +47,28 @@ export default function Marker({ onSetSelectedPoint, onSetDirection, userLocatio
   if (data) {
     return (
       <>
-        {data
-          .filter(({ Connections }) => Connections.length)
-          .map(chargingPoint => {
-            const { Latitude: lat, Longitude: lng } = chargingPoint.AddressInfo;
-
-            return (
-              <MarkerF
-                key={chargingPoint.ID}
-                icon={"/assets/charger-station.svg"}
-                position={{ lat, lng }}
-                onClick={() => {
-                  onSetSelectedPoint(chargingPoint);
-                  fetchDirections({ lat, lng });
-                }}
-              />
-            );
-          })}
-        {status && <Modal size="flex-center h-[300px]">{status}</Modal>}
-        {error && (
-          <Modal size="flex-center h-[245px]">
-            An error occurred while fetching data. Please try again
-          </Modal>
+        {loading ? (
+          <Spinner />
+        ) : (
+          data
+            .filter(({ Connections }) => Connections.length)
+            .map(chargingPoint => {
+              const { Latitude: lat, Longitude: lng } = chargingPoint.AddressInfo;
+              return (
+                <MarkerF
+                  key={chargingPoint.ID}
+                  icon={"/assets/charger-station.svg"}
+                  position={{ lat, lng }}
+                  onClick={() => {
+                    onSetSelectedPoint(chargingPoint);
+                    fetchDirections({ lat, lng });
+                  }}
+                />
+              );
+            })
         )}
-        {loading && <Spinner />}
+        {status && <Modal size="flex-center h-[300px]">{status}</Modal>}
+        <ErrorMessage error={error} />
       </>
     );
   }

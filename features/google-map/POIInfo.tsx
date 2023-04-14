@@ -1,3 +1,4 @@
+import ErrorMessage from "@components/error-message/ErrorMessage";
 import POIPhotos from "@components/location-details/POI-photos/POIPhotos";
 import POIDetails from "@components/location-details/POIDetails";
 import Modal from "@components/modal/Modal";
@@ -43,10 +44,10 @@ export default function POIInfo({
 
   const showPOIPhotos = activeTab === photos.tabName && <POIPhotos />;
 
-  const copyToClipboardErrorMsg = error && <Modal size="h-[300px] flex-center">{error}</Modal>;
-
   const copyToClipboardSuccessMsg = value && (
-    <Toast>Link to Google Maps has been copied to clipboard !</Toast>
+    <Toast position="bottom-12 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+      Link to Google Maps has been copied to clipboard !
+    </Toast>
   );
 
   return (
@@ -57,7 +58,7 @@ export default function POIInfo({
         {showActiveTab}
         {showPOIPhotos}
       </Modal>
-      {copyToClipboardErrorMsg}
+      <ErrorMessage error={error} />
       {copyToClipboardSuccessMsg}
     </>
   );
