@@ -35,7 +35,7 @@ export default function FiltersSelect() {
     handleShowDropdown(false);
   }
 
-  let domNode = useClickOutside(() => {
+  let activeDomNode = useClickOutside(() => {
     handleShowDropdown(false);
   });
 
@@ -46,7 +46,7 @@ export default function FiltersSelect() {
       </label>
       <div className="absolute top-[38%] w-full sm:w-1/2 z-50">
         <ul
-          ref={domNode}
+          ref={activeDomNode}
           tabIndex={0}
           onKeyDown={showDropdown ? closeDropDownOnKeyPress : openDropDownOnKeyPress}
           onClick={() => handleShowDropdown(true)}

@@ -13,14 +13,14 @@ export default function CommentBody({ details }: { details: Comment }) {
   const { isShown: showCommentSettings, handleOnShow: handleCommentSettings } = useToggle();
 
   // close menu after clicking outside it
-  let domNode = useClickOutside(() => {
+  let activeDomNode = useClickOutside(() => {
     handleCommentSettings(false);
   });
 
   return (
     <>
       <article
-        ref={domNode}
+        ref={activeDomNode}
         className="border border-teriary-clr p-6 text-base bg-white rounded-lg mt-8">
         <footer className="relative flex justify-between items-center mb-2">
           <div className="w-3/5 flex flex-col">
