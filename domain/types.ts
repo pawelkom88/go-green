@@ -4,6 +4,21 @@ import { User } from "firebase/auth";
 import { Dispatch, FormEvent } from "react";
 import { POIDetails } from "./api-types";
 
+export interface AuthErrorMessage {
+  email: string;
+  password: string;
+  auth: string;
+}
+
+export interface LogOutMessageProps {
+  onHandleLogOutMessage: (val: boolean) => void;
+  onLogOut: () => void;
+}
+
+export interface ToastProps extends Props {
+  position: string;
+}
+
 export interface FilterContextActions {
   type: string | boolean;
   payload?: string | boolean;
@@ -112,7 +127,7 @@ export interface IconProps {
 }
 
 export interface OverlayType extends Props {
-  onClose: () => void;
+  onClose?: () => void;
 }
 
 export interface PhotoUpload {
@@ -179,6 +194,8 @@ export interface FormProps extends Props {
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
   userDetails: UserDetails;
   onHandleUserDetails: (val: UserDetails) => void;
+  loading: boolean;
+  error: AuthErrorMessage | null;
 }
 
 export interface UserDetails {
