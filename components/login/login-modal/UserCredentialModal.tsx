@@ -6,24 +6,27 @@ import SignUpForm from "@features/signup-form/SignUpForm";
 import useToggle from "@hooks/useToggle";
 import { formActions, signInBtnStyles } from "domain/constants";
 
-export default function LoginModal() {
-  const { isShown, handleOnShow } = useToggle();
+export default function UserCredentialModal() {
+  const { isShown: showUserCredentialModal, handleOnShow: handleShowUserCredentialModal } =
+    useToggle();
   const { isShown: isRegistered, handleOnShow: handleIsRegistered } = useToggle();
 
   const registrationForm = isRegistered ? (
     <SignUpForm
-      onModalClose={() => handleOnShow(false)}
+      onModalClose={() => handleShowUserCredentialModal(false)}
       onLogin={() => handleIsRegistered(false)}
     />
   ) : (
     <LoginForm
-      onModalClose={() => handleOnShow(false)}
+      onModalClose={() => handleShowUserCredentialModal(false)}
       onSignedUp={() => handleIsRegistered(true)}
     />
   );
 
-  const showLoginModal = isShown && (
-    <Modal size="w-full h-2/3 flex-center" onModalClose={() => handleOnShow(false)}>
+  const showLoginModal = showUserCredentialModal && (
+    <Modal
+      size="w-full h-2/3 flex-center"
+      onModalClose={() => handleShowUserCredentialModal(false)}>
       <div className="w-full max-w-sm p-8 space-y-3 rounded-xl  text-dark-text-clr -mt-24">
         <AnimatedLogo />
         <h1 className="text-2xl font-bold text-center">
@@ -37,7 +40,7 @@ export default function LoginModal() {
   return (
     <>
       <Button
-        onClick={() => handleOnShow(true)}
+        onClick={() => handleShowUserCredentialModal(true)}
         className={`${signInBtnStyles} hover:bg-white hover:text-primary-clr mr-4 ml-auto hidden lg:block`}>
         LOG IN
       </Button>
