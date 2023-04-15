@@ -1,6 +1,6 @@
 import { FieldValue, Timestamp } from "@firebase/firestore-types";
 import { ExtendedPOIDetails } from "domain/api-types";
-import { User } from "firebase/auth";
+import { Auth, User, UserCredential } from "firebase/auth";
 import { Dispatch, FormEvent } from "react";
 import { POIDetails } from "./api-types";
 
@@ -12,7 +12,7 @@ export interface AuthErrorMessage {
 
 export interface LogOutMessageProps {
   onHandleLogOutMessage: (val: boolean) => void;
-  onLogOut: () => void;
+  onHandleLogOut: () => void;
 }
 
 export interface ToastProps extends Props {
@@ -128,6 +128,7 @@ export interface IconProps {
 
 export interface OverlayType extends Props {
   onClose?: () => void;
+  blur: string;
 }
 
 export interface PhotoUpload {
@@ -187,15 +188,21 @@ export interface AuthContextModel {
   user: User | null;
   userName: string | undefined;
   dispatch: Dispatch<AuthContextActions>;
+  authIsReady: boolean;
 }
 // FORM COMPONENT
 export interface FormProps extends Props {
-  action?: string;
-  onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
-  userDetails: UserDetails;
-  onHandleUserDetails: (val: UserDetails) => void;
-  loading: boolean;
-  error: AuthErrorMessage | null;
+  action: string;
+  method: (auth: Auth, email: string, password: string) => Promise<UserCredential>;
+
+  onModalClose: () => void;
+
+
+  // onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+  // userDetails: UserDetails;
+  // onHandleUserDetails: (val: UserDetails) => void;
+  // loading: boolean;
+  // error: AuthErrorMessage | null;
 }
 
 export interface UserDetails {
