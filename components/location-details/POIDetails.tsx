@@ -61,7 +61,11 @@ export default function POIDetails({
         </div>
         <ConnectionInfo chargingPointDetails={chargingPointDetails}></ConnectionInfo>
       </div>
-      {addedToFavorites && <Toast>{AddressInfo.Title} has been added to favourites.</Toast>}
+      {addedToFavorites && (
+        <Toast position="bottom-2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+          {AddressInfo.Title} has been added to favourites.
+        </Toast>
+      )}
     </>
   );
 }
