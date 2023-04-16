@@ -4,6 +4,7 @@ import HidePasswordIcon from "@components/ui/icons/HidePasswordIcon";
 import ShowPasswordIcon from "@components/ui/icons/ShowPasswordIcon";
 import Input from "@components/ui/input-field/Input";
 import Spinner from "@components/ui/spinner/Spinner";
+import Toast from "@components/ui/toast/Toast";
 import useAuth from "@hooks/useAuth";
 import { formActions, loginBtnStyles, signInBtnStyles } from "domain/constants";
 import { FormProps, UserDetails } from "domain/types";
@@ -21,7 +22,7 @@ export default function Form({ children, action, method, onModalClose }: FormPro
     e.preventDefault();
     handleUser(userDetails.email, userDetails.password);
 
-    if (error !== null) onModalClose();
+    if (!error.occured) onModalClose(false);
   }
 
   function handleUserDetails(e: Event) {
@@ -45,8 +46,6 @@ export default function Form({ children, action, method, onModalClose }: FormPro
         <Spinner />
       ) : (
         <form onSubmit={handleSubmit} className="relative space-y-6">
-          {/* // add validation css */}
-          <p>{error?.auth}</p>
           <div className="space-y-1 text-sm">
             <Input
               onChange={handleUserDetails}
@@ -61,7 +60,6 @@ export default function Form({ children, action, method, onModalClose }: FormPro
               E-mail
             </Input>
             {/* // add validation css */}
-            <p>{error?.email}</p>
           </div>
           <div className="relative pace-y-1 text-sm">
             <Input
@@ -90,13 +88,18 @@ export default function Form({ children, action, method, onModalClose }: FormPro
               </Button>
             )}
             {/* // add validation css */}
-            <p>{error?.password}</p>
           </div>
           <Button type="submit" className={`${signInBtnStyles} mt-4`}>
             {action === formActions.signIn ? formActions.signIn : formActions.signUp}
           </Button>
           {children}
         </form>
+      )}
+
+      {error.message && (
+        <Toast styles="text-white top-12 left-1/2 transform -translate-x-1/2 -translate-y-1/2 border-2 border-warning-clr">
+          <p className="font-bold text-md text-center text-warning-clr">{error.message}</p>
+        </Toast>
       )}
     </>
   );
