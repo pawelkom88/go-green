@@ -2,9 +2,9 @@ import Overlay from "@components/modal/Overlay";
 
 export default function Spinner() {
   return (
-    <Overlay>
+    <Overlay blur="backdrop-blur-sm">
       <div
-        className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-80"
+        className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-[100] blur-none"
         role="status">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -38,7 +38,7 @@ export default function Spinner() {
             className="flicker"
             fill="#f1b24a"
             d="M 82.507812 63.078125 C 82.003906 62.570312 81.191406 62.570312 80.691406 63.078125 L 67.152344 76.742188 C 66.339844 77.511719 66.945312 79.007812 68.066406 78.96875 C 68.066406 78.96875 78.496094 78.96875 78.496094 78.96875 L 67.164062 90.410156 C 65.976562 91.605469 67.78125 93.457031 68.980469 92.246094 C 68.980469 92.246094 82.519531 78.578125 82.519531 78.578125 C 82.894531 78.203125 82.996094 77.640625 82.804688 77.160156 C 82.585938 76.679688 82.109375 76.367188 81.59375 76.367188 L 71.160156 76.367188 L 82.496094 64.925781 C 83.011719 64.417969 83.011719 63.585938 82.507812 63.078125 Z M 82.507812 63.078125 "
-            fill-rule="nonzero"
+            fillRule="nonzero"
           />
         </svg>
         <span className="sr-only">Loading...</span>

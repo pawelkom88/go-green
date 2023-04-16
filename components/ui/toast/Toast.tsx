@@ -2,9 +2,9 @@ import Button from "@components/button/Button";
 import { ToastProps } from "domain/types";
 import { useEffect, useState } from "react";
 
-const defaultToastPosition = "bottom-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2";
+const defaultToastStyles = "bottom-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2";
 
-export default function Toast({ children, position = defaultToastPosition }: ToastProps) {
+export default function Toast({ children, styles = defaultToastStyles }: ToastProps) {
   const [openToast, setOpenToast] = useState(true);
 
   useEffect(() => {
@@ -17,10 +17,12 @@ export default function Toast({ children, position = defaultToastPosition }: Toa
     <>
       {openToast && (
         <div
+          role="alert"
+          aria-live="assertive"
+          aria-atomic="true"
           className={`${openToast ? "animate-start" : "animate-end"} 
-          absolute ${position} flex shadow-md gap-6 rounded-lg overflow-hidden divide-x w-3/4 md:max-w-lg  bg-white divide-secondary-clr z-[60]`}>
-          <div
-            className="flex flex-1 flex-col p-4 border-l-8 border-secondary-clr text-sm text-primary-clr">
+          absolute flex shadow-md gap-6 rounded-lg overflow-hidden divide-x w-3/4 md:max-w-lg bg-white divide-secondary-clr z-[60] ${styles}`}>
+          <div className="flex flex-1 flex-col p-4 border-l-8 border-secondary-clr text-sm text-primary-clr">
             {children}
           </div>
           <Button

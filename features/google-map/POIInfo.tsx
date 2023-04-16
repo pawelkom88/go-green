@@ -45,7 +45,7 @@ export default function POIInfo({
   const showPOIPhotos = activeTab === photos.tabName && <POIPhotos />;
 
   const copyToClipboardSuccessMsg = value && (
-    <Toast position="bottom-12 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+    <Toast styles="bottom-12 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
       Link to Google Maps has been copied to clipboard !
     </Toast>
   );

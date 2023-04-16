@@ -1,4 +1,4 @@
-import { AuthErrorMessage, Coords } from "domain/types";
+import { Coords } from "domain/types";
 import { FirebaseError } from "firebase/app";
 
 export function handleLocation(start: Coords, end: Coords): undefined | string {
@@ -16,31 +16,33 @@ export function splitStringBySymbol<T>(value: T, symbol: string) {
 }
 
 export function handleAuthError(error: FirebaseError) {
-  const authErrorMessage: AuthErrorMessage = {
-    email: "",
-    password: "",
-    auth: "",
-  };
+  let authErrorMessage = "";
 
   switch (error.code) {
     case "auth/email-already-in-use":
-      authErrorMessage.email = `This email address already exists.`;
+      authErrorMessage = `This email address already exists.`;
       break;
     case "auth/invalid-email":
-      authErrorMessage.email = `Email address is invalid.`;
+      authErrorMessage = `Email address is invalid.`;
+      break;
+    case "auth/user-not-found":
+      authErrorMessage = `Email not found.`;
       break;
     case "auth/invalid-password":
-      authErrorMessage.password = `Invalid password.`;
+      authErrorMessage = `Invalid password.`;
+      break;
+    case "auth/wrong-password":
+      authErrorMessage = `Wrong password.`;
       break;
     case "auth/operation-not-allowed":
-      authErrorMessage.auth = `Error during sign up.`;
+      authErrorMessage = `Error during sign up.`;
       break;
     case "auth/weak-password":
-      authErrorMessage.password =
+      authErrorMessage =
         "Password is not strong enough. Add additional characters including special characters and numbers.";
       break;
     default:
-      authErrorMessage.auth = "";
+      authErrorMessage;
       break;
   }
 

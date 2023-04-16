@@ -1,6 +1,7 @@
 import Form from "@components/form/Form";
 import HasAccount from "@components/login/HasAccount";
 import { formActions } from "domain/constants";
+import { GenericFunction } from "domain/types";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 
 export default function SignUpForm({
@@ -8,7 +9,7 @@ export default function SignUpForm({
   onModalClose,
 }: {
   onLogin: () => void;
-  onModalClose: () => void;
+  onModalClose: GenericFunction<boolean>;
 }) {
   return (
     <>
@@ -20,7 +21,6 @@ export default function SignUpForm({
           Already have an account ?
         </HasAccount>
       </Form>
-      {/* <ErrorMessage error={error} /> */}
     </>
   );
 }

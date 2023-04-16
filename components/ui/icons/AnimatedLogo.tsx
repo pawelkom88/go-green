@@ -1,5 +1,3 @@
-import React from "react";
-
 export default function AnimatedLogo() {
   return (
     <svg
@@ -7,7 +5,7 @@ export default function AnimatedLogo() {
       xmlnsXlink="http://www.w3.org/1999/xlink"
       width="180"
       height="180"
-      className="block mx-auto -mb-8"
+      className="animated-icon block mx-auto -mb-8"
       zoomAndPan="magnify"
       viewBox="0 0 375 374.999991"
       preserveAspectRatio="xMidYMid meet"

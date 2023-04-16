@@ -1,8 +1,23 @@
 import { FieldValue, Timestamp } from "@firebase/firestore-types";
 import { ExtendedPOIDetails } from "domain/api-types";
 import { Auth, User, UserCredential } from "firebase/auth";
-import { Dispatch, FormEvent } from "react";
+import { Dispatch, FormEvent, SetStateAction } from "react";
 import { POIDetails } from "./api-types";
+
+export interface LogOutMetrics {
+  openModal: boolean;
+  showLogOutPopUpMessage: boolean;
+}
+
+export interface MobileUserMenuProps {
+  showUserCredentialModal: boolean;
+  onHandleShowUserCredentialModal: GenericFunction<boolean>;
+}
+
+export interface AuthError {
+  occured: boolean;
+  message: string;
+}
 
 export interface AuthErrorMessage {
   email: string;
@@ -11,12 +26,12 @@ export interface AuthErrorMessage {
 }
 
 export interface LogOutMessageProps {
-  onHandleLogOutMessage: (val: boolean) => void;
+  onManageLogOut: Dispatch<SetStateAction<LogOutMetrics>>;
   onHandleLogOut: () => void;
 }
 
 export interface ToastProps extends Props {
-  position: string;
+  styles: string;
 }
 
 export interface FilterContextActions {
@@ -190,19 +205,15 @@ export interface AuthContextModel {
   dispatch: Dispatch<AuthContextActions>;
   authIsReady: boolean;
 }
+
+// ask !!
+export type GenericFunction<T = boolean> = ((val: T) => void) | (() => void);
+
 // FORM COMPONENT
 export interface FormProps extends Props {
   action: string;
   method: (auth: Auth, email: string, password: string) => Promise<UserCredential>;
-
-  onModalClose: () => void;
-
-
-  // onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
-  // userDetails: UserDetails;
-  // onHandleUserDetails: (val: UserDetails) => void;
-  // loading: boolean;
-  // error: AuthErrorMessage | null;
+  onModalClose: GenericFunction<boolean>;
 }
 
 export interface UserDetails {
