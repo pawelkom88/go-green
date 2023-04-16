@@ -53,6 +53,7 @@ export default function Input({
         min={min}
         max={max}
         checked={checked}
+        autoComplete={name}
       />
     </>
   );
