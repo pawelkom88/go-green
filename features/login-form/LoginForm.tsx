@@ -1,6 +1,7 @@
 import Form from "@components/form/Form";
 import HasAccount from "@components/login/HasAccount";
 import { formActions } from "domain/constants";
+import { GenericFunction } from "domain/types";
 import { signInWithEmailAndPassword } from "firebase/auth";
 
 export default function LoginForm({
@@ -8,7 +9,7 @@ export default function LoginForm({
   onModalClose,
 }: {
   onSignedUp: () => void;
-  onModalClose: () => void;
+  onModalClose: GenericFunction<boolean>;
 }) {
   return (
     <>
@@ -20,7 +21,6 @@ export default function LoginForm({
           Don&apos;t have an account ?
         </HasAccount>
       </Form>
-      {/* <ErrorMessage error={error} /> */}
     </>
   );
 }
