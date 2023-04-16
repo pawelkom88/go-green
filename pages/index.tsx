@@ -1,7 +1,6 @@
 import ErrorFallback from "@components/error-boundries/ErrorFallback";
 import Map from "@components/map/Map";
 import Modal from "@components/modal/Modal";
-import MobileMenu from "@components/navigation/mobile-menu/MobileMenu";
 import Nav from "@components/navigation/Nav";
 import FiltersContext from "@context/FiltersContext";
 import { useCurrentLocation } from "@context/UserLocationContext";
@@ -21,7 +20,6 @@ export default function Home() {
             <Nav />
             <Map />
           </FiltersContext>
-          <MobileMenu />
         </main>
       </div>
 
