@@ -8,6 +8,7 @@ module.exports = {
         "primary-clr": "var(--primary-clr)",
         "secondary-clr": "var(--secondary-clr)",
         "teriary-clr": "var(--teriary-clr)",
+        "warning-clr": "var(--warning-clr)",
       },
       keyframes: {
         fadeIn: {
