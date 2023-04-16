@@ -17,7 +17,7 @@ export default function Modal({ children, onModalClose, size }: ModalTypes) {
     <>
       {isOpen && (
         <FocusLock>
-          <Overlay onClose={closeModal}>
+          <Overlay blur="" onClose={closeModal}>
             <dialog
               onClick={e => e.stopPropagation()}
               className={`${
