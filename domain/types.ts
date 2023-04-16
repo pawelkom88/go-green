@@ -201,7 +201,7 @@ export type ChargingPointInfoProps = {
 // FIREBASE
 export interface AuthContextModel {
   user: User | null;
-  userName: string | undefined;
+  userName: string ;
   dispatch: Dispatch<AuthContextActions>;
   authIsReady: boolean;
 }

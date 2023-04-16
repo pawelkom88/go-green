@@ -11,7 +11,7 @@ export const AuthContext = createContext<AuthContextModel>({} as AuthContextMode
 export default function AuthContextProvider({ children }: Props) {
   const [state, dispatch] = useReducer(authReducer, { user: null, authIsReady: false });
 
-  const userName: string | undefined = state ? splitStringBySymbol(state.user?.email, "@") : '';
+  const userName = (state.user && splitStringBySymbol(state.user?.email, "@")) || "";
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, user => {
