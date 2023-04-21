@@ -7,9 +7,16 @@ export default function Button({
   type = "button",
   title,
   disabled,
+  aria,
 }: ButtonType) {
   return (
-    <button title={title} onClick={onClick} type={type} className={className} disabled={disabled}>
+    <button
+      aria-label={aria}
+      title={title}
+      onClick={onClick}
+      type={type}
+      className={className}
+      disabled={disabled}>
       {children}
     </button>
   );

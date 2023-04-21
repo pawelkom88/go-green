@@ -7,6 +7,7 @@ import { POIDetails } from "./api-types";
 export interface LogOutMetrics {
   openModal: boolean;
   showLogOutPopUpMessage: boolean;
+  isUserLoggedOut: null | boolean;
 }
 
 export interface MobileUserMenuProps {
@@ -15,7 +16,7 @@ export interface MobileUserMenuProps {
 }
 
 export interface AuthError {
-  occured: boolean;
+  occured: null | boolean;
   message: string;
 }
 
@@ -113,12 +114,15 @@ export interface LocationDetailsProps extends ChargingPointDetails {
   onCopy: () => void;
 }
 
+type ButtonHanlder = (() => void) | (() => boolean) | (() => Promise<void>);
+
 export interface ButtonType extends Props {
   className?: string;
   title?: string;
   type?: "submit" | "button";
   disabled?: boolean;
-  onClick?: () => void | (() => boolean);
+  onClick?: ButtonHanlder;
+  aria?: string;
 }
 
 export interface MaxResults {
@@ -201,7 +205,7 @@ export type ChargingPointInfoProps = {
 // FIREBASE
 export interface AuthContextModel {
   user: User | null;
-  userName: string ;
+  userName: string;
   dispatch: Dispatch<AuthContextActions>;
   authIsReady: boolean;
 }

@@ -1,21 +1,18 @@
 import Button from "@components/button/Button";
+import ErrorMessage from "@components/error-message/ErrorMessage";
 import Modal from "@components/modal/Modal";
 import ProfileIcon from "@components/ui/icons/ProfileIcon";
 import SignOutIcon from "@components/ui/icons/SignOutIcon";
-import Spinner from "@components/ui/spinner/Spinner";
-import Toast from "@components/ui/toast/Toast";
 import UserProfile from "@features/user-profile/UserProfile";
 import useLogout from "@hooks/useLogout";
-import { LogOutMetrics } from "domain/types";
-import { useState } from "react";
-import LogOutMessagePopUp from "./LogOutMessagePopUp";
+import usePopout from "@hooks/usePopout";
+
+import IsLoading from "@components/loading-state/IsLoading";
+import LogOutMessagePopUp from "../logout-message/LogOutMessagePopUp";
 
 export default function UserMenuOptions() {
   const { logUserOut, loading, error } = useLogout();
-  const [manageLogOut, setManageLogOut] = useState<LogOutMetrics>({
-    openModal: false,
-    showLogOutPopUpMessage: false,
-  });
+  const { manageLogOut, setManageLogOut } = usePopout();
 
   function handleLogOut() {
     logUserOut();
@@ -42,14 +39,10 @@ export default function UserMenuOptions() {
     </Modal>
   );
 
-
-
   return (
     <>
       {showLogOutWarningMessage}
-      {loading ? (
-        <Spinner />
-      ) : (
+      <IsLoading isLoading={loading}>
         <ul className="p-4 w-full border-r bg-primary-clr absolute rounded left-0 shadow mt-12 sm:mt-16">
           <li className="flex w-full justify-between hover:text-secondary-clr cursor-pointer items-center">
             <Button
@@ -68,8 +61,9 @@ export default function UserMenuOptions() {
             </Button>
           </li>
         </ul>
-      )}
+      </IsLoading>
       {showUserProfile}
+      <ErrorMessage error={error} />
     </>
   );
 }

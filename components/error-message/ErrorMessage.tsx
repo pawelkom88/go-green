@@ -1,6 +1,6 @@
 import Modal from "@components/modal/Modal";
 
-export default function ErrorMessage({ error }: { error: string | null }) {
+export default function ErrorMessage({ error }: { error: string | boolean | null }) {
   return (
     <>
       {error && (

@@ -1,6 +1,7 @@
-import UserCredentialModal from "@components/login/login-modal/UserCredentialModal";
+import UserCredentials from "@components/login/login-modal/UserCredentials";
 import Modal from "@components/modal/Modal";
 import UserIcon from "@components/ui/icons/UserIcon";
+import UserContainer from "@components/user-container/UserContainer";
 import { useAuthContext } from "@context/AuthContext";
 import UserProfile from "@features/user-profile/UserProfile";
 import { MobileUserMenuProps } from "domain/types";
@@ -15,11 +16,12 @@ export default function MobileUserMenu({
     <Modal
       onModalClose={() => onHandleShowUserCredentialModal(false)}
       size="w-full h-full md:h-3/4 flex-center">
-      {user ? (
+      <UserContainer
+        fallback={
+          <UserCredentials onHandleShowUserCredentialModal={onHandleShowUserCredentialModal} />
+        }>
         <UserProfile />
-      ) : (
-        <UserCredentialModal onHandleShowUserCredentialModal={onHandleShowUserCredentialModal} />
-      )}
+      </UserContainer>
     </Modal>
   );
 

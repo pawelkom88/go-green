@@ -7,6 +7,8 @@ interface CloseBtnProps extends IconProps {
 export default function CloseBtnIcon({ size, className, onClick }: CloseBtnProps) {
   return (
     <svg
+      aria-hidden="true"
+      focusable="false"
       aria-labelledby="close"
       role="img"
       tabIndex={0}
@@ -20,7 +22,7 @@ export default function CloseBtnIcon({ size, className, onClick }: CloseBtnProps
       fill="none"
       strokeLinecap="round"
       strokeLinejoin="round">
-      <title id="close">Close icon</title>
+      <title id="close">Close modal</title>
       <path stroke="none" d="M0 0h24v24H0z" />
       <line x1={18} y1={6} x2={6} y2={18} />
       <line x1={6} y1={6} x2={18} y2={18} />

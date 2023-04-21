@@ -1,6 +1,6 @@
 import ErrorMessage from "@components/error-message/ErrorMessage";
+import IsLoading from "@components/loading-state/IsLoading";
 import Modal from "@components/modal/Modal";
-import Spinner from "@components/ui/spinner/Spinner";
 import { useFilters } from "@context/FiltersContext";
 import useBoundingBox from "@hooks/useBoundingBox";
 import useFetch from "@hooks/useFetch";
@@ -47,10 +47,8 @@ export default function Marker({ onSetSelectedPoint, onSetDirection, userLocatio
   if (data) {
     return (
       <>
-        {loading ? (
-          <Spinner />
-        ) : (
-          data
+        <IsLoading isLoading={loading}>
+          {data
             .filter(({ Connections }) => Connections.length)
             .map(chargingPoint => {
               const { Latitude: lat, Longitude: lng } = chargingPoint.AddressInfo;
@@ -65,8 +63,8 @@ export default function Marker({ onSetSelectedPoint, onSetDirection, userLocatio
                   }}
                 />
               );
-            })
-        )}
+            })}
+        </IsLoading>
         {status && <Modal size="flex-center h-[300px]">{status}</Modal>}
         <ErrorMessage error={error} />
       </>

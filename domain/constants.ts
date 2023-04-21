@@ -1,9 +1,9 @@
-import { Coords, InitialFiltersState, SliderProps } from "domain/types";
+import { AuthError, Coords, InitialFiltersState, SliderProps } from "domain/types";
 
 export const noInfo: string = "Not available";
 
 // type FormActions = "Log in" | "Sign in" | "Sign up";
-
+export const defaultAuthErrorState: AuthError = { occured: null, message: "" };
 interface FormActions {
   signUp: string;
   signIn: string;
@@ -50,23 +50,30 @@ export const chargingPointTabNames: ChargingPointTabNames[] = [
   { id: 3, tabName: "Photos" },
 ];
 
-interface UserContainerActions {
+interface PhotoUploadActions {
   addComment: string;
   uploadPhoto: string;
 }
 
-export const userContainerActions: UserContainerActions = {
+export const errorMsgStyles = "border-b-4 border-warning-clr";
+
+export const photoUploadActions: PhotoUploadActions = {
   addComment: "Log in to add comments",
   uploadPhoto: "Log in to upload images",
 };
+
+export const toastAuthenticationStyles =
+  "text-white top-12 left-1/2 transform -translate-x-1/2 -translate-y-1/2 border-2 border-warning-clr";
+
+export const toastPosition: string = "top-12 left-1/2 transform -translate-x-1/2 -translate-y-1/2";
 
 type ButtonStyles = string;
 
 export const signInBtnStyles: ButtonStyles =
   "block mx-auto bg-secondary-clr py-2 px-4 text-black font-bold text-sm hover:bg-primary-clr hover:text-secondary-clr";
 
-export const loginBtnStyles: ButtonStyles =
-  "w-full bg-white py-2 px-4 text-black border border-primary-clr rounded-lg";
+export const loginInputStyles: ButtonStyles =
+  "w-full bg-white py-2 px-4 text-black border border-primary-clr rounded-lg border-b-4";
 
 export const submitBtnStyles: ButtonStyles =
   "bg-teriary-clr py-2 px-4 text-black font-bold hover:bg-white hover:text-primary-clr";
@@ -79,7 +86,7 @@ export const disabledBtnStyles: ButtonStyles = "bg-gray-200 py-2 px-4 text-black
 export const FiltersBtnStyles = "w-36 h-12 font-bold uppercase py-2 hover:bg-secondary-clr";
 
 export const btnUserProfileStyles: ButtonStyles =
-  "inline-flex items-center px-4 py-2 text-sm font-medium text-center text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-700 dark:focus:ring-gray-700";
+  "px-4 py-2 text-sm font-medium text-center bg-white border border-gray-300 hover:bg-primary-clr hover:text-white hover:border-primary-clr";
 
 interface SocketTypeImages {
   [key: string]: {
@@ -96,6 +103,10 @@ export const socketTypeImages: SocketTypeImages = {
   "IEC 62196-3 Configuration AA": { id: 5, src: "/assets/connectors/chademo.webp" },
   Tesla: { id: 6, src: "/assets/connectors/tesla.webp" },
   "BS1363 / Type G": { id: 7, src: "/assets/connectors/GB-T.webp" },
+  notAvailable: {
+    id: 7,
+    src: "/assets/connectors/not-available.webp",
+  },
 };
 
 interface ConnectorTypes {

@@ -1,12 +1,10 @@
 import { useAuthContext } from "@context/AuthContext";
 import { handleAuthError } from "@helpers/helpers";
 import { auth } from "@lib/config";
-import { AuthError } from "domain/types";
+import { defaultAuthErrorState } from "domain/constants";
 import { FirebaseError } from "firebase/app";
 import { Auth, User, UserCredential } from "firebase/auth";
 import { useState } from "react";
-
-const defaultAuthErrorState: AuthError = { occured: true, message: "" };
 
 export default function useAuth(
   userAction: (auth: Auth, email: string, password: string) => Promise<UserCredential>,
@@ -22,7 +20,7 @@ export default function useAuth(
     setError({ occured: false, message: "" });
 
     try {
-      const userCredential = await userAction(auth, email, password);
+      const userCredential: UserCredential = await userAction(auth, email, password);
       setUser(userCredential.user);
       dispatch({ type: action, payload: userCredential.user });
       setLoading(false);

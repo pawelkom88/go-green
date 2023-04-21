@@ -6,7 +6,7 @@ export default function MembershipInfo({
 }: {
   isMembershipRequired: boolean;
 }) {
-  const AvailabilityIcon = isMembershipRequired ? (
+  const AvailabilityIcon: JSX.Element = isMembershipRequired ? (
     <TickIcon size={30} fill="none" strokeClr="#f1b24a" />
   ) : (
     <NoIcon />
