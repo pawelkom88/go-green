@@ -22,7 +22,7 @@ export default function POIDetails({
   const { AddressInfo } = chargingPointDetails || {};
 
   // use data from firebase and check if its added
-  const IsAddedToFavoritesIcon = addedToFavorites ? (
+  const IsAddedToFavoritesIcon: JSX.Element = addedToFavorites ? (
     <AddToFavouritesIcon size={35} fill="#9dc88d" />
   ) : (
     <AddedToFavouritesIcon size={35} fill="#9dc88d" />

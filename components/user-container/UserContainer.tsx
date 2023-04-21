@@ -2,17 +2,13 @@ import { useAuthContext } from "@context/AuthContext";
 import { Props } from "domain/types";
 
 interface UserContainer extends Props {
-  action: string;
+  fallback: JSX.Element;
 }
 
-export default function UserContainer({ children, action }: UserContainer) {
+export default function UserContainer({ children, fallback }: UserContainer) {
   const { user } = useAuthContext();
 
-  if (!user) {
-    return (
-      <h2 className="text-md lg:text-xl font-bold text-dark-text-clr text-center mt-12">{action}</h2>
-    );
-  }
+  if (!user) return fallback;
 
   return <>{children}</>;
 }

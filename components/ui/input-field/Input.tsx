@@ -16,6 +16,7 @@ interface InputProps extends Props {
   min?: string;
   max?: string;
   checked?: boolean;
+  autoComplete?: string;
 }
 
 export default function Input({
@@ -34,6 +35,7 @@ export default function Input({
   min,
   max,
   checked,
+  autoComplete,
 }: InputProps) {
   return (
     <>

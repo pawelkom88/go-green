@@ -22,6 +22,9 @@ export function handleAuthError(error: FirebaseError) {
     case "auth/email-already-in-use":
       authErrorMessage = `This email address already exists.`;
       break;
+    case "auth/missing-email":
+      authErrorMessage = `Enter valid email.`;
+      break;
     case "auth/invalid-email":
       authErrorMessage = `Email address is invalid.`;
       break;
@@ -40,6 +43,10 @@ export function handleAuthError(error: FirebaseError) {
     case "auth/weak-password":
       authErrorMessage =
         "Password is not strong enough. Add additional characters including special characters and numbers.";
+      break;
+    case "auth/too-many-requests":
+      authErrorMessage =
+        "Access to this account has been temporarily disabled due to many failed login attempts. You can immediately restore it by resetting your password or you can try again later.";
       break;
     default:
       authErrorMessage;

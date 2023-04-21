@@ -1,5 +1,5 @@
 import InfoRow from "@components/ui/info-row/InfoRow";
-import { ExtendedPOIDetails } from "domain/api-types";
+import { ExtendedConnectionDetails, ExtendedPOIDetails } from "domain/api-types";
 import { noInfo, socketTypeImages } from "domain/constants";
 import Image from "next/image";
 import ContactInfo from "./ContactInfo";
@@ -12,29 +12,30 @@ export default function ConnectionInfo({
 }) {
   const { Connections, NumberOfPoints, OperatorInfo, UsageType } = chargingPointDetails;
 
-  const ConnectionTypesWithoutDuplicates = [
+  const ConnectionTypesWithoutDuplicates: ExtendedConnectionDetails[] = [
     ...new Map(
       Connections.map(connectionType => [connectionType.ConnectionType.FormalName, connectionType])
     ).values(),
   ];
 
-  const connectorImage = ConnectionTypesWithoutDuplicates.map(({ ID, ConnectionType }) => {
-    const connectionTypeName = ConnectionType.FormalName || "";
+  const connectorImage: JSX.Element[] = ConnectionTypesWithoutDuplicates.map(
+    ({ ID, ConnectionType }) => {
+      const connectionTypeName: string = ConnectionType.FormalName || "";
+      const ConnectionTypeImage: string = ConnectionType.FormalName
+        ? socketTypeImages[connectionTypeName].src
+        : socketTypeImages.notAvailable.src;
 
-    const ConnectionTypeImage = ConnectionType
-      ? socketTypeImages[connectionTypeName].src
-      : "/assests/connectors/not-available.webp";
-
-    return (
-      <Image
-        key={ID}
-        width={200}
-        height={250}
-        src={ConnectionTypeImage}
-        alt={ConnectionType.FormalName || ""}
-      />
-    );
-  });
+      return (
+        <Image
+          key={ID}
+          width={200}
+          height={250}
+          src={ConnectionTypeImage}
+          alt={ConnectionType.FormalName || ""}
+        />
+      );
+    }
+  );
 
   return (
     <div className="flex flex-wrap justify-between">

@@ -20,8 +20,7 @@ export default function Toast({ children, styles = defaultToastStyles }: ToastPr
           role="alert"
           aria-live="assertive"
           aria-atomic="true"
-          className={`${openToast ? "animate-start" : "animate-end"} 
-          absolute flex shadow-md gap-6 rounded-lg overflow-hidden divide-x w-3/4 md:max-w-lg bg-white divide-secondary-clr z-[60] ${styles}`}>
+          className={`absolute flex shadow-md gap-6 rounded-lg overflow-hidden divide-x w-3/4 md:max-w-lg bg-white divide-secondary-clr z-[60] ${styles}`}>
           <div className="flex flex-1 flex-col p-4 border-l-8 border-secondary-clr text-sm text-primary-clr">
             {children}
           </div>
